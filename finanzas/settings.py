@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'partidas',
-    'presupuestos'
+    'presupuestos',
+    'gastos',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [

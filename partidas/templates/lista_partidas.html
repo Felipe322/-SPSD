@@ -5,13 +5,13 @@
     <title>Lista Partidas</title>
 </head>
 <body>
-    <h1>Listado de partidas</h1>
+    <h1>Listado de Partidas</h1>
     <table>
         <tr>
             <th>Clave</th>
             <th>Nombre</th>
-            <th>Capitulo</th>
-            <th>Descripcion</th>
+            <th>Capítulo</th>
+            <th>Descripción</th>
             <th>Opciones</th>
         </tr>
         {% for partida in partidas %}
@@ -22,6 +22,8 @@
             <td>{{partida.descripcion}}</td>
             <td>
                 <a href="{% url 'partidas:eliminar' partida.clave %}">Eliminar</a>
+                <a href="{% url 'partidas:editar' partida.clave %}">Modificar</a>
+
             </td>
         </tr>
         {% endfor %}

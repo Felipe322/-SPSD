@@ -21,7 +21,9 @@ urlpatterns = [
     path('capitulos/',include('partidas.urls_capitulos')),
     path('partidas/',include('partidas.urls_partidas')),
     path('presupuestos/',include('presupuestos.urls_presupuestos')),
-    path('actividades/',include('presupuestos.urls_actividades'))
+    path('actividades/',include('presupuestos.urls_actividades')),
+    path('gastos/',include('gastos.urls_gastos'))
+    
 ]
 
 

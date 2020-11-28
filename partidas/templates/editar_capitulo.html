@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Capitulo</title>
+    <title>Actualizar Capítulo</title>
 </head>
 <body>
-    <h1>Nuevo Capitulo</h1>
+    <h1>Actualizar Capítulo</h1>
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Agregar</button>
-         <button type="reset">Cancelar</button>
+        <button type="submit">Guardar</button>
+        <button type="reset">Cancelar</button>
+
     </form>
 </body>
 </html>

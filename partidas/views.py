@@ -25,6 +25,19 @@ def eliminar_capitulo(request,clave):
     return redirect('capitulos:lista')
 
 
+def editar_capitulo(request,clave):
+    capitulo =Capitulo.objects.get(clave=clave)
+    if request.method== 'POST':
+        form= CapituloForm(request.POST, instance=capitulo)
+        if form.is_valid():
+            form.save()
+            return redirect('capitulos:lista')
+    else:
+        form= CapituloForm(instance=capitulo)
+    return render(request, 'editar_capitulo.html',{'form':form})
+        
+
+
 ###vistas de partidas
 def lista_partidas(request):
     partidas = Partida.objects.all()
@@ -39,9 +52,20 @@ def nueva_partida(request):
             return redirect('partidas:lista')
     else:
         form = PartidaForm()
-
     return render(request,'nueva_partida.html',{'form':form})
 
+def editar_partida(request,clave):
+    partida =Partida.objects.get(clave=clave)
+    if request.method== 'POST':
+        form= PartidaForm(request.POST, instance=partida)
+        if form.is_valid():
+            form.save()
+            return redirect('partidas:lista')
+    else:
+        form= PartidaForm(instance=partida)
+    return render(request, 'editar_partida.html',{'form':form})
+        
+        
 def eliminar_partida(request,clave):
     partida = Partida.objects.get(clave=clave)
     partida.delete()

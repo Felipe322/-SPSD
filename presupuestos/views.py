@@ -19,13 +19,27 @@ def nuevo_presupuesto(request):
             return redirect('presupuestos:lista')
     else:
         form = PresupuestoForm()
-    return render (request, 'nuevo_presupuesto.html',{'form':form})
+    return render(request, 'nuevo_presupuesto.html',{'form':form})
 
 
 def eliminar_presupuesto(request,anio):
     presupuesto = Presupuesto.objects.get(anio=anio)
     presupuesto.delete()
     return redirect('presupuestos:lista') 
+
+
+def editar_presupuesto(request,anio):
+    presupuesto =Presupuesto.objects.get(anio=anio)
+    if request.method== 'POST':
+        form= PresupuestoForm(request.POST, instance=presupuesto)
+        if form.is_valid():
+            form.save()
+            return redirect('presupuestos:lista')
+    else:
+        form= PresupuestoForm(instance=presupuesto)
+    return render(request, 'editar_presupuesto.html',{'form':form})
+        
+
 #Vista actividades
 
 
@@ -41,10 +55,22 @@ def nueva_actividad(request):
             form.save()
             return redirect('actividades:lista')
     else:
-        form = PartidaForm()
+        form = ActividadForm()
     return render(request,'nueva_actividad.html',{'form':form})
 
 def eliminar_actividad(request,id):
     actividad= Actividad.objects.get(id=id)
     actividad.delete()
-    return redirect('actividaes:lista')
+    return redirect('actividades:lista')
+
+def editar_actividad(request,id):
+    actividad = Actividad.objects.get(id=id)
+    if request.method== 'POST':
+        form= ActividadForm(request.POST, instance=actividad)
+        if form.is_valid():
+            form.save()
+            return redirect('actividades:lista')
+    else:
+        form= ActividadForm(instance=actividad)
+    return render(request, 'editar_actividad.html',{'form':form})
+        

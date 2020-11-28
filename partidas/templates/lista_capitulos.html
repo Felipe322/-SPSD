@@ -2,10 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista capitulos</title>
+    <title>Lista Capítulos</title>
 </head>
 <body>
-    <h1>Listado de capitulos</h1>
+    <h1>Listado de Capítulos</h1>
     <table>
         <tr>
             <th>Clave</th>
@@ -19,6 +19,7 @@
             <td>{{capitulo.nombre}}</td>
             <td>
                 <a href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
+                <a href="{% url 'capitulos:editar' capitulo.clave %}">Modificar</a>
             </td>
         </tr>
         {% endfor %}
