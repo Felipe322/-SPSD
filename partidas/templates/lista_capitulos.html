@@ -1,10 +1,8 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Capítulos</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Lista Capitulos{% endblock %}
+
+{% block content %}
     <h1>Listado de Capítulos</h1>
     <table>
         <tr>
@@ -18,11 +16,10 @@
             <td>{{capitulo.clave}}</td>
             <td>{{capitulo.nombre}}</td>
             <td>
-                <a href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
+                <a class="btn btn-danger", href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
                 <a href="{% url 'capitulos:editar' capitulo.clave %}">Modificar</a>
             </td>
         </tr>
         {% endfor %}
     </table>
-</body>
-</html>
+{% endblock %}

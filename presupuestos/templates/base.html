@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {# Cargamos la librería #}
+	  {% load bootstrap4 %}
+    {# CSS Bootstrap #}
+    {% bootstrap_css %}
+    
+    {% block extrahead %}
+    {% endblock %}  
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Document{% endblock %}</title>
+  </head>
+  <body>
+    {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Finanzas SPSD <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Capitulos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'capitulos:nuevo'%}">Nuevo</a>
+              <a class="dropdown-item" href="{% url 'capitulos:lista'%}">Lista</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Partidas
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'partidas:nuevo'%}">Nueva</a>
+              <a class="dropdown-item" href="{% url 'partidas:lista'%}">Lista</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Presupuestos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'presupuestos:nuevo'%}">Nuevo</a>
+              <a class="dropdown-item" href="{% url 'presupuestos:lista'%}">Lista</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Gastos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'gastos:nuevo'%}">Nuevo</a>
+              <a class="dropdown-item" href="{% url 'gastos:lista'%}">Lista</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    
+    
+    {% endblock %}
+
+    <div>
+      {% block content %}
+      <h5>Este es el contenido del archivo base</h5>
+      {% endblock %}
+    </div>
+    {% bootstrap_javascript jquery='full' %}
+  </body>
+</html>
