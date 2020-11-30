@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Finanzas SPSD <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#"> Finanzas SPSD  <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,7 +47,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'presupuestos:nuevo'%}">Nuevo</a>
-              <a class="dropdown-item" href="{% url 'presupuestos:lista'%}">Lista</a>
+              <a class="dropdown-item" href="{% url 'presupuestos:lista'%}" >Lista</a>
             </div>
           </li>
 
@@ -72,6 +72,8 @@
     <div>
       {% block content %}
       <h5>Este es el contenido del archivo base</h5>
+
+      <table class="table-dark"> <table/>
       {% endblock %}
     </div>
     {% bootstrap_javascript jquery='full' %}
