@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Traspaso presupuesto{% endblock %}
+{% block content %}
+<h1>Traspasar saldo</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-success" type="submit">Traspasar</button>
+        <button  class="btn btn-danger" type="reset">Cancelar</button>
+    </form>
+{% endblock %}

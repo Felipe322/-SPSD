@@ -22,7 +22,11 @@ class Actividad(models.Model):
     anio= models.ForeignKey('presupuestos.Presupuesto',verbose_name='Año', on_delete=models.CASCADE)
     
     def __str__(self):
-        return str(self.programa)+" "+str(self.componente)+" "+str(self.actividad)
+        return str(self.programa)+" "+str(self.componente)+" "+str(self.actividad)+"-"+str(self.descripcion) +"Saldo: "+str(self.monto)+"$"
     #str(self.monto)+" "+str(self.descripcion)+" "+str(self.mes)+" "+str(self.partida)+" "+str(self.anio)
 
     
+class Transferencia(models.Model):
+    actividad1 = models.ForeignKey('presupuestos.Actividad',related_name='actividad1',verbose_name='Actividad Remitente', on_delete=models.CASCADE)
+    actividad2 = models.ForeignKey('presupuestos.Actividad',related_name='actividad2',verbose_name='Actividad Destino', on_delete=models.CASCADE)
+    monto = models.DecimalField('Monto', decimal_places=2,max_digits=10, blank=False, null=False)

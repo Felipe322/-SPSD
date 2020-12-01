@@ -4,7 +4,7 @@
 <h1>Nuevo Presupuesto</h1>
 <form method="POST">
   {% csrf_token %} {{form.as_p}}
-  <button type="submit">Agregar</button>
-  <button type="reset">Cancelar</button>
+  <button type="button" class="btn btn-success", type="submit">Agregar</button>
+  <button class="btn btn-danger", type="reset">Cancelar</button>
 </form>
 {% endblock %}

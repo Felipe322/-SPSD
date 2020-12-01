@@ -3,6 +3,7 @@
 {% block title %}Lista Capitulos{% endblock %}
 
 {% block content %}
+  <div class="container-fluid">
     <h1>Listado de Capítulos</h1>
     <table>
         <tr>
@@ -16,10 +17,11 @@
             <td>{{capitulo.clave}}</td>
             <td>{{capitulo.nombre}}</td>
             <td>
-                <a class="btn btn-danger", href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
-                <a href="{% url 'capitulos:editar' capitulo.clave %}">Modificar</a>
+                <a  class="btn btn-danger", class="btn btn-danger", href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
+                <a  class="btn btn-primary"  href="{% url 'capitulos:editar' capitulo.clave %}">Modificar</a>
             </td>
         </tr>
         {% endfor %}
     </table>
+    </div>
 {% endblock %}
