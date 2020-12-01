@@ -10,7 +10,7 @@ class Capitulo(models.Model):
 class Partida(models.Model):
     clave = models.CharField('Clave',max_length=4,primary_key=True)
     nombre = models.CharField('Nombre',max_length=75)
-    descripcion = models.CharField('Descripcion',max_length=256)
+    descripcion = models.CharField('Descripcion',max_length=1200)
     capitulo = models.ForeignKey('partidas.Capitulo',verbose_name='Capitulo',on_delete=models.CASCADE)
 
     def __str__(self):

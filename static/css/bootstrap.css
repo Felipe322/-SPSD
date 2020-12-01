@@ -204,6 +204,7 @@ svg {
 
 table {
   border-collapse: collapse;
+  
 }
 
 caption {
@@ -10226,6 +10227,7 @@ a.text-dark:hover, a.text-dark:focus {
   body {
     min-width: 992px !important;
   }
+  
   .container {
     min-width: 992px !important;
   }
@@ -10260,4 +10262,10 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+
+
+
+
+
 /*# sourceMappingURL=bootstrap.css.map */

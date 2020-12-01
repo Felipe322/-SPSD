@@ -1,32 +1,29 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Partidas</title>
-</head>
-<body>
-    <h1>Listado de Partidas</h1>
-    <table>
-        <tr>
-            <th>Clave</th>
-            <th>Nombre</th>
-            <th>Capítulo</th>
-            <th>Descripción</th>
-            <th>Opciones</th>
-        </tr>
-        {% for partida in partidas %}
-        <tr>
-            <td>{{partida.clave}}</td>
-            <td>{{partida.nombre}}</td>
-            <td>{{partida.capitulo}}</td>
-            <td>{{partida.descripcion}}</td>
-            <td>
-                <a href="{% url 'partidas:eliminar' partida.clave %}">Eliminar</a>
-                <a href="{% url 'partidas:editar' partida.clave %}">Modificar</a>
+{% extends 'base.html' %}
 
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% block title %}Lista Partidas{% endblock %}
+
+{% block content %}
+<h1>Listado de Partidas</h1>
+<table>
+    <tr>
+        <th>Clave</th>
+        <th>Nombre</th>
+        <th>Capítulo</th>
+        <th>Descripción</th>
+        <th>Opciones</th>
+    </tr>
+    {% for partida in partidas %}
+    <tr>
+        <td>{{partida.clave}}</td>
+        <td>{{partida.nombre}}</td>
+        <td>{{partida.capitulo}}</td>
+        <td>{{partida.descripcion}}</td>
+        <td>
+            <a href="{% url 'partidas:eliminar' partida.clave %}">Eliminar</a>
+            <a href="{% url 'partidas:editar' partida.clave %}">Modificar</a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

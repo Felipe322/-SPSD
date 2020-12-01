@@ -70,3 +70,4 @@ def eliminar_partida(request,clave):
     partida = Partida.objects.get(clave=clave)
     partida.delete()
     return redirect('partidas:lista')
+
