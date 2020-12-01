@@ -1,7 +1,7 @@
 Característica: Modificar un capítulo
     Como administrador de la secretaría de prevención del delito
     requiero modificar un capítulo
-    para poder asignarle nuevos nombre.
+    para poder asignarle un nuevo nombre.
 
     Escenario: Datos correctos
         Dado que estoy dentro del sistema como administrador
