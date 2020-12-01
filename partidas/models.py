@@ -5,7 +5,7 @@ class Capitulo(models.Model):
     nombre = models.CharField('Nombre',max_length=150)
 
     def __str__(self):
-       return str(self.clave)
+       return str(self.clave)+" - "+str(self.nombre)
 
 class Partida(models.Model):
     clave = models.CharField('Clave',max_length=4,primary_key=True)
@@ -14,4 +14,4 @@ class Partida(models.Model):
     capitulo = models.ForeignKey('partidas.Capitulo',verbose_name='Capitulo',on_delete=models.CASCADE)
 
     def __str__(self):
-       return str(self.clave)+" "+str(self.nombre)
+       return str(self.clave)+" - "+str(self.nombre)
