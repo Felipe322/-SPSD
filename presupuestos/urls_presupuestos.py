@@ -7,5 +7,5 @@ urlpatterns = [
     path('lista/',lista_presupuestos,name='lista'),
     path('nuevo/',nuevo_presupuesto,name='nuevo'),
     path('eliminar/<int:anio>',eliminar_presupuesto,name='eliminar'),
-     path('editar/<int:anio>',editar_presupuesto,name="editar"),
+    path('editar/<int:anio>',editar_presupuesto,name="editar"),
 ]
