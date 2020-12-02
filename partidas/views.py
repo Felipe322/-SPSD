@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from partidas.models import Capitulo, Partida
-from partidas.forms import CapituloForm,PartidaForm
+from partidas.forms import CapituloForm, PartidaForm
 
 ###vistas de capitulos
 def lista_capitulos(request):
