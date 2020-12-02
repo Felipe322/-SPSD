@@ -3,8 +3,10 @@
 {% block title %}Lista Actividades{% endblock %}
 
 {% block content %}
+    
+    <div class="container-lg">
     <h1>Listado de Actividades</h1>
-    <table>
+    <table  class="table">
         <tr>
             <th>Programa</th>
             <th>Componente</th>
@@ -15,7 +17,6 @@
             <th>Partida</th>
             <th>Año</th>
             <th>Opciones</th>
-
 
         </tr>
         {% for actividad in actividades %}
@@ -31,10 +32,12 @@
         
             <td>
                 <a class="btn btn-danger", href="{% url 'actividades:eliminar' actividad.id %}">Eliminar</a> 
-                <a href="{% url 'actividades:editar' actividad.id %}">Modificar</a>
+                <a class="btn btn-primary", href="{% url 'actividades:editar' actividad.id %}">Modificar</a>
+               <!--  <a class="btn btn-primary" href="{% url 'actividades:traspaso' actividad.id %}">Transferencia partida</a> !-->
 
             </td>
         </tr>
+        </div>
         {% endfor %}
     </table>
 {% endblock %}

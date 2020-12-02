@@ -10,8 +10,8 @@
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Guardar</button>
-        <button type="reset">Cancelar</button>
+        <button  class="btn btn-success", type="submit">Guardar</button>
+        <button  class="btn btn-danger", type="reset">Cancelar</button>
     </form>
 </body>
 </html>

@@ -4,7 +4,8 @@
 
 {% block content %}
     <h1>Listado de Presupuestos</h1>
-    <table>
+    <div class="container-fluid"class="shadow-lg p-3 mb-5 bg-white rounded" >
+    <table class="table" >
         <tr>
             <th>Año</th>
             <th>Fecha</th>
@@ -16,12 +17,13 @@
             <td>{{presupuesto.anio}}</td>
             <td>{{presupuesto.fecha}}</td>
             <td>
-               <a href="{% url 'presupuestos:eliminar' presupuesto.anio %}">Eliminar</a>
-                <a href="{% url 'presupuestos:editar' presupuesto.anio %}">Modificar</a>
+               <a class="btn btn-danger", href="{% url 'presupuestos:eliminar' presupuesto.anio %}">Eliminar</a>
+                <a class="btn btn-primary",  href="{% url 'presupuestos:editar' presupuesto.anio %}">Modificar</a>
 
             </td>
         </tr>
         {% endfor %}
     </table>
+    </div>
 {% endblock %}
 

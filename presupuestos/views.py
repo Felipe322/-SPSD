@@ -1,7 +1,9 @@
 from partidas.forms import PartidaForm
-from presupuestos.forms import ActividadForm, PresupuestoForm
+from presupuestos.forms import ActividadForm, PresupuestoForm,TransferenciaForm
 from django.shortcuts import redirect, render
 from presupuestos.models import Presupuesto, Actividad
+from django.db.models import F
+
 
 # Create your views here.
 
@@ -74,3 +76,19 @@ def editar_actividad(request,id):
         form= ActividadForm(instance=actividad)
     return render(request, 'editar_actividad.html',{'form':form})
         
+def traspaso_saldo(request):
+    form = TransferenciaForm()
+    if request.method == 'POST':
+        form = TransferenciaForm(request.POST)
+        id_actividad1 = request.POST['actividad1']
+        id_actividad2 = request.POST['actividad2']
+        monto_traspaso = request.POST['monto']
+        saldo_disponible= Actividad.objects.values_list('monto').get(id=id_actividad1)[0]
+        if float(monto_traspaso) > float(saldo_disponible):
+            print("Error No se puede transpasar")
+        else:
+            if form.is_valid():
+                Actividad.objects.filter(id=id_actividad1).update(monto=F('monto')-monto_traspaso)
+                Actividad.objects.filter(id=id_actividad2).update(monto=F('monto')+monto_traspaso)
+                form.save()
+    return render(request,'traspaso_saldo.html',{'form':form})

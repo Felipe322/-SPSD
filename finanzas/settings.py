@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'partidas',
     'presupuestos',
     'gastos',
-    'bootstrap4'
+    'bootstrap4',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'finanzas.urls'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
