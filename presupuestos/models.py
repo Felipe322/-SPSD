@@ -16,7 +16,7 @@ class Actividad(models.Model):
     componente= models.CharField('Componente', max_length=2)
     actividad= models.CharField('Actividad', max_length=2)
     monto = models.DecimalField('Monto', decimal_places=2,max_digits=10, blank=True, null=True)
-    descripcion= models.CharField('Descripción',max_length=1200)
+    descripcion= models.CharField('Descripción',max_length=2300)
     mes  = models.CharField('Mes', max_length=2)
     partida = models.ForeignKey('partidas.Partida', verbose_name='Partida', on_delete=models.CASCADE)
     anio= models.ForeignKey('presupuestos.Presupuesto',verbose_name='Año', on_delete=models.CASCADE)

@@ -76,7 +76,7 @@ def editar_actividad(request,id):
         form= ActividadForm(instance=actividad)
     return render(request, 'editar_actividad.html',{'form':form})
         
-def traspaso_saldo(request,id):
+def traspaso_saldo(request):
     form = TransferenciaForm()
     if request.method == 'POST':
         form = TransferenciaForm(request.POST)
