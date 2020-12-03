@@ -8,7 +8,6 @@
     <form method="POST">
     {{ form|crispy }}
         {% csrf_token %}
-        {{form.as_p}}
         <button  class="btn btn-success" , type="submit">Agregar</button>
         <button class="btn btn-danger", type="reset">Cancelar</button>
 </div>
