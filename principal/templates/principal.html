@@ -1,0 +1,116 @@
+
+<!doctype html>
+<html>
+  <head>
+    {% load static %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Principal</title>
+
+    <link rel="stylesheet" href="{% static 'css/jquery.treegrid.css' %}">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.treegrid.js' %}"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.tree').treegrid();
+      });
+    </script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Finanzas SPSD <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Capítulos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'capitulos:nuevo'%}">Nuevo</a>
+                <a class="dropdown-item" href="{% url 'capitulos:lista'%}">Lista</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Partidas
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'partidas:nuevo'%}">Nueva</a>
+                <a class="dropdown-item" href="{% url 'partidas:lista'%}">Lista</a>
+              </div>
+            </li>
+  
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Presupuestos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'presupuestos:nuevo'%}">Nuevo</a>
+                <a class="dropdown-item" href="{% url 'presupuestos:lista'%}">Lista</a>
+              </div>
+            </li>
+  
+               <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Actividades
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'actividades:nuevo'%}">Nuevo</a>
+                <a class="dropdown-item" href="{% url 'actividades:lista'%}">Lista</a>
+                <a class="dropdown-item" href="{% url 'actividades:traspaso'%}">Compartir Saldo</a>
+              </div>
+            </li>
+  
+  
+  
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gastos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'gastos:nuevo'%}">Nuevo</a>
+                <a class="dropdown-item" href="{% url 'gastos:lista'%}">Lista</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      
+      <table class="tree table table-hover  ">
+        {% for capitulo in capitulos %}
+            <tr class="treegrid-{{capitulo.id}} bg-dark text-white ">
+              
+                <td>Capítulo {{capitulo.clave}}</td>
+                <td></td>
+                <td>${{capitulo.total}}</td>
+                <td></td>
+            </tr>
+            {% for partida in capitulo.partidas %}
+                <tr class="treegrid-{{partida.id}} treegrid-parent-{{capitulo.id}} table-secondary">
+                    <td>Partida {{partida.clave}}</td>
+                    <td></td>
+                    <td>${{partida.total}}</td>
+                    <td></td>
+                </tr>
+                {% for actividad in partida.actividades %}
+                    <tr class="treegrid-{{actividad.id}} treegrid-parent-{{partida.id}} ">
+                        <td>{{actividad.programa}}-{{actividad.componente}}-{{actividad.actividad}}</td>
+                        <td>{{actividad.descripcion}}</td>
+                        <td>${{actividad.monto}}</td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+        
+      </table>
+  </body>
+</html>
