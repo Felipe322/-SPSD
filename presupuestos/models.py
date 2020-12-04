@@ -22,7 +22,7 @@ class Actividad(models.Model):
     anio= models.ForeignKey('presupuestos.Presupuesto',verbose_name='Año', on_delete=models.CASCADE)
     
     def __str__(self):
-        return str(self.programa)+" "+str(self.componente)+" "+str(self.actividad)+"-"+str(self.descripcion) +"Saldo: "+str(self.monto)+"$"
+        return str(self.programa)+" "+str(self.componente)+" "+str(self.actividad)+"-"+str(self.descripcion) +"Saldo: "+str(self.monto)+"$ partida "+str(self.partida)
     #str(self.monto)+" "+str(self.descripcion)+" "+str(self.mes)+" "+str(self.partida)+" "+str(self.anio)
 
     
