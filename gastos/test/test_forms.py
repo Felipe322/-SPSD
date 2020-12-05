@@ -9,7 +9,12 @@ from gastos.forms import Gasto
 
 class TestFormsGasto(TestCase):
 
-    def setUp(self, descripcion='Se compraron muchos lapízes', proveedor='La comer S.A C.V', precio_unitario=2.50, cantidad=300, fecha='2020-12-12'):
+    def setUp(self, descripcion='Se compraron muchos lapízes',
+              proveedor='La comer S.A C.V',
+              precio_unitario=2.50,
+              cantidad=300,
+              fecha='2020-12-12'
+              ):
 
         self.gasto = Gasto(
             descripcion=descripcion,
@@ -120,7 +125,7 @@ class TestFormsGasto(TestCase):
     #     self.assertTrue(form.is_valid())
 
     def test_gasto_form_cantidad_numeros_mayor_cero(self):
-        self.data['cantidad'] = -100 #VALIDAR QUE SEA POSITIVO!!
+        self.data['cantidad'] = -100  # VALIDAR QUE SEA POSITIVO!!
         form = GastoForm(self.data)
         self.assertEqual(
             form.errors['cantidad'],
