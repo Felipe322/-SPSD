@@ -23,7 +23,8 @@ urlpatterns = [
     path('presupuestos/',include('presupuestos.urls_presupuestos')),
     path('actividades/',include('presupuestos.urls_actividades')),
     path('gastos/',include('gastos.urls_gastos')),
-    path('principal/',include('principal.urls'))
+    path('principal/',include('principal.urls')),
+    path('login/',include('usuarios.urls')),
     
 ]
 

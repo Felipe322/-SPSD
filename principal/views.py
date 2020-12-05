@@ -2,8 +2,10 @@ from django.shortcuts import render
 from partidas.models import Capitulo, Partida
 from presupuestos.models import Actividad , Presupuesto
 from gastos.models import Gasto
+from django.contrib.auth.decorators import login_required
 
 #Vista presupuestos
+@login_required
 def principal(request):
     capitulos = Capitulo.objects.all()
     lista_capitulos = []
