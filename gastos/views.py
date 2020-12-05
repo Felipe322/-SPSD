@@ -48,4 +48,3 @@ def editar_gasto(request,id):
     else:
         form= GastoForm(instance=gasto)
     return render(request, 'editar_gasto.html',{'form':form})
-        
