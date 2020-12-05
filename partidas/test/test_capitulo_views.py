@@ -4,9 +4,11 @@ from partidas.models import Capitulo
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth.models import Group
 from django.template.response import SimpleTemplateResponse
+
 # Código que sacamos de Internet no mover.
 class TestViews(TestCase):
     def setUp(self):
+        self.admin_login()
         self.capitulo = Capitulo(
             clave=4001,
             nombre='MATERIALES Y SUMINISTROS'
@@ -18,12 +20,10 @@ class TestViews(TestCase):
         }
 
     def test_crear_capitulo(self):
-        #Hace login como admin antes
         respuesta = self.client.get('/capitulos/nuevo/')
         self.assertEqual(respuesta.status_code, 200)
 
     def test_template_correcto_nuevo_capitulo(self):
-        #Hace login como admin antes
         respuesta = self.client.get('/capitulos/nuevo/')
         self.assertTemplateUsed(respuesta, 'nuevo_capitulo.html')
 
@@ -76,9 +76,15 @@ class TestViews(TestCase):
         response = self.client.get('/capitulos/nuevo/')
         boton = '<button class="btn btn-success" type="submit">Agregar</button>'
         self.assertInHTML(boton,str(response.content))
-
     def agrega_capitulo(self):
        self.capitulo = Capitulo.objects.create(
            clave=2000,
            nombre='MATERIALES Y SUMINISTROS'
        )
+    def admin_login(self):
+        user1 = User.objects.create_user(
+            username='admin',
+            password='Adri4na203#',
+            is_superuser=True
+        )
+        self.client.login(username='admin', password='Adri4na203#')
