@@ -3,15 +3,20 @@ from presupuestos.models import Presupuesto
 from django.shortcuts import redirect, render
 from gastos.forms import GastoForm
 from gastos.models import Gasto
+from django.contrib.auth.decorators import permission_required, login_required
 
 
 
 #Vista gastos
+@login_required
+def lista_gastos(request):  
+    if request.user.is_authenticated:
+        return redirect ('usuario:login')
 
-def lista_gastos(request):
     gastos = Gasto.objects.all()
     return render(request, 'lista_gastos.html',{'gastos':gastos})
 
+@login_required
 def nuevo_gasto(request):
     form =GastoForm
     if request.method== 'POST':
@@ -22,7 +27,8 @@ def nuevo_gasto(request):
     else:
         form = GastoForm()
     return render(request,'nuevo_gasto.html',{'form':form})
-        
+
+@login_required     
 def eliminar_gasto(request,id):
     gastos= Gasto.objects.get(id=id)
     gastos.delete()
@@ -31,6 +37,7 @@ def eliminar_gasto(request,id):
 def precio_total(self):
         return self.precio_unitario*self.cantidad
 
+@login_required
 def editar_gasto(request,id):
     gasto =Gasto.objects.get(id=id)
     if request.method== 'POST':
