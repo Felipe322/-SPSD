@@ -9,6 +9,7 @@ class Capitulo(models.Model):
     def __str__(self):
        return str(self.clave)+" - "+str(self.nombre)
 
+
 class Partida(models.Model):
     clave = models.IntegerField('Clave',validators=[MaxValueValidator(9000), MinValueValidator(1000)] ,primary_key=True)
     nombre = models.CharField('Nombre',max_length=75)
