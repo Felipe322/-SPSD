@@ -12,7 +12,7 @@ class TestModels(TestCase):
 			anio=anio,
             fecha=fecha
 		)
-
+	
 	def test_anio_no_acepta_espacio(self):
 		self.presupuesto.anio = '98 0'
 		with self.assertRaises(ValidationError):
@@ -39,3 +39,4 @@ class TestModels(TestCase):
 		except ValidationError as ex:
 			msg = str(ex.message_dict['anio'][0])
 			self.assertEqual(msg, 'A user with that username already exists.')
+	

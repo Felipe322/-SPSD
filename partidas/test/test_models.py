@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-from django.test import TestCase
-from partidas.models import (CapituloForm)
-from partidas.models import Capitulo
-=======
 # from django.test import TestCase
 # from partidas.forms import CapituloForm
 # from partidas.forms import Capitulo
@@ -40,4 +35,3 @@ from partidas.models import Capitulo
 #         self.capitulo.clave = 18
 #         with self.assertRaises(ValidationError):
 #             self.capitulo.full_clean()
->>>>>>> 47b692f599e24a3df4d77066873434edcffc2a4e
