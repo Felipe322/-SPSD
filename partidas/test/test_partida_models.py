@@ -7,25 +7,33 @@ from django.core.exceptions import ValidationError
 
 class TestModelsPartida(TestCase):
 
-    def setUp(self, clave=2110, nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA', descripcion='Plumas, borradores, entre otras cosas.'):
-        capitulo=Capitulo.objects.create(
+    def setUp(self,
+              clave=2110,
+              nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA',
+              descripcion='Plumas, borradores, entre otras cosas.'
+              ):
+
+        self.admin_login()
+
+        self.capitulo = Capitulo.objects.create(
             clave=2000,
             nombre='MATERIALES Y SUMINISTROS'
         )
 
-        self.partida = Partida(
+        self.partida = Partida.objects.create(
             clave=clave,
             nombre=nombre,
             descripcion=descripcion,
-            capitulo=capitulo
+            capitulo=self.capitulo
         )
 
         self.data = {
             'clave': clave,
             'nombre': nombre,
             'descripcion': descripcion,
-            'capitulo': capitulo
+            'capitulo': self.capitulo
         }
+
 
     def test_partida_duplicado(self):
         partida_repetido = Partida(

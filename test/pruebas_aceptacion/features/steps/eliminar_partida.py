@@ -1,6 +1,7 @@
 from behave import given, when, then
 import time
 
+
 @when(u'presiono el botón Eliminar de la partida')
 def step_impl(context):
     context.driver.find_element_by_xpath('//*[@id="partida_form"]/div/div/p/a').click()

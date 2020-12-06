@@ -5,25 +5,33 @@ from partidas.forms import Capitulo
 
 class TestFormPartida(TestCase):
 
-    def setUp(self, clave=2110, nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA', descripcion='Plumas, borradores, entre otras cosas.'):
-        capitulo=Capitulo.objects.create(
+    def setUp(self,
+              clave=2110,
+              nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA',
+              descripcion='Plumas, borradores, entre otras cosas.'
+              ):
+
+        self.admin_login()
+
+        self.capitulo = Capitulo.objects.create(
             clave=2000,
             nombre='MATERIALES Y SUMINISTROS'
         )
 
-        self.partida = Partida(
+        self.partida = Partida.objects.create(
             clave=clave,
             nombre=nombre,
             descripcion=descripcion,
-            capitulo=capitulo
+            capitulo=self.capitulo
         )
 
         self.data = {
             'clave': clave,
             'nombre': nombre,
             'descripcion': descripcion,
-            'capitulo': capitulo
+            'capitulo': self.capitulo
         }
+
 
     def test_partida_form_valido(self):
         form = PartidaForm(self.data)
@@ -77,21 +85,21 @@ class TestFormPartida(TestCase):
             form.errors['nombre'],
             ['Asegúrese de que este valor tenga menos de 75 caracteres (tiene 95).'])
 
-    # def test_partida_form_descripcion_caracteres_mayor(self):
-    #     self.data['descripcion'] = 'Plumas, borradores y más.'*10 #Cambiar a más alto en la bd unos 3000
-    #     form = PartidaForm(self.data)
-    #     self.assertEqual( 
-    #         form.errors['descripcion'],           #Validar en la interfaz el error
-    #         ['El número de caracteres de la descripción excede el límite.']) 
+    def test_partida_form_descripcion_caracteres_mayor(self):
+        self.data['descripcion'] = 'Plumas, borradores y más.'*10
+        form = PartidaForm(self.data)
+        self.assertEqual( 
+            form.errors['descripcion'],
+            ['El número de caracteres de la descripción excede el límite.']) 
 
     def test_partida_form_clave_caracteres_numero(self):
         self.data['clave'] = 2200
         form = PartidaForm(self.data)
         self.assertIsInstance(self.data['clave'], int)
 
-#     def test_partida_form_clave_repetida(self):
-#         self.data['clave'] = 2110
-#         form = PartidaForm(self.data)
-#         self.assertEqual(
-#             form.errors['clave'],           #Validar en la interfaz el error
-#             ['La clave ya existe.'])
+    def test_partida_form_clave_repetida(self):
+        self.data['clave'] = 2110
+        form = PartidaForm(self.data)
+        self.assertEqual(
+            form.errors['clave'],
+            ['La clave ya existe.'])

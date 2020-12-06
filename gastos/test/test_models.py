@@ -10,8 +10,14 @@ from django.core.exceptions import ValidationError
 
 class TestModelsGasto(TestCase):
 
-    def setUp(self, descripcion='Se compraron muchos lapízes', proveedor='La comer S.A C.V', precio_unitario=2.50, cantidad=300, fecha='2020-12-12'):
-
+    def setUp(self,
+              descripcion='Se compraron muchos lapíces',
+              proveedor='La comer S.A C.V',
+              precio_unitario=2.50,
+              cantidad=300,
+              fecha='2020-12-12'
+              ):
+              
         self.gasto = Gasto(
             descripcion=descripcion,
             proveedor=proveedor,

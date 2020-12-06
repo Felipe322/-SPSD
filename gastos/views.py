@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import permission_required, login_required
 #Vista gastos
 @login_required
 def lista_gastos(request):  
-    if request.user.is_authenticated:
-        return redirect ('usuario:login')
+    if not request.user.is_authenticated:
+        return redirect ('usuarios:login')
 
     gastos = Gasto.objects.all()
     return render(request, 'lista_gastos.html',{'gastos':gastos})

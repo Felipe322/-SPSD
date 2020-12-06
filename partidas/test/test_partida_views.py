@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 
 
 class TestViews(TestCase):
-
     def setUp(self,
               clave=2110,
               nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA',
@@ -38,32 +37,54 @@ class TestViews(TestCase):
         respuesta = self.client.get('/partidas/nueva/')
         self.assertEqual(respuesta.status_code, 200)
 
+    def test_listado_partida(self):
+        respuesta = self.client.get('/partidas/lista/')
+        self.assertEqual(respuesta.status_code, 200)
+    
+    def test_editar_partida(self):
+        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        self.assertEqual(respuesta.status_code, 200)
+
     def test_template_correcto_nueva_partida(self):
         respuesta = self.client.get('/partidas/nueva/')
         self.assertTemplateUsed(respuesta, 'nueva_partida.html')
+
+    def test_template_correcto_lista_partida(self):
+        respuesta = self.client.get('/partidas/lista/')
+        self.assertTemplateUsed(respuesta, 'lista_partidas.html')
+
+    def test_template_correcto_editar_partida(self):
+        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        self.assertTemplateUsed(respuesta, 'editar_partida.html')
 
     def test_titulo_se_encuentra_en_el_template(self):
         respuesta = self.client.get('/partidas/nueva/')
         titulo = '<title>Nueva Partida</title>'
         self.assertInHTML(titulo, str(respuesta.content))
 
-    # def test_redireccion_al_agregar_partida(self):
-    #     respuesta = self.client.post('/partidas/nueva/',data=self.data)
-    #     self.assertEqual(respuesta.url,'/partidas/lista/')
+    def test_titulo_se_encuentra_en_el_template_lista(self):
+        respuesta = self.client.get('/partidas/lista/')
+        titulo = '<title>Lista Partidas</title>'
+        self.assertInHTML(titulo, str(respuesta.content))
 
-    # def test_redireccion_al_modificar_partida(self):
-    #     self.agrega_partida()
-    #     self.data['nombre'] = 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA2'
-    #     respuesta = self.client.post('/partidas/editar/2110', data=self.data)
-    #     self.assertEqual(respuesta.url, '/partidas/lista/')
+    def test_titulo_se_encuentra_en_el_template_editar(self):
+        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        titulo = '<title>Actualizar Partida</title>'
+        self.assertInHTML(titulo, str(respuesta.content))
 
-    def test_redireccion_al_eliminar_partida(self):
-        respuesta = self.client.get('/partidas/eliminar/2110')
+    def test_redireccion_al_agregar_partida(self):
+        respuesta = self.client.post('/partidas/nueva/',data=self.data)
+        self.assertEqual(respuesta.url,'/partidas/lista/')
+
+    def test_redireccion_al_modificar_partida(self):
+        self.agrega_partida()
+        self.data['nombre'] = 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA2'
+        respuesta = self.client.post('/partidas/editar/'+str(self.partida.clave), data=self.data)
         self.assertEqual(respuesta.url, '/partidas/lista/')
 
-    def test_lista_partidas(self):
-        respuesta = self.client.get('/partidas/lista/')
-        self.assertEqual(respuesta.status_code, 200)
+    def test_redireccion_al_eliminar_partida(self):
+        respuesta = self.client.get('/partidas/eliminar/'+str(self.partida.clave))
+        self.assertEqual(respuesta.url, '/partidas/lista/')
 
     def test_materiales_se_encuentre_en_el_template(self):
         respuesta = self.client.get('/partidas/lista/')
@@ -72,6 +93,16 @@ class TestViews(TestCase):
     def test_titulo_se_encuentra_en_el_template(self):
         respuesta = self.client.get('/partidas/nueva/')
         formulario = '<h1>Nueva Partida</h1>'
+        self.assertInHTML(formulario, str(respuesta.content))
+
+    def test_titulo_lista_se_encuentra_en_el_template(self):
+        respuesta = self.client.get('/partidas/lista/')
+        formulario = '<h1>Listado de Partidas</h1>'
+        self.assertInHTML(formulario, str(respuesta.content))
+
+    def test_titulo_se_encuentra_en_el_template(self):
+        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        formulario = '<h1>Actualizar Partida</h1>'
         self.assertInHTML(formulario, str(respuesta.content))
 
     def test_agregar_partida_form(self):
@@ -87,9 +118,19 @@ class TestViews(TestCase):
             Partida.objects.first().nombre, 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA')
 
     def test_boton_agregar_partida_en_template(self):
-        response = self.client.get('/partidas/nueva/')
+        respuesta = self.client.get('/partidas/nueva/')
         boton = '<button class="btn btn-success" type="submit">Agregar</button>'
-        self.assertInHTML(boton, str(response.content))
+        self.assertInHTML(boton, str(respuesta.content))
+
+    def test_boton_eliminar_partida_en_template(self):
+        respuesta = self.client.get('/partidas/lista/')
+        boton = '<a class="btn btn-danger" href="/partidas/eliminar/'+str(self.partida.clave)+'">Eliminar</a>'
+        self.assertInHTML(boton, str(respuesta.content))
+
+    def test_boton_modificar_partida_en_template(self):
+        respuesta = self.client.get('/partidas/lista/')
+        boton = '<a class="btn btn-primary" href="/partidas/editar/'+str(self.partida.clave)+'">Modificar</a>'
+        self.assertInHTML(boton, str(respuesta.content))
 
     def admin_login(self):
         user1 = User.objects.create_user(
@@ -98,17 +139,3 @@ class TestViews(TestCase):
             is_superuser=True
         )
         self.client.login(username='admin', password='Adri4na203#')
-
-    def agrega_capitulo(self):
-        self.capitulo = Capitulo.objects.create(
-            clave=3000,
-            nombre='MATERIALES Y SUMINISTROS'
-        )
-
-    def agrega_partida(self):
-        self.partida = Partida.objects.create(
-            clave=3110,
-            nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA',
-            descripcion='Plumas, borradores, entre otras cosas.',
-            capitulo=self.capitulo
-        )
