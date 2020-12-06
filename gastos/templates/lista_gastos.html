@@ -15,6 +15,7 @@
             <th>Cantidad</th>
             <th>Precio Total</th>
             <th>Fecha</th>
+            <th>Factura</th>
 
 
 
@@ -27,6 +28,8 @@
             <td> {{gasto.cantidad}} </td>
             <td> {{gasto.precio_total}}  </td>
             <td> {{gasto.fecha}}  </td>
+            <td> {{gasto.factura}}  </td>
+
             <td>
                 <a class="btn btn-danger", href="{% url 'gastos:eliminar' gasto.id %}">Eliminar</a> 
                 <a  class="btn btn-primary" href="{% url 'gastos:editar' gasto.id %}">Modificar</a> 

@@ -3,7 +3,11 @@ from presupuestos.models import Presupuesto
 from django.shortcuts import redirect, render
 from gastos.forms import GastoForm
 from gastos.models import Gasto
-
+from django.shortcuts import render
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render
+from .forms import UploadDocumentForm
 
 
 #Vista gastos
@@ -41,4 +45,14 @@ def editar_gasto(request,id):
     else:
         form= GastoForm(instance=gasto)
     return render(request, 'editar_gasto.html',{'form':form})
-        
+
+
+
+
+def upload_doc(request):
+    form = UploadDocumentForm()
+    if request.method == 'POST':
+        form = UploadDocumentForm(request.POST, request.FILES)  
+        if form.is_valid():
+            form.save()
+    return render(request, 'upload_doc.html', locals())
