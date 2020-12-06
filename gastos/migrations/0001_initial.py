@@ -18,14 +18,26 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Gasto',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('descripcion', models.CharField(max_length=256, verbose_name='Descripción')),
-                ('proveedor', models.CharField(max_length=200, verbose_name='Proveedor')),
-                ('precio_unitario', models.FloatField(max_length=9, verbose_name='Precio Unitario')),
-                ('cantidad', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(100000)], verbose_name='Cantidad')),
-                ('precio_total', models.FloatField(editable=False, verbose_name='Total')),
-                ('fecha', models.DateField(default=django.utils.timezone.now, verbose_name='Fecha')),
-                ('id_actividad', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='presupuestos.actividad')),
+                ('id', models.AutoField(
+                    auto_created=True, primary_key=True,
+                    serialize=False, verbose_name='ID')),
+                ('descripcion', models.CharField(
+                    max_length=256, verbose_name='Descripción')),
+                ('proveedor', models.CharField(
+                    max_length=200, verbose_name='Proveedor')),
+                ('precio_unitario', models.FloatField(
+                    max_length=9, verbose_name='Precio Unitario')),
+                ('cantidad', models.PositiveIntegerField(validators=[
+                 django.core.validators.MaxValueValidator(100000)],
+                    verbose_name='Cantidad')),
+                ('precio_total', models.FloatField(
+                    editable=False, verbose_name='Total')),
+                ('fecha', models.DateField(
+                    default=django.utils.timezone.now,
+                    verbose_name='Fecha')),
+                ('id_actividad', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='presupuestos.actividad')),
             ],
         ),
     ]

@@ -3,15 +3,13 @@ from partidas.forms import PartidaForm
 from partidas.forms import Partida
 from partidas.forms import Capitulo
 
+
 class TestFormPartida(TestCase):
 
-    def setUp(self,
-              clave=2110,
-              nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA',
-              descripcion='Plumas, borradores, entre otras cosas.'
-              ):
-
-        self.capitulo = Capitulo.objects.create(
+    def setUp(self, clave=2110, nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES\
+                DE OFICINA', descripcion='Plumas, borradores, entre otras\
+                    cosas.'):
+        capitulo = Capitulo.objects.create(
             clave=2000,
             nombre='MATERIALES Y SUMINISTROS'
         )
@@ -81,12 +79,13 @@ class TestFormPartida(TestCase):
         form = PartidaForm(self.data)
         self.assertEqual(
             form.errors['nombre'],
-            ['Asegúrese de que este valor tenga menos de 75 caracteres (tiene 95).'])
+            ['Asegúrese de que este valor tenga menos de \
+             75 caracteres (tiene 95).'])
 
     def test_partida_form_descripcion_caracteres_mayor(self):
         self.data['descripcion'] = 'Plumas, borradores y más.'*50
         form = PartidaForm(self.data)
-        self.assertEqual( 
+        self.assertEqual(
             form.errors['descripcion'],
             ['Asegúrese de que este valor tenga menos de 1200 caracteres (tiene 1250).']) 
 

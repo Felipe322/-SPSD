@@ -114,18 +114,20 @@ class TestFormsGasto(TestCase):
             ['Este campo es obligatorio.'])
 
     def test_gasto_form_descripcion_caracteres_mayor(self):
-        self.data['descripcion'] = 'descripción' *300
+        self.data['descripcion'] = 'descripción' * 300
         form = GastoForm(self.data)
         self.assertEqual(
             form.errors['descripcion'],
-            ['Asegúrese de que este valor tenga menos de 256 caracteres (tiene 3300).'])
+            ['Asegúrese de que este valor tenga menos de 256 \
+                caracteres (tiene 3300).'])
 
     def test_gasto_form_proveedor_caracteres_mayor(self):
         self.data['proveedor'] = 'La comer S.A C.V'*13
         form = GastoForm(self.data)
         self.assertEqual(
             form.errors['proveedor'],
-            ['Asegúrese de que este valor tenga menos de 200 caracteres (tiene 208).'])
+            ['Asegúrese de que este valor tenga menos de 200 \
+             caracteres (tiene 208).'])
 
     # def test_gasto_form_precio_unitario_numeros_mayor(self):
     #     self.data['precio_unitario'] = 1000000001

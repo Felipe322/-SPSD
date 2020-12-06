@@ -1,5 +1,4 @@
 from django.test import TestCase
-from partidas.forms import PartidaForm
 from partidas.forms import Partida
 from partidas.forms import Capitulo
 from django.core.exceptions import ValidationError
@@ -32,7 +31,6 @@ class TestModelsPartida(TestCase):
             'capitulo': self.capitulo
         }
 
-
     def test_partida_duplicado(self):
         partida_repetido = Partida(
             clave=2210,
@@ -55,4 +53,3 @@ class TestModelsPartida(TestCase):
         self.partida.clave = 18
         with self.assertRaises(ValidationError):
             self.partida.full_clean()
-

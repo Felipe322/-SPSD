@@ -1,10 +1,8 @@
 from django.test import TestCase
-from django.urls import reverse
 from partidas.forms import Capitulo
 from partidas.forms import Partida
 from presupuestos.forms import Presupuesto
 from presupuestos.forms import Actividad
-from gastos.forms import GastoForm
 from gastos.forms import Gasto
 from django.contrib.auth.models import User
 

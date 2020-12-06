@@ -8,15 +8,26 @@ def step_impl(context):
     context.driver.find_element_by_xpath('//*[@id="navbarSupportedContent"]/ul/li[6]/div/a[1]').click()
     time.sleep(0.5)
 
-@given(u'capturo los datos: Descripcion "{descripcion}", Proveedor "{proveedor}", Precio Unitario "{precio}", Cantidad "{cantidad}", Fecha "{fecha}", Actividad "{actividad}"')
-def step_impl(context, descripcion, proveedor, precio, cantidad, fecha, actividad):
-    context.driver.find_element_by_xpath('//*[@id="id_descripcion"]').send_keys(descripcion)
-    context.driver.find_element_by_xpath('//*[@id="id_proveedor"]').send_keys(proveedor)
-    context.driver.find_element_by_xpath('//*[@id="id_precio_unitario"]').send_keys(precio)
-    context.driver.find_element_by_xpath('//*[@id="id_cantidad"]').send_keys(cantidad)
+
+@given(u'capturo los datos: Descripcion "{descripcion}",\
+    Proveedor "{proveedor}", Precio Unitario "{precio}",\
+        Cantidad "{cantidad}", Fecha "{fecha}",\
+        Actividad "{actividad}"')
+def step_impl(context, descripcion, proveedor, precio, cantidad,
+              fecha, actividad):
+    context.driver.find_element_by_xpath(
+        '//*[@id="id_descripcion"]').send_keys(descripcion)
+    context.driver.find_element_by_xpath(
+        '//*[@id="id_proveedor"]').send_keys(proveedor)
+    context.driver.find_element_by_xpath(
+        '//*[@id="id_precio_unitario"]').send_keys(precio)
+    context.driver.find_element_by_xpath(
+        '//*[@id="id_cantidad"]').send_keys(cantidad)
     context.driver.find_element_by_xpath('//*[@id="id_fecha"]').clear()
-    context.driver.find_element_by_xpath('//*[@id="id_fecha"]').send_keys(fecha)
-    context.driver.find_element_by_xpath('//*[@id="id_id_actividad"]').send_keys(actividad)
+    context.driver.find_element_by_xpath(
+        '//*[@id="id_fecha"]').send_keys(fecha)
+    context.driver.find_element_by_xpath(
+        '//*[@id="id_id_actividad"]').send_keys(actividad)
     time.sleep(0.5)
 
 @when(u'presiono el botón Agregar del gasto')

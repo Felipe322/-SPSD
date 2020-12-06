@@ -1,13 +1,15 @@
 from django.db import models
-from django.core import validators
-from django.core.validators import MaxValueValidator, MinValueValidator , MinLengthValidator, MaxLengthValidator 
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 class Capitulo(models.Model):
-    clave = models.IntegerField('Clave',primary_key=True,validators=[MaxValueValidator(9000), MinValueValidator(1000)])
-    nombre = models.CharField('Nombre',max_length=150)
+    clave = models.IntegerField('Clave', primary_key=True, validators=[
+                                MaxValueValidator(9000),
+                                MinValueValidator(1000)])
+    nombre = models.CharField('Nombre', max_length=150)
 
     def __str__(self):
-       return str(self.clave)+" - "+str(self.nombre)
+        return str(self.clave)+" - "+str(self.nombre)
 
 
 class Partida(models.Model):
@@ -17,4 +19,4 @@ class Partida(models.Model):
     capitulo = models.ForeignKey('partidas.Capitulo',verbose_name='Capitulo',on_delete=models.CASCADE)
 
     def __str__(self):
-       return str(self.clave)+" - "+str(self.nombre)
+        return str(self.clave)+" - "+str(self.nombre)

@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.urls import reverse
 from partidas.models import Capitulo
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -27,9 +26,10 @@ class TestViews(TestCase):
     def test_listado_capitulo(self):
         respuesta = self.client.get('/capitulos/lista/')
         self.assertEqual(respuesta.status_code, 200)
-    
+
     def test_editar_capitulo(self):
-        respuesta = self.client.get('/capitulos/editar/'+str(self.capitulo.clave))
+        respuesta = self.client.get(
+            '/capitulos/editar/'+str(self.capitulo.clave))
         self.assertEqual(respuesta.status_code, 200)
 
     def test_template_correcto_nuevo_capitulo(self):
@@ -41,7 +41,8 @@ class TestViews(TestCase):
         self.assertTemplateUsed(respuesta, 'lista_capitulos.html')
 
     def test_template_correcto_editar_capitulo(self):
-        respuesta = self.client.get('/capitulos/editar/'+str(self.capitulo.clave))
+        respuesta = self.client.get(
+            '/capitulos/editar/'+str(self.capitulo.clave))
         self.assertTemplateUsed(respuesta, 'editar_capitulo.html')
 
     def test_titulo_se_encuentra_en_el_template(self):
@@ -112,7 +113,8 @@ class TestViews(TestCase):
 
     def test_boton_agregar_capitulo_en_template(self):
         respuesta = self.client.get('/capitulos/nuevo/')
-        boton = '<button class="btn btn-success" type="submit">Agregar</button>'
+        boton = '<button class="btn btn-success" type="submit">\
+            Agregar</button>'
         self.assertInHTML(boton, str(respuesta.content))
 
     def test_boton_eliminar_capitulo_en_template(self):

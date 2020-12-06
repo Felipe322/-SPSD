@@ -8,11 +8,13 @@ def step_impl(context):
     context.driver.find_element_by_xpath('//*[@id="navbarSupportedContent"]/ul/li[4]/div/a[1]').click()
     time.sleep(0.5)
 
+
 @given(u'capturo los datos: Año "{anio}", Fecha "{fecha}"')
 def step_impl(context, anio, fecha):
     context.driver.find_element_by_xpath('//*[@id="id_anio"]').send_keys(anio)
     context.driver.find_element_by_xpath('//*[@id="id_fecha"]').clear()
-    context.driver.find_element_by_xpath('//*[@id="id_fecha"]').send_keys(fecha)
+    context.driver.find_element_by_xpath(
+        '//*[@id="id_fecha"]').send_keys(fecha)
     time.sleep(0.5)
 
 @when(u'presiono el botón Agregar del presupuesto')

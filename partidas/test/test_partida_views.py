@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.urls import reverse
 from partidas.models import Partida
 from partidas.models import Capitulo
 from django.contrib.auth.models import User
@@ -40,9 +39,10 @@ class TestViews(TestCase):
     def test_listado_partida(self):
         respuesta = self.client.get('/partidas/lista/')
         self.assertEqual(respuesta.status_code, 200)
-    
+
     def test_editar_partida(self):
-        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        respuesta = self.client.get(
+            '/partidas/editar/'+str(self.partida.clave))
         self.assertEqual(respuesta.status_code, 200)
 
     def test_template_correcto_nueva_partida(self):
@@ -54,7 +54,8 @@ class TestViews(TestCase):
         self.assertTemplateUsed(respuesta, 'lista_partidas.html')
 
     def test_template_correcto_editar_partida(self):
-        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        respuesta = self.client.get(
+            '/partidas/editar/'+str(self.partida.clave))
         self.assertTemplateUsed(respuesta, 'editar_partida.html')
 
     def test_titulo_se_encuentra_en_el_template(self):
@@ -68,21 +69,24 @@ class TestViews(TestCase):
         self.assertInHTML(titulo, str(respuesta.content))
 
     def test_titulo_se_encuentra_en_el_template_editar(self):
-        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        respuesta = self.client.get(
+            '/partidas/editar/'+str(self.partida.clave))
         titulo = '<title>Actualizar Partida</title>'
         self.assertInHTML(titulo, str(respuesta.content))
 
-    # def test_redireccion_al_agregar_partida(self):
-    #     respuesta = self.client.post('/partidas/nueva/',data=self.data)
-    #     self.assertEqual(respuesta.url,'/partidas/lista/')
+    def test_redireccion_al_agregar_partida(self):
+        respuesta = self.client.post('/partidas/nueva/', data=self.data)
+        self.assertEqual(respuesta.url, '/partidas/lista/')
 
-    # def test_redireccion_al_modificar_partida(self):
-    #     self.data['nombre'] = 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA2'
-    #     respuesta = self.client.post('/partidas/editar/'+str(self.partida.clave), data=self.data)
-    #     self.assertEqual(respuesta.url, '/partidas/lista/')
+    def test_redireccion_al_modificar_partida(self):
+        self.data['nombre'] = 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA2'
+        respuesta = self.client.post(
+            '/partidas/editar/'+str(self.partida.clave), data=self.data)
+        self.assertEqual(respuesta.url, '/partidas/lista/')
 
     def test_redireccion_al_eliminar_partida(self):
-        respuesta = self.client.get('/partidas/eliminar/'+str(self.partida.clave))
+        respuesta = self.client.get(
+            '/partidas/eliminar/'+str(self.partida.clave))
         self.assertEqual(respuesta.url, '/partidas/lista/')
 
     def test_materiales_se_encuentre_en_el_template(self):
@@ -100,7 +104,8 @@ class TestViews(TestCase):
         self.assertInHTML(formulario, str(respuesta.content))
 
     def test_titulo_se_encuentra_en_el_template(self):
-        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        respuesta = self.client.get(
+            '/partidas/editar/'+str(self.partida.clave))
         formulario = '<h1>Actualizar Partida</h1>'
         self.assertInHTML(formulario, str(respuesta.content))
 
@@ -108,13 +113,16 @@ class TestViews(TestCase):
         id = Partida.objects.first().clave
         data = {
             'clave': 2110,
-            'nombre': 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA',
-            'descripcion': 'Plumas, borradores, entre otras cosas.',
+            'nombre': 'MATERIALES, ÚTILES Y EQUIPOS MENORES \
+                DE OFICINA',
+            'descripcion': 'Plumas, borradores, entre otras \
+                cosas.',
             'capitulo': Capitulo.objects.first()
         }
         self.client.post('/partidas/editar/'+str(id), data=data)
         self.assertEqual(
-            Partida.objects.first().nombre, 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA')
+            Partida.objects.first().nombre,
+            'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA')
 
     def test_boton_agregar_partida_en_template(self):
         respuesta = self.client.get('/partidas/nueva/')
@@ -123,12 +131,14 @@ class TestViews(TestCase):
 
     def test_boton_eliminar_partida_en_template(self):
         respuesta = self.client.get('/partidas/lista/')
-        boton = '<a class="btn btn-danger" href="/partidas/eliminar/'+str(self.partida.clave)+'">Eliminar</a>'
+        boton = '<a class="btn btn-danger" href="/partidas/eliminar/' + \
+            str(self.partida.clave)+'">Eliminar</a>'
         self.assertInHTML(boton, str(respuesta.content))
 
     def test_boton_modificar_partida_en_template(self):
         respuesta = self.client.get('/partidas/lista/')
-        boton = '<a class="btn btn-primary" href="/partidas/editar/'+str(self.partida.clave)+'">Modificar</a>'
+        boton = '<a class="btn btn-primary" href="/partidas/editar/' + \
+            str(self.partida.clave)+'">Modificar</a>'
         self.assertInHTML(boton, str(respuesta.content))
 
     def admin_login(self):

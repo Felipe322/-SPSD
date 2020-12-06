@@ -1,11 +1,11 @@
 from django.test import TestCase
-from partidas.forms import CapituloForm
 from partidas.forms import Capitulo
 from django.core.exceptions import ValidationError
 
+
 class TestModelsCapitulo(TestCase):
 
-    def setUp(self, clave = 2001, nombre = 'MATERIALES Y SUMINISTROS 2'):
+    def setUp(self, clave=2001, nombre='MATERIALES Y SUMINISTROS 2'):
         self.capitulo = Capitulo(
             clave=clave,
             nombre=nombre
@@ -19,7 +19,7 @@ class TestModelsCapitulo(TestCase):
     def test_capitulo_duplicado(self):
         self.capitulo.save()
         capitulo_repetido = Capitulo(
-            clave= 2001,
+            clave=2001,
             nombre='MATERIALES Y SUMINISTROS'
         )
         try:

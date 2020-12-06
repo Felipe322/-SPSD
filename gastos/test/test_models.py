@@ -3,7 +3,6 @@ from partidas.forms import Capitulo
 from partidas.forms import Partida
 from presupuestos.forms import Presupuesto
 from presupuestos.forms import Actividad
-from gastos.forms import GastoForm
 from gastos.forms import Gasto
 from django.core.exceptions import ValidationError
 
@@ -17,7 +16,7 @@ class TestModelsGasto(TestCase):
               cantidad=300,
               fecha='2020-12-12'
               ):
-              
+
         self.gasto = Gasto(
             descripcion=descripcion,
             proveedor=proveedor,
