@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.urls import reverse
 from partidas.models import Partida
 from partidas.models import Capitulo
 from django.contrib.auth.models import User
@@ -48,13 +47,16 @@ class TestViews(TestCase):
         self.assertInHTML(titulo, str(respuesta.content))
 
     # def test_redireccion_al_agregar_partida(self):
-    #     respuesta = self.client.post('/partidas/nueva/',data=self.data)
+    #     respuesta = self.client.post('/partidas/nueva/',
+    # data=self.data)
     #     self.assertEqual(respuesta.url,'/partidas/lista/')
 
     # def test_redireccion_al_modificar_partida(self):
     #     self.agrega_partida()
-    #     self.data['nombre'] = 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA2'
-    #     respuesta = self.client.post('/partidas/editar/2110', data=self.data)
+    #     self.data['nombre'] = 'MATERIALES, ÚTILES
+    #   Y EQUIPOS MENORES DE OFICINA2'
+    #     respuesta = self.client.post('/partidas/editar/2110',
+    # data=self.data)
     #     self.assertEqual(respuesta.url, '/partidas/lista/')
 
     def test_redireccion_al_eliminar_partida(self):
@@ -78,17 +80,21 @@ class TestViews(TestCase):
         id = Partida.objects.first().clave
         data = {
             'clave': 2110,
-            'nombre': 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA',
-            'descripcion': 'Plumas, borradores, entre otras cosas.',
+            'nombre': 'MATERIALES, ÚTILES Y EQUIPOS MENORES \
+                DE OFICINA',
+            'descripcion': 'Plumas, borradores, entre otras \
+                cosas.',
             'capitulo': Capitulo.objects.first()
         }
         self.client.post('/partidas/editar/'+str(id), data=data)
         self.assertEqual(
-            Partida.objects.first().nombre, 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA')
+            Partida.objects.first().nombre,
+            'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA')
 
     def test_boton_agregar_partida_en_template(self):
         response = self.client.get('/partidas/nueva/')
-        boton = '<button class="btn btn-success" type="submit">Agregar</button>'
+        boton = '<button class="btn btn-success" type="submit"> \
+            Agregar</button>'
         self.assertInHTML(boton, str(response.content))
 
     def admin_login(self):

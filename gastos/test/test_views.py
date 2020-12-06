@@ -1,22 +1,21 @@
 from django.test import TestCase
-from django.urls import reverse
 from partidas.forms import Capitulo
 from partidas.forms import Partida
 from presupuestos.forms import Presupuesto
 from presupuestos.forms import Actividad
-from gastos.forms import GastoForm
 from gastos.forms import Gasto
 from django.contrib.auth.models import User
 
+
 class TestViewsGasto(TestCase):
 
-    def setUp(self, 
-                descripcion='Se compraron muchos lapíces', 
-                proveedor='La comer S.A C.V', 
-                precio_unitario=2.50,
-                cantidad=300,
-                fecha='2020-12-12'
-            ):
+    def setUp(self,
+              descripcion='Se compraron muchos lapíces',
+              proveedor='La comer S.A C.V',
+              precio_unitario=2.50,
+              cantidad=300,
+              fecha='2020-12-12'
+              ):
 
         self.admin_login()
         self.define_capitulo()
@@ -31,7 +30,7 @@ class TestViewsGasto(TestCase):
             cantidad=cantidad,
             precio_total=precio_unitario*cantidad,
             fecha=fecha,
-            id_actividad= self.define_actividad()
+            id_actividad=self.define_actividad()
         )
 
         self.data = {
@@ -67,7 +66,8 @@ class TestViewsGasto(TestCase):
     #     self.assertEqual(respuesta.url, '/gastos/lista/')
 
     # def test_redireccion_al_eliminar_gasto(self):
-    #     respuesta = self.client.get('/gastos/eliminar/'+str(Gasto.objects.first().id))#ID??
+    #     respuesta = self.client.get('/gastos/eliminar/'+
+    # str(Gasto.objects.first().id))#ID??
     #     self.assertEqual(respuesta.url,'/gastos/lista/')
 
     # def test_lista_gastos(self):
@@ -100,15 +100,17 @@ class TestViewsGasto(TestCase):
     #     }
     #     self.client.post('/gastos/editar/'+str(gasto), data=data)
     #     self.assertEqual(
-    #         Gasto.objects.first().descripcion, 'Se compraron muchos lapíces')
+    #         Gasto.objects.first().descripcion,
+    # 'Se compraron muchos lapíces')
 
     # def test_boton_agregar_gasto_en_template(self):
     #     response = self.client.get('/gastos/nueva/')
-    #     boton = '<button class="btn btn-success" type="submit">Agregar</button>'
+    #     boton = '<button class="btn btn-success"
+    # type="submit">Agregar</button>'
     #     print(response.content)
     #     self.assertInHTML(boton,str(response.content))
 
-    #Definición de campos necesarios para crear un Gasto.
+    # Definición de campos necesarios para crear un Gasto.
     def define_capitulo(self):
         capitulo = Capitulo(
             clave=2000,
@@ -131,14 +133,14 @@ class TestViewsGasto(TestCase):
 
     def define_actividad(self):
         actividad = Actividad(
-            programa= '27',
-            componente= '2',
-            actividad= '3',
-            monto= 2982.23,
-            descripcion= 'Presupuesto para Febrero',
-            mes= '02',
-            partida= self.define_partida(),
-            anio= self.define_presupuesto()
+            programa='27',
+            componente='2',
+            actividad='3',
+            monto=2982.23,
+            descripcion='Presupuesto para Febrero',
+            mes='02',
+            partida=self.define_partida(),
+            anio=self.define_presupuesto()
         )
 
     def admin_login(self):

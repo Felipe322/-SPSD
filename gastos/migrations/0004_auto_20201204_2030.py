@@ -13,6 +13,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='gasto',
             name='factura',
-            field=models.FileField(blank=True, max_length=254, null=True, upload_to='facturas', verbose_name='Factura'),
+            field=models.FileField(
+                blank=True, max_length=254, null=True,
+                upload_to='facturas', verbose_name='Factura'),
         ),
     ]

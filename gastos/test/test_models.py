@@ -3,14 +3,15 @@ from partidas.forms import Capitulo
 from partidas.forms import Partida
 from presupuestos.forms import Presupuesto
 from presupuestos.forms import Actividad
-from gastos.forms import GastoForm
 from gastos.forms import Gasto
 from django.core.exceptions import ValidationError
 
 
 class TestModelsGasto(TestCase):
 
-    def setUp(self, descripcion='Se compraron muchos lapízes', proveedor='La comer S.A C.V', precio_unitario=2.50, cantidad=300, fecha='2020-12-12'):
+    def setUp(self, descripcion='Se compraron muchos lapízes',
+              proveedor='La comer S.A C.V', precio_unitario=2.50,
+              cantidad=300, fecha='2020-12-12'):
 
         self.gasto = Gasto(
             descripcion=descripcion,

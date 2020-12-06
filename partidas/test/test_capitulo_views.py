@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.urls import reverse
 from partidas.models import Capitulo
 from django.contrib.auth.models import User
 
@@ -73,7 +72,8 @@ class TestViews(TestCase):
 
     def test_boton_agregar_capitulo_en_template(self):
         respuesta = self.client.get('/capitulos/nuevo/')
-        boton = '<button class="btn btn-success" type="submit">Agregar</button>'
+        boton = '<button class="btn btn-success" type="submit">\
+            Agregar</button>'
         self.assertInHTML(boton, str(respuesta.content))
 
     def agrega_capitulo(self):

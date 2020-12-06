@@ -51,7 +51,8 @@ class TestFormCapitulo(TestCase):
         form = CapituloForm(self.data)
         self.assertEqual(
             form.errors['nombre'],
-            ['Asegúrese de que este valor tenga menos de 150 caracteres (tiene 154).'])
+            ['Asegúrese de que este valor tenga menos de 150\
+                caracteres (tiene 154).'])
 
     def test_capitulo_form_clave_caracteres_numero(self):
         self.data['clave'] = 1000
