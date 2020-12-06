@@ -58,7 +58,7 @@ class TestViews(TestCase):
             '/partidas/editar/'+str(self.partida.clave))
         self.assertTemplateUsed(respuesta, 'editar_partida.html')
 
-    def test_titulo_se_encuentra_en_el_template(self):
+    def test_titulo_nuevo_se_encuentra_en_el_template(self):
         respuesta = self.client.get('/partidas/nueva/')
         titulo = '<title>Nueva Partida</title>'
         self.assertInHTML(titulo, str(respuesta.content))

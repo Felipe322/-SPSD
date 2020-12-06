@@ -128,7 +128,7 @@ class TestViewsGasto(TestCase):
         respuesta = self.client.get('/gastos/lista/')
         self.assertContains(respuesta, 'Se compraron muchos lapíces')
 
-    def test_titulo_se_encuentra_en_el_template(self):
+    def test_titulo_nuevo_se_encuentra_en_el_template(self):
         respuesta = self.client.get('/gastos/nueva/')
         formulario = '<h1>Nuevo Gasto</h1>'
         self.assertInHTML(formulario, str(respuesta.content))
@@ -138,7 +138,7 @@ class TestViewsGasto(TestCase):
         formulario = '<h1>Listado de Gastos</h1>'
         self.assertInHTML(formulario, str(respuesta.content))
 
-    def test_titulo_se_encuentra_en_el_template(self):
+    def test_titulo_actualizar_se_encuentra_en_el_template(self):
         respuesta = self.client.get('/gastos/editar/'+str(self.gasto.id))
         formulario = '<title>Actualizar Gasto</title>'
         self.assertInHTML(formulario, str(respuesta.content))

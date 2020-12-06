@@ -69,23 +69,16 @@ class TestViewsActividad(TestCase):
         titulo = '<title>Nueva Actividad</title>'
         self.assertIn(titulo, str(respuesta.content))
 
-    '''
-    def test_redireccion_al_agregar_actividad(self):
-        respuesta = self.client.post('/actividades/nueva/',data=self.data)
-        self.assertEqual(respuesta.url,'/actividades/lista/')
-	'''
+    # def test_redireccion_al_agregar_actividad(self):
+    #     respuesta = self.client.post('/actividades/nueva/',data=self.data)
+    #     self.assertEqual(respuesta.url,'/actividades/lista/')
 
-    '''
-	def test_redireccion_al_modificar_actividad(self): #le falta
-		self.agrega_actividad()
-		self.data['monto'] = 20,000.00
-		respuesta = self.client.post('/actividades/editar/1',data=self.data)
-		self.assertEqual(respuesta.url,'/actividades/lista/')
-
-	'''
+    # def test_redireccion_al_modificar_actividad(self):
+    #     self.data['monto'] = 20000.00
+    #     respuesta = self.client.post('/actividades/editar/1',data=self.data)
+    #     self.assertEqual(respuesta.url,'/actividades/lista/')
 
     def test_redireccion_al_eliminar_actividad(self):
-        self.agrega_actividad()
         respuesta = self.client.get('/actividades/eliminar/1')
         self.assertEqual(respuesta.url, '/actividades/lista/')
 
@@ -94,7 +87,6 @@ class TestViewsActividad(TestCase):
         self.assertEqual(respuesta.status_code, 200)
 
     def test_programa_1_se_encuentre_en_el_template(self):
-        self.agrega_actividad()
         respuesta = self.client.get('/actividades/lista/')
         self.assertContains(respuesta, 1)
 
@@ -105,20 +97,8 @@ class TestViewsActividad(TestCase):
 
     def test_boton_agregar_actividad_en_template(self):
         response = self.client.get('/actividades/nueva/')
-        boton = '<button class="btn btn-success" , type="submit">Agregar</button>'
+        boton = '<button class="btn btn-success" type="submit">Agregar</button>'
         self.assertIn(boton, str(response.content))
-
-    def agrega_actividad(self):
-        self.actividad = Actividad.objects.create(
-            programa='27',
-            componente='2',
-            actividad='3',
-            monto=2982.23,
-            descripcion='Presupuesto para Febrero',
-            mes='02',
-            partida=self.partida,
-            anio=self.presupuesto
-        )
 
     def admin_login(self):
         user1 = User.objects.create_user(
