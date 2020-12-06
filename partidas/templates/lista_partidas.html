@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}Lista Partidas{% endblock %}
- 
- 
+
 {% block content %}
-  <div class="container-fluid">
+<div class="container-fluid">
 <h1>Listado de Partidas</h1>
-<table class= "table">
+<table class="table">
     <tr>
         <th>Clave</th>
         <th>Nombre</th>
@@ -23,7 +22,6 @@
         <td>
             <a class="btn btn-danger" href="{% url 'partidas:eliminar' partida.clave %}">Eliminar</a>
             <a class="btn btn-primary" href="{% url 'partidas:editar' partida.clave %}">Modificar</a>
-
         </td>
     </tr>
     {% endfor %}

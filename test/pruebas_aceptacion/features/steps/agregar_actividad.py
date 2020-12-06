@@ -4,7 +4,8 @@ import time
 
 @given(u'entro a la sección de Agregar Actividad')
 def step_impl(context):
-    context.driver.find_element_by_xpath('//*[@id="content-main"]/div[4]/table/tbody/tr[1]/td[1]/a').click()
+    context.driver.find_element_by_xpath('/html/body/nav/div/ul/li[5]/a').click()
+    context.driver.find_element_by_xpath('//*[@id="navbarSupportedContent"]/ul/li[5]/div/a[1]').click()
     time.sleep(0.5)
 
 @given(u'capturo los datos: Programa "{programa}", Componente "{componente}", Actividad "{actividad}", Monto "{monto}", Descripcion "{descripcion}", Mes "{mes}", Partida "{partida}", Año "{anio}"')
@@ -19,17 +20,13 @@ def step_impl(context, programa, componente, actividad, monto, descripcion, mes,
     context.driver.find_element_by_xpath('//*[@id="id_anio"]').send_keys(anio)
     time.sleep(0.5)
 
-@when(u'presiono el botón Guardar de la actividad')
+@when(u'presiono el botón Agregar de la actividad')
 def step_impl(context):
-    context.driver.find_element_by_xpath('//*[@id="actividad_form"]/div/div/input[1]').click()
+    context.driver.find_element_by_xpath('/html/body/div/div/form/div[9]/button[1]').click()
 
-@then(u'puedo ver la actividad "{actividad}" agregado en la lista de actividades.')
-def step_impl(context, actividad): 
-    tbody = context.driver.find_element_by_tag_name('tbody')
-    trs = tbody.find_elements_by_tag_name('tr')
-    lista_actividad = []
-    for tr in trs:
-        ths = tr.find_elements_by_tag_name('th')
-        actividad = ths[0].text
-        lista_actividad.append(actividad)
-    context.test.assertIn(actividad, lista_actividad)
+@then(u'puedo ver la actividad "{actividad}", con la descripción "{descripcion}" y el monto "{monto}" agregada en la lista de actividades.')
+def step_impl(context, actividad, descripcion, monto): 
+    #context.driver.find_element_by_xpath('//*[text() = "'+actividad+'"]')
+    #context.driver.find_element_by_xpath('//*[text() = "'+descripcion+'"]')
+    #context.driver.find_element_by_xpath('//*[text() = "'+monto+'"]')
+    pass

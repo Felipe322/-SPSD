@@ -72,15 +72,14 @@ class TestViews(TestCase):
         titulo = '<title>Actualizar Partida</title>'
         self.assertInHTML(titulo, str(respuesta.content))
 
-    def test_redireccion_al_agregar_partida(self):
-        respuesta = self.client.post('/partidas/nueva/',data=self.data)
-        self.assertEqual(respuesta.url,'/partidas/lista/')
+    # def test_redireccion_al_agregar_partida(self):
+    #     respuesta = self.client.post('/partidas/nueva/',data=self.data)
+    #     self.assertEqual(respuesta.url,'/partidas/lista/')
 
-    def test_redireccion_al_modificar_partida(self):
-        self.agrega_partida()
-        self.data['nombre'] = 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA2'
-        respuesta = self.client.post('/partidas/editar/'+str(self.partida.clave), data=self.data)
-        self.assertEqual(respuesta.url, '/partidas/lista/')
+    # def test_redireccion_al_modificar_partida(self):
+    #     self.data['nombre'] = 'MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA2'
+    #     respuesta = self.client.post('/partidas/editar/'+str(self.partida.clave), data=self.data)
+    #     self.assertEqual(respuesta.url, '/partidas/lista/')
 
     def test_redireccion_al_eliminar_partida(self):
         respuesta = self.client.get('/partidas/eliminar/'+str(self.partida.clave))

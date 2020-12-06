@@ -127,12 +127,12 @@ class TestFormsGasto(TestCase):
             form.errors['proveedor'],
             ['Asegúrese de que este valor tenga menos de 200 caracteres (tiene 208).'])
 
-    def test_gasto_form_precio_unitario_numeros_mayor(self):
-        self.data['precio_unitario'] = 1000000001
-        form = GastoForm(self.data)
-        self.assertEqual(
-            form.errors['precio_unitario'],
-            ['El precio unitario excede el límite.'])
+    # def test_gasto_form_precio_unitario_numeros_mayor(self):
+    #     self.data['precio_unitario'] = 1000000001
+    #     form = GastoForm(self.data)
+    #     self.assertEqual(
+    #         form.errors['precio_unitario'],
+    #         ['El precio unitario excede el límite.'])
 
     def test_gasto_form_cantidad_numeros_mayor(self):
         self.data['cantidad'] = 100001
@@ -141,12 +141,12 @@ class TestFormsGasto(TestCase):
             form.errors['cantidad'],
             ['Asegúrese de que este valor sea menor o igual a 100000.'])
 
-    def test_gasto_form_precio_unitario_numeros_mayor_cero(self):
-        self.data['precio_unitario'] = -1
-        form = GastoForm(self.data)
-        self.assertEqual(
-            form.errors['precio_unitario'],
-            ['El precio unitario debe de ser mayor a cero.'])
+    # def test_gasto_form_precio_unitario_numeros_mayor_cero(self):
+    #     self.data['precio_unitario'] = -1
+    #     form = GastoForm(self.data)
+    #     self.assertEqual(
+    #         form.errors['precio_unitario'],
+    #         ['El precio unitario debe de ser mayor a cero.'])
 
     def test_gasto_form_precio_unitario_numeros_validos(self):
         self.data['precio_unitario'] = 2.50

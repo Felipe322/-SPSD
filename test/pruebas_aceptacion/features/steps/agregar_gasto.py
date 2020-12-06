@@ -4,7 +4,8 @@ import time
 
 @given(u'entro a la sección de Agregar Gasto')
 def step_impl(context):
-    context.driver.find_element_by_xpath('//*[@id="content-main"]/div[2]/table/tbody/tr/td[1]/a').click()
+    context.driver.find_element_by_xpath('/html/body/nav/div/ul/li[6]/a').click()
+    context.driver.find_element_by_xpath('//*[@id="navbarSupportedContent"]/ul/li[6]/div/a[1]').click()
     time.sleep(0.5)
 
 @given(u'capturo los datos: Descripcion "{descripcion}", Proveedor "{proveedor}", Precio Unitario "{precio}", Cantidad "{cantidad}", Fecha "{fecha}", Actividad "{actividad}"')
@@ -18,17 +19,10 @@ def step_impl(context, descripcion, proveedor, precio, cantidad, fecha, activida
     context.driver.find_element_by_xpath('//*[@id="id_id_actividad"]').send_keys(actividad)
     time.sleep(0.5)
 
-@when(u'presiono el botón Guardar del gasto')
+@when(u'presiono el botón Agregar del gasto')
 def step_impl(context):
-    context.driver.find_element_by_xpath('//*[@id="gasto_form"]/div/div/input[1]').click()
+    context.driver.find_element_by_xpath('/html/body/div/div/form/button[1]').click()
 
 @then(u'puedo ver el gasto "{gasto}" agregado en la lista de gastos.')
 def step_impl(context, gasto): 
-    tbody = context.driver.find_element_by_tag_name('tbody')
-    trs = tbody.find_elements_by_tag_name('tr')
-    lista_gasto = []
-    for tr in trs:
-        ths = tr.find_elements_by_tag_name('th')
-        gasto = ths[0].text
-        lista_gasto.append(gasto)
-    context.test.assertIn(gasto, lista_gasto)
+    context.driver.find_element_by_xpath('//*[text() = "'+gasto+'"]')

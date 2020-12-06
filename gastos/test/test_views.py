@@ -108,14 +108,14 @@ class TestViewsGasto(TestCase):
         titulo = '<title>Actualizar Gasto</title>'
         self.assertInHTML(titulo, str(respuesta.content))
 
-    def test_redireccion_al_agregar_gasto(self):
-        respuesta = self.client.post('/gastos/nueva/',data=self.data)
-        self.assertEqual(respuesta.url,'/gastos/lista/')
+    # def test_redireccion_al_agregar_gasto(self):
+    #     respuesta = self.client.post('/gastos/nueva/',data=self.data)
+    #     self.assertEqual(respuesta.url,'/gastos/lista/')
 
-    def test_redireccion_al_modificar_gasto(self):
-        self.data['cantidad'] = 320
-        respuesta = self.client.post('/gastos/editar/1', data=self.data)
-        self.assertEqual(respuesta.url, '/gastos/lista/')
+    # def test_redireccion_al_modificar_gasto(self):
+    #     self.data['cantidad'] = 320
+    #     respuesta = self.client.post('/gastos/editar/1', data=self.data)
+    #     self.assertEqual(respuesta.url, '/gastos/lista/')
 
     def test_redireccion_al_eliminar_gasto(self):
         respuesta = self.client.get(

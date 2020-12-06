@@ -13,8 +13,6 @@ class TestModelsPartida(TestCase):
               descripcion='Plumas, borradores, entre otras cosas.'
               ):
 
-        self.admin_login()
-
         self.capitulo = Capitulo.objects.create(
             clave=2000,
             nombre='MATERIALES Y SUMINISTROS'
