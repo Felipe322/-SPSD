@@ -13,6 +13,7 @@ class Gasto(models.Model):
     cantidad = models.PositiveIntegerField( 'Cantidad', validators=[MaxValueValidator(100000)])
     precio_total = models.FloatField('Total', editable=False)
     fecha = models.DateField('Fecha', default= timezone.now)
+    factura = models.FileField('Factura',upload_to="facturas", max_length=254, blank=True, null=True)
     id_actividad=models.ForeignKey('presupuestos.Actividad', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
