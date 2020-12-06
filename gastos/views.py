@@ -1,7 +1,12 @@
 from django.shortcuts import redirect, render
 from gastos.forms import GastoForm
 from gastos.models import Gasto
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render
+from .forms import UploadDocumentForm
+from django.contrib.auth.decorators import permission_required, login_required
 
 
 # Vista gastos

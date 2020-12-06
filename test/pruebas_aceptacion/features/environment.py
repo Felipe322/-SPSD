@@ -1,4 +1,6 @@
-from typing import ContextManager
+from behave import fixture, use_fixture
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from unittest import TestCase
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
@@ -12,20 +14,9 @@ def browser_chrome(context):
     context.keys = Keys
     context.test = TestCase()
 
-
-context.url = 'http://127.0.0.1:8000/'
-yield context.driver
-context.driver.quit()
-
-
-def before_all(context):
-    use_fixture(browser_chrome, context)
-
-
-context.url = 'http://192.168.33.10:8000'
-yield context.driver
-context.driver.quit()
-
+    context.url = 'http://192.168.33.10:8000'
+    yield context.driver
+    context.driver.quit()
 
 def before_all(context):
     use_fixture(browser_chrome, context)

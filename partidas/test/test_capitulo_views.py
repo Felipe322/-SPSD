@@ -7,7 +7,7 @@ class TestViews(TestCase):
     def setUp(self):
         self.admin_login()
 
-        self.capitulo = Capitulo(
+        self.capitulo = Capitulo.objects.create(
             clave=4001,
             nombre='MATERIALES Y SUMINISTROS'
         )
@@ -21,13 +21,42 @@ class TestViews(TestCase):
         respuesta = self.client.get('/capitulos/nuevo/')
         self.assertEqual(respuesta.status_code, 200)
 
+    def test_listado_capitulo(self):
+        respuesta = self.client.get('/capitulos/lista/')
+        self.assertEqual(respuesta.status_code, 200)
+
+    def test_editar_capitulo(self):
+        respuesta = self.client.get(
+            '/capitulos/editar/'+str(self.capitulo.clave))
+        self.assertEqual(respuesta.status_code, 200)
+
     def test_template_correcto_nuevo_capitulo(self):
         respuesta = self.client.get('/capitulos/nuevo/')
         self.assertTemplateUsed(respuesta, 'nuevo_capitulo.html')
 
+    def test_template_correcto_lista_capitulo(self):
+        respuesta = self.client.get('/capitulos/lista/')
+        self.assertTemplateUsed(respuesta, 'lista_capitulos.html')
+
+    def test_template_correcto_editar_capitulo(self):
+        respuesta = self.client.get(
+            '/capitulos/editar/'+str(self.capitulo.clave))
+        self.assertTemplateUsed(respuesta, 'editar_capitulo.html')
+
     def test_titulo_se_encuentra_en_el_template(self):
         respuesta = self.client.get('/capitulos/nuevo/')
         titulo = '<title>Nuevo Capitulo</title>'
+        self.assertInHTML(titulo, str(respuesta.content))
+
+    def test_titulo_se_encuentra_en_el_template_lista(self):
+        respuesta = self.client.get('/capitulos/lista/')
+        titulo = '<title>Lista Capitulos</title>'
+        self.assertInHTML(titulo, str(respuesta.content))
+
+    def test_titulo_se_encuentra_en_el_template_editar(self):
+        respuesta = self.client.get(
+            '/capitulos/editar/'+str(self.capitulo.clave))
+        titulo = '<title>Actualizar Capítulo</title>'
         self.assertInHTML(titulo, str(respuesta.content))
 
     def test_redireccion_al_agregar_capitulo(self):
@@ -59,6 +88,17 @@ class TestViews(TestCase):
         formulario = '<h1>Nuevo Capitulo</h1>'
         self.assertInHTML(formulario, str(respuesta.content))
 
+    def test_titulo_lista_se_encuentra_en_el_template(self):
+        respuesta = self.client.get('/capitulos/lista/')
+        formulario = '<h1>Listado de Capítulos</h1>'
+        self.assertInHTML(formulario, str(respuesta.content))
+
+    def test_titulo_se_encuentra_en_el_template(self):
+        respuesta = self.client.get(
+            '/capitulos/editar/'+str(self.capitulo.clave))
+        formulario = '<h1>Actualizar Capítulo</h1>'
+        self.assertInHTML(formulario, str(respuesta.content))
+
     def test_agregar_capitulo_form(self):
         self.agrega_capitulo()
         id = Capitulo.objects.first().clave
@@ -74,6 +114,18 @@ class TestViews(TestCase):
         respuesta = self.client.get('/capitulos/nuevo/')
         boton = '<button class="btn btn-success" type="submit">\
             Agregar</button>'
+        self.assertInHTML(boton, str(respuesta.content))
+
+    def test_boton_eliminar_capitulo_en_template(self):
+        respuesta = self.client.get('/capitulos/lista/')
+        boton = '<a class="btn btn-danger" class="btn btn-danger" href="/capitulos/eliminar/'
+        boton += str(self.capitulo.clave)+'">Eliminar</a>'
+        self.assertInHTML(boton, str(respuesta.content))
+
+    def test_boton_modificar_capitulo_en_template(self):
+        respuesta = self.client.get('/capitulos/lista/')
+        boton = '<a class="btn btn-primary" href="/capitulos/editar/'
+        boton += str(self.capitulo.clave)+'">Modificar</a>'
         self.assertInHTML(boton, str(respuesta.content))
 
     def agrega_capitulo(self):
