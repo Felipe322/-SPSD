@@ -17,8 +17,8 @@
             <td>{{capitulo.clave}}</td>
             <td>{{capitulo.nombre}}</td>
             <td>
-                <a  class="btn btn-danger", class="btn btn-danger", href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
-                <a  class="btn btn-primary"  href="{% url 'capitulos:editar' capitulo.clave %}">Modificar</a>
+                <a class="btn btn-danger" class="btn btn-danger" href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
+                <a class="btn btn-primary" href="{% url 'capitulos:editar' capitulo.clave %}">Modificar</a>
             </td>
         </tr>
         {% endfor %}

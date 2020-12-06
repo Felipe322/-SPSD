@@ -23,4 +23,3 @@ class Gasto(models.Model):
 #default=get_next_increment, editable=False 
     def __str__(self):
         return str(self.descripcion)+" "+str(self.precio_total)
-    

@@ -1,4 +1,3 @@
-
 from presupuestos.models import Presupuesto
 from django.shortcuts import redirect, render
 from gastos.forms import GastoForm
@@ -48,4 +47,3 @@ def editar_gasto(request,id):
     else:
         form= GastoForm(instance=gasto)
     return render(request, 'editar_gasto.html',{'form':form})
-        
