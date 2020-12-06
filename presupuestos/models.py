@@ -9,7 +9,7 @@ class  Presupuesto(models.Model):
     fecha= models.DateField('Fecha',default = timezone.now)
      
     def __str__(self):
-        return str(self.anio) +" "+str(self.fecha)
+        return str(self.anio)
 
 class Actividad(models.Model):
     programa = models.CharField('Programa',max_length=2)
