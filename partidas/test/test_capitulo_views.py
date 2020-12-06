@@ -56,13 +56,13 @@ class TestViews(TestCase):
         self.assertInHTML(titulo, str(respuesta.content))
 
     def test_titulo_se_encuentra_en_el_template_editar(self):
-        respuesta = self.client.get('/capitulos/editar/'+str(self.capitulo.clave))
+        respuesta = self.client.get(
+            '/capitulos/editar/'+str(self.capitulo.clave))
         titulo = '<title>Actualizar Capitulo</title>'
         self.assertInHTML(titulo, str(respuesta.content))
 
-    #def test_redireccion_al_agregar_capitulo(self):
+    # def test_redireccion_al_agregar_capitulo(self):
     #    respuesta = self.client.post('/capitulos/nuevo/', data=self.data)
-    #    print(respuesta.url)
     #    self.assertEqual(respuesta.url, '/capitulos/lista/')
 
     def test_redireccion_al_modificar_capitulo(self):
@@ -96,7 +96,8 @@ class TestViews(TestCase):
         self.assertInHTML(formulario, str(respuesta.content))
 
     def test_titulo_actualizar_se_encuentra_en_el_template(self):
-        respuesta = self.client.get('/capitulos/editar/'+str(self.capitulo.clave))
+        respuesta = self.client.get(
+            '/capitulos/editar/'+str(self.capitulo.clave))
         formulario = '<h1>Actualizar Capitulo</h1>'
         self.assertInHTML(formulario, str(respuesta.content))
 

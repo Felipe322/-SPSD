@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Partida</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Partida{% endblock %}
+{% load crispy_forms_tags %} 
+
+{% block content %}
+ <div class="container-lg" >
     <h1>Actualizar Partida</h1>
     <form method="POST">
+        {{ form|crispy }}
         {% csrf_token %}
         <button class="btn btn-success" type="submit">Guardar</button>
         <button class="btn btn-danger" type="reset">Cancelar</button>
     </form>
-</body>
-</html>
+  </div>
+{% endblock %}

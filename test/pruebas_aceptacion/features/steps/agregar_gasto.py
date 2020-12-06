@@ -4,8 +4,10 @@ import time
 
 @given(u'entro a la sección de Agregar Gasto')
 def step_impl(context):
-    context.driver.find_element_by_xpath('/html/body/nav/div/ul/li[6]/a').click()
-    context.driver.find_element_by_xpath('//*[@id="navbarSupportedContent"]/ul/li[6]/div/a[1]').click()
+    context.driver.find_element_by_xpath(
+        '/html/body/nav/div/ul/li[6]/a').click()
+    context.driver.find_element_by_xpath(
+        '//*[@id="navbarSupportedContent"]/ul/li[6]/div/a[1]').click()
     time.sleep(0.5)
 
 
@@ -30,10 +32,13 @@ def step_impl(context, descripcion, proveedor, precio, cantidad,
         '//*[@id="id_id_actividad"]').send_keys(actividad)
     time.sleep(0.5)
 
+
 @when(u'presiono el botón Agregar del gasto')
 def step_impl(context):
-    context.driver.find_element_by_xpath('/html/body/div/div/form/button[1]').click()
+    context.driver.find_element_by_xpath(
+        '/html/body/div/div/form/button[1]').click()
+
 
 @then(u'puedo ver el gasto "{gasto}" agregado en la lista de gastos.')
-def step_impl(context, gasto): 
+def step_impl(context, gasto):
     context.driver.find_element_by_xpath('//*[text() = "'+gasto+'"]')

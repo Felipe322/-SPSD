@@ -6,17 +6,18 @@ from partidas.forms import Capitulo
 class TestFormCapitulo(TestCase):
 
     def setUp(self, clave=2001, nombre='MATERIALES Y SUMINISTROS 2'):
-        self.capitulo = Capitulo(
-            clave=clave,
-            nombre=nombre
+        self.capitulo = Capitulo.objects.create(
+            clave=4001,
+            nombre='MATERIALES Y SUMINISTROS'
         )
 
         self.data = {
-            'clave': clave,
-            'nombre': nombre
+            'clave': 4001,
+            'nombre': 'MATERIALES Y SUMINISTROS'
         }
 
     def test_capitulo_form_valido(self):
+        self.data['clave'] = 3000
         form = CapituloForm(self.data)
         self.assertTrue(form.is_valid())
 
@@ -51,8 +52,7 @@ class TestFormCapitulo(TestCase):
         form = CapituloForm(self.data)
         self.assertEqual(
             form.errors['nombre'],
-            ['Asegúrese de que este valor tenga menos de 150\
-                caracteres (tiene 154).'])
+            ['Asegúrese de que este valor tenga menos de 150 caracteres (tiene 154).'])
 
     def test_capitulo_form_clave_caracteres_numero(self):
         self.data['clave'] = 1000

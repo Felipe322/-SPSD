@@ -50,7 +50,7 @@ def editar_presupuesto(request, anio):
             return redirect('presupuestos:lista')
     else:
         form = PresupuestoForm(instance=presupuesto)
-    return render(request, 'editar_presupuesto.html', {'form': form})
+    return render(request, 'editar_presupuestos.html', {'form': form})
 
 
 # Vista actividades

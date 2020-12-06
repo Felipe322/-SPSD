@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+
+{% block title %}Nueva Actividad{% endblock %}
 {% load crispy_forms_tags %} 
 
-<head>
-    {% load crispy_forms_tags %} 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Gasto</title>
-</head>
-<body>
+{% block content %}
+ <div class="container-lg" >
     <h1>Actualizar Gasto</h1>
     <form method="POST" enctype="multipart/form-data" action=""  >
         {% csrf_token %}
@@ -16,5 +12,6 @@
         <button class="btn btn-success" type="submit">Guardar</button>
         <button class="btn btn-danger" type="reset">Cancelar</button>
     </form>
-</body>
-</html>
+    </div>
+
+{% endblock %}
