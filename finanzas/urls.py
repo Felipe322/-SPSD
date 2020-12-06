@@ -26,6 +26,10 @@ urlpatterns = [
     path('actividades/',include('presupuestos.urls_actividades')),
     path('gastos/',include('gastos.urls_gastos')),
     path('principal/',include('principal.urls')),
+<<<<<<< HEAD
+=======
+    path('login/',include('usuarios.urls')),
+>>>>>>> 2d8475fe4cce62bd24f2a9b679a3d09b4a19d6d9
     
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

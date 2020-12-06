@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %} 
 
 <head>
+    {% load crispy_forms_tags %} 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Gasto</title>
@@ -12,9 +13,14 @@
     <form method="POST" enctype="multipart/form-data" action=""  >
         {% csrf_token %}
     {{ form|crispy }}
+<<<<<<< HEAD
         
         <button type="submit" value="Save" class="btn btn-success">Guardar</button>
         <button class="btn btn-danger", type="reset">Cancelar</button>
+=======
+        <button class="btn btn-success" type="submit">Guardar</button>
+        <button class="btn btn-danger" type="reset">Cancelar</button>
+>>>>>>> 2d8475fe4cce62bd24f2a9b679a3d09b4a19d6d9
     </form>
 </body>
 </html>

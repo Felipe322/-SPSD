@@ -1,10 +1,11 @@
-
 <!doctype html>
 <html>
   <head>
+    
     {% load static %}
     {% load bootstrap4 %}
     {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -26,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Finanzas SPSD <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'principal:principal'%}  ">Finanzas SPSD <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,29 +85,74 @@
       </nav>
 
       
-      <table class="tree table table-hover  ">
+      <table class="tree table table-hover">
+        <tr>
+          <th>Elemento</th>
+          <th>Enero</th>
+          <th>Febrero</th>
+          <th>Marzo</th>
+          <th>Abril</th>
+          <th>Mayo</th>
+          <th>Junio</th>
+          <th>Julio</th>
+          <th>Agosto</th>
+          <th>Septiembre</th>
+          <th>Octubre</th>
+          <th>Noviembre</th>
+          <th>Diciembre</th>
+          <th>Total</th>
+
+        </tr>
         {% for capitulo in capitulos %}
             <tr class="treegrid-{{capitulo.id}} bg-dark text-white ">
-              
                 <td>Capítulo {{capitulo.clave}}</td>
-                <td></td>
+                <td>${{capitulo.total_meses.1}}</td>
+                <td>${{capitulo.total_meses.2}}</td>
+                <td>${{capitulo.total_meses.3}}</td>
+                <td>${{capitulo.total_meses.4}}</td>
+                <td>${{capitulo.total_meses.5}}</td>
+                <td>${{capitulo.total_meses.6}}</td>
+                <td>${{capitulo.total_meses.7}}</td>
+                <td>${{capitulo.total_meses.8}}</td>
+                <td>${{capitulo.total_meses.9}}</td>
+                <td>${{capitulo.total_meses.10}}</td>
+                <td>${{capitulo.total_meses.11}}</td>
+                <td>${{capitulo.total_meses.12}}</td>
                 <td>${{capitulo.total}}</td>
-                <td> </td>
-
             </tr>
             {% for partida in capitulo.partidas %}
                 <tr class="treegrid-{{partida.id}} treegrid-parent-{{capitulo.id}} table-secondary">
                     <td>Partida {{partida.clave}}</td>
-                    <td></td>
+                    <td>${{partida.total_meses.1}}</td>
+                    <td>${{partida.total_meses.2}}</td>
+                    <td>${{partida.total_meses.3}}</td>
+                    <td>${{partida.total_meses.4}}</td>
+                    <td>${{partida.total_meses.5}}</td>
+                    <td>${{partida.total_meses.6}}</td>
+                    <td>${{partida.total_meses.7}}</td>
+                    <td>${{partida.total_meses.8}}</td>
+                    <td>${{partida.total_meses.9}}</td>
+                    <td>${{partida.total_meses.10}}</td>
+                    <td>${{partida.total_meses.11}}</td>
+                    <td>${{partida.total_meses.12}}</td>
                     <td>${{partida.total}}</td>
-                    <td></td>
                 </tr>
                 {% for actividad in partida.actividades %}
                     <tr class="treegrid-{{actividad.id}} treegrid-parent-{{partida.id}} ">
-                        <td>{{actividad.programa}}-{{actividad.componente}}-{{actividad.actividad}}</td>
-                        <td>{{actividad.descripcion}}</td>
-                        <td>${{actividad.monto}}</td>
-                        <td></td>
+                        <td>{{actividad.id}}</td>
+                        <td>${{actividad.meses.1}}</td>
+                        <td>${{actividad.meses.2}}</td>
+                        <td>${{actividad.meses.3}}</td>
+                        <td>${{actividad.meses.4}}</td>
+                        <td>${{actividad.meses.5}}</td>
+                        <td>${{actividad.meses.6}}</td>
+                        <td>${{actividad.meses.7}}</td>
+                        <td>${{actividad.meses.8}}</td>
+                        <td>${{actividad.meses.9}}</td>
+                        <td>${{actividad.meses.10}}</td>
+                        <td>${{actividad.meses.11}}</td>
+                        <td>${{actividad.meses.12}}</td>
+                        <td>${{actividad.total}}</td>
                     </tr>
                 {% endfor %}
             {% endfor %}
