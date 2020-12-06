@@ -1,17 +1,24 @@
-
 from presupuestos.models import Presupuesto
 from django.shortcuts import redirect, render
 from gastos.forms import GastoForm
 from gastos.models import Gasto
+<<<<<<< HEAD
+from django.shortcuts import render
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render
+from .forms import UploadDocumentForm
+=======
 from django.contrib.auth.decorators import permission_required, login_required
 
+>>>>>>> 2d8475fe4cce62bd24f2a9b679a3d09b4a19d6d9
 
 
 #Vista gastos
 @login_required
 def lista_gastos(request):  
-    if request.user.is_authenticated:
-        return redirect ('usuario:login')
+    if not request.user.is_authenticated:
+        return redirect ('usuarios:login')
 
     gastos = Gasto.objects.all()
     return render(request, 'lista_gastos.html',{'gastos':gastos})
@@ -48,4 +55,3 @@ def editar_gasto(request,id):
     else:
         form= GastoForm(instance=gasto)
     return render(request, 'editar_gasto.html',{'form':form})
-        

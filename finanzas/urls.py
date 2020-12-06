@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from  django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,9 +26,14 @@ urlpatterns = [
     path('actividades/',include('presupuestos.urls_actividades')),
     path('gastos/',include('gastos.urls_gastos')),
     path('principal/',include('principal.urls')),
+<<<<<<< HEAD
+=======
     path('login/',include('usuarios.urls')),
+>>>>>>> 2d8475fe4cce62bd24f2a9b679a3d09b4a19d6d9
     
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 admin.site.site_header = 'Administración Finanzas'

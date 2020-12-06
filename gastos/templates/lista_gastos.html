@@ -1,39 +1,49 @@
-{% extends 'base.html' %}
 
+{% extends 'base.html' %}
 {% block title %}Lista Gastos{% endblock %}
 {% load crispy_forms_tags %} 
-
 {% block content %}
     <div class="containter-lg">
     <h1>Listado de Gastos</h1>
     <table class="table" >
         <tr>
-         
             <th>Descripción</th>
             <th>Proveedor</th>
             <th>Precio Unitario</th>
             <th>Cantidad</th>
             <th>Precio Total</th>
             <th>Fecha</th>
+<<<<<<< HEAD
+            <th>Factura</th>
 
 
 
+=======
+>>>>>>> 2d8475fe4cce62bd24f2a9b679a3d09b4a19d6d9
         </tr>
         {% for gasto in gastos %}
         <tr>
             <td>{{gasto.descripcion}}</td>
             <td>{{gasto.proveedor}}</td>
+<<<<<<< HEAD
             <td> {{gasto.precio_unitario}}  </td>
             <td> {{gasto.cantidad}} </td>
             <td> {{gasto.precio_total}}  </td>
             <td> {{gasto.fecha}}  </td>
+            <td> {{gasto.factura}}  </td>
+
+=======
+            <td>{{gasto.precio_unitario}}</td>
+            <td>{{gasto.cantidad}} </td>
+            <td>{{gasto.precio_total}}</td>
+            <td>{{gasto.fecha}}</td>
+>>>>>>> 2d8475fe4cce62bd24f2a9b679a3d09b4a19d6d9
             <td>
-                <a class="btn btn-danger", href="{% url 'gastos:eliminar' gasto.id %}">Eliminar</a> 
-                <a  class="btn btn-primary" href="{% url 'gastos:editar' gasto.id %}">Modificar</a> 
+                <a class="btn btn-danger" href="{% url 'gastos:eliminar' gasto.id %}">Eliminar</a> 
+                <a class="btn btn-primary" href="{% url 'gastos:editar' gasto.id %}">Modificar</a> 
             </td>
         </tr>
         {% endfor %}
     </table>
     </div>
 {% endblock %}
-

@@ -13,7 +13,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from django.urls import reverse_lazy
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2d8475fe4cce62bd24f2a9b679a3d09b4a19d6d9
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
