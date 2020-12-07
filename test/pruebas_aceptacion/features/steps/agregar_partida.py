@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from behave import given, when, then
 import time
 
@@ -10,9 +11,7 @@ def step_impl(context):
         '//*[@id="navbarSupportedContent"]/ul/li[3]/div/a[1]').click()
     time.sleep(0.5)
 
-
-@given(u'capturo los datos de la partida como: Clave "{clave}", \
-    Nombre "{nombre}", Descripción "{descripcion}", Capítulo "{capitulo}"')
+@given(u'capturo los datos de la partida como: Clave "{clave}", Nombre "{nombre}", Descripción "{descripcion}", Capítulo "{capitulo}"')
 def step_impl(context, clave, nombre, descripcion, capitulo):
     context.driver.find_element_by_xpath(
         '//*[@id="id_clave"]').send_keys(clave)
@@ -24,13 +23,17 @@ def step_impl(context, clave, nombre, descripcion, capitulo):
         '//*[@id="id_capitulo"]').send_keys(capitulo)
     time.sleep(0.5)
 
-
 @when(u'presiono el botón Agregar de la partida')
 def step_impl(context):
     context.driver.find_element_by_xpath(
         '/html/body/div/div/form/button[1]').click()
 
-
 @then(u'puedo ver la partida "{partida}" agregado en la lista de partidas.')
 def step_impl(context, partida):
-    context.driver.find_element_by_xpath('//*[text() = "'+partida+'"]')
+    bandera = True
+    try:
+        context.driver.find_element_by_xpath('//*[text() = "'+partida+'"]')
+    except NoSuchElementException:
+        bandera = False
+    context.test.assertTrue(bandera)
+

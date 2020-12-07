@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from behave import given, when, then
 import time
 
@@ -10,11 +11,7 @@ def step_impl(context):
         '//*[@id="navbarSupportedContent"]/ul/li[6]/div/a[1]').click()
     time.sleep(0.5)
 
-
-@given(u'capturo los datos: Descripcion "{descripcion}",\
-    Proveedor "{proveedor}", Precio Unitario "{precio}",\
-        Cantidad "{cantidad}", Fecha "{fecha}",\
-        Actividad "{actividad}"')
+@given(u'capturo los datos: Descripcion "{descripcion}", Proveedor "{proveedor}", Precio Unitario "{precio}", Cantidad "{cantidad}", Fecha "{fecha}", Actividad "{actividad}"')
 def step_impl(context, descripcion, proveedor, precio, cantidad,
               fecha, actividad):
     context.driver.find_element_by_xpath(
@@ -32,13 +29,16 @@ def step_impl(context, descripcion, proveedor, precio, cantidad,
         '//*[@id="id_id_actividad"]').send_keys(actividad)
     time.sleep(0.5)
 
-
 @when(u'presiono el botón Agregar del gasto')
 def step_impl(context):
     context.driver.find_element_by_xpath(
         '/html/body/div/div/form/button[1]').click()
 
-
 @then(u'puedo ver el gasto "{gasto}" agregado en la lista de gastos.')
 def step_impl(context, gasto):
-    context.driver.find_element_by_xpath('//*[text() = "'+gasto+'"]')
+    bandera = True
+    try:
+        context.driver.find_elements_by_xpath('//td[contains(text(), "' + gasto + '")]')
+    except NoSuchElementException:
+        bandera = False
+    context.test.assertTrue(bandera)
