@@ -1,10 +1,7 @@
 from behave import fixture, use_fixture
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from unittest import TestCase
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
-from behave import fixture, use_fixture
 
 
 @fixture

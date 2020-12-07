@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from behave import given, when, then
 from login import login
 import time
@@ -34,5 +35,9 @@ def step_impl(context):
 
 @then(u'puedo ver el capítulo "{capitulo}" agregado en la lista de capítulos.')
 def step_impl(context, capitulo):
-    cap = context.driver.find_element_by_xpath('//*[text() = "'+capitulo+'"]')
-    #context.test.assertEqual(capitulo, cap)
+    bandera = True
+    try:
+        context.driver.find_element_by_xpath('//*[text() = "'+capitulo+'"]')
+    except NoSuchElementException:
+        bandera = False
+    context.test.assertTrue(bandera)

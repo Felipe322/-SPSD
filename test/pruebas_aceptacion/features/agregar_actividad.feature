@@ -8,4 +8,4 @@ Característica: Agregar una actividad
         Y entro a la sección de Agregar Actividad
         Y capturo los datos: Programa "27", Componente "2", Actividad "3", Monto "2,982.23", Descripcion "Presupuesto para Febrero", Mes "02", Partida "2111 - MATERIALES Y ÚTILES DE OFICINA", Año "2020 2020-12-13"
         Cuando presiono el botón Agregar de la actividad
-        Entonces puedo ver la actividad "3", con la descripción "Presupuesto para Febrero" y el monto "2,982.23" agregada en la lista de actividades.
+        Entonces puedo ver la actividad agregada, con la descripción "Presupuesto para Febrero".

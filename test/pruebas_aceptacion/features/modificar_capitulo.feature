@@ -6,7 +6,7 @@ Característica: Modificar un capítulo
     Escenario: Datos correctos
         Dado que estoy dentro del sistema como administrador
         Y entro a la sección de Capítulos
-        Y selecciono el capítulo "2000 - MATERIALES Y SUMINISTROS"
+        Y selecciono el capítulo "2000"
         Y remplazo el Nombre por "MATERIALES Y SUMINISTROS 2"
         Cuando presiono el botón Guardar
-        Entonces puedo ver el capítulo "2000 - MATERIALES Y SUMINISTROS 2" modificado en la lista de capítulos.
+        Entonces puedo ver el capítulo con el nombre "MATERIALES Y SUMINISTROS 2" modificado en la lista de capítulos.
