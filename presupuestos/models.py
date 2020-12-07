@@ -4,7 +4,7 @@ from django.core.validators import  MaxValueValidator, MinValueValidator, MaxLen
 
 
 class Presupuesto(models.Model):
-    anio = models.CharField('Año', max_length=4, primary_key=True,validators=[RegexValidator( regex='[1-9]{4,4}',message='Ingrese un año válido')])
+    anio = models.CharField('Año', max_length=4, primary_key=True,validators=[RegexValidator( regex='[0-9]{4,4}',message='Ingrese un año válido')])
     fecha = models.DateField('Fecha', default=timezone.now)
 
     def __str__(self):
@@ -22,7 +22,7 @@ class Actividad(models.Model):
         9999999.99), MinValueValidator(0,"El monto no puede ser menor a 0")])
     descripcion = models.CharField('Descripción', max_length=2300)
     mes = models.CharField('Mes', max_length=2, 
-                           validators=[RegexValidator(regex='[1-9]|1[0-2]',message='Ingrese un mes válido')])
+                           validators=[RegexValidator(regex='^([1-9]|1[012])$',message='Ingrese un mes válido')])
     partida = models.ForeignKey(
         'partidas.Partida', verbose_name='Partida', on_delete=models.CASCADE)
     anio = models.ForeignKey('presupuestos.Presupuesto',
