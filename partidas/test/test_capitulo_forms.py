@@ -56,5 +56,4 @@ class TestFormCapitulo(TestCase):
 
     def test_capitulo_form_clave_caracteres_numero(self):
         self.data['clave'] = 1000
-        form = CapituloForm(self.data)
         self.assertIsInstance(self.data['clave'], int)

@@ -1,28 +1,31 @@
 from django.db import models
 from django.utils import timezone
-from django.core.validators import  MaxValueValidator, MinValueValidator, MaxLengthValidator, RegexValidator, validate_slug
+from django.core.validators import MaxValueValidator, MinValueValidator,\
+    RegexValidator
 
 
 class Presupuesto(models.Model):
-    anio = models.CharField('Año', max_length=4, primary_key=True,validators=[RegexValidator( regex='[0-9]{4,4}',message='Ingrese un año válido')])
+    anio = models.CharField('Año', max_length=4, primary_key=True, validators=[
+                            RegexValidator(regex='[0-9]{4,4}',
+                                           message='Ingrese un año válido')])
     fecha = models.DateField('Fecha', default=timezone.now)
 
     def __str__(self):
         return str(self.anio)
 
 
-
 class Actividad(models.Model):
-    programa = models.CharField('Programa', max_length=2 ,)
+    programa = models.CharField('Programa', max_length=2)
     componente = models.CharField('Componente', max_length=2)
     actividad = models.CharField('Actividad', max_length=2)
     monto = models.DecimalField(
         'Monto', decimal_places=2, max_digits=10, blank=True, null=True,
         validators=[MaxValueValidator(
-        9999999.99), MinValueValidator(0,"El monto no puede ser menor a 0")])
+            9999999.99), MinValueValidator(0, "El monto no puede ser menor a 0")])
     descripcion = models.CharField('Descripción', max_length=2300)
-    mes = models.CharField('Mes', max_length=2, 
-                           validators=[RegexValidator(regex='^([1-9]|1[012])$',message='Ingrese un mes válido')])
+    mes = models.CharField('Mes', max_length=2,
+                           validators=[RegexValidator(regex='^([1-9]|1[012])$',
+                                                      message='Ingrese un mes válido')])
     partida = models.ForeignKey(
         'partidas.Partida', verbose_name='Partida', on_delete=models.CASCADE)
     anio = models.ForeignKey('presupuestos.Presupuesto',

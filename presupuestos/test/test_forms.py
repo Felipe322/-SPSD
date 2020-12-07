@@ -47,19 +47,19 @@ class TestFormPresupuesto(TestCase):
             form.errors['anio'],
             ['Asegúrese de que este valor tenga menos de 4 caracteres (tiene 5).'])
 
-    # def test_presupuestos_form_anio_numero_caracteres_menor(self):
-    #     self.data['anio'] = 891
-    #     form = PresupuestoForm(self.data)
-    #     self.assertEqual(
-    #         form.errors['anio'],
-    #         ['El número de caracteres del año es menor que 4'])
+    def test_presupuestos_form_anio_numero_caracteres_menor(self):
+        self.data['anio'] = 891
+        form = PresupuestoForm(self.data)
+        self.assertEqual(
+            form.errors['anio'],
+            ['Ingrese un año válido'])
 
-    # def test_presupuestos_form_anio_caracteres_solo_numeros(self):
-    #     self.data['anio'] = 'aaaa'
-    #     form = PresupuestoForm(self.data)
-    #     self.assertEqual(
-    #         form.errors['anio'],
-    #         ['El campo año solo permite caracteres numericos'])
+    def test_presupuestos_form_anio_caracteres_solo_numeros(self):
+        self.data['anio'] = 'aaaa'
+        form = PresupuestoForm(self.data)
+        self.assertEqual(
+            form.errors['anio'],
+            ['Ingrese un año válido'])
 
     def test_presupuestos_form_fecha_no_valida(self):
         self.data['fecha'] = '1010-88-1'

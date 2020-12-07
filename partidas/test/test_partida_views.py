@@ -92,7 +92,7 @@ class TestViews(TestCase):
         respuesta = self.client.get('/partidas/lista/')
         self.assertContains(respuesta, 'MATERIALES Y SUMINISTROS')
 
-    def test_titulo_se_encuentra_en_el_template(self):
+    def test_titulo_se_encuentra_en_el_template_partida(self):
         respuesta = self.client.get('/partidas/nueva/')
         formulario = '<h1>Nueva Partida</h1>'
         self.assertInHTML(formulario, str(respuesta.content))
@@ -141,7 +141,7 @@ class TestViews(TestCase):
         self.assertInHTML(boton, str(respuesta.content))
 
     def admin_login(self):
-        user1 = User.objects.create_user(
+        User.objects.create_user(
             username='admin',
             password='Adri4na203#',
             is_superuser=True

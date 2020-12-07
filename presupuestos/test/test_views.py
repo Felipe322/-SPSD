@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.urls import reverse
 from presupuestos.models import Presupuesto
 from django.contrib.auth.models import User
 import datetime
@@ -86,7 +85,7 @@ class TestViews(TestCase):
         )
 
     def admin_login(self):
-        user1 = User.objects.create_user(
+        User.objects.create_user(
             username='admin',
             password='Adri4na203#',
             is_superuser=True

@@ -1,9 +1,7 @@
 from django.test import TestCase
-from django.urls import reverse
 from presupuestos.models import (Actividad, Presupuesto)
 from partidas.models import (Partida, Capitulo)
 from django.contrib.auth.models import User
-import datetime
 
 
 class TestViewsActividad(TestCase):
@@ -101,7 +99,7 @@ class TestViewsActividad(TestCase):
         self.assertIn(boton, str(response.content))
 
     def admin_login(self):
-        user1 = User.objects.create_user(
+        User.objects.create_user(
             username='admin',
             password='Adri4na203#',
             is_superuser=True

@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from presupuestos.models import Actividad
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
@@ -24,8 +23,6 @@ class Gasto(models.Model):
     def save(self, *args, **kwargs):
         self.precio_total = self.cantidad * self.precio_unitario
         super().save(*args, **kwargs)
-
-# default=get_next_increment, editable=False
 
     def __str__(self):
         return str(self.descripcion)+" "+str(self.precio_total)

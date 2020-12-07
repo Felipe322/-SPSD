@@ -68,7 +68,6 @@ class TestFormPartida(TestCase):
     def test_partida_form_clave_numero_caracteres_correcta(self):
         self.data['clave'] = 2115
         form = PartidaForm(self.data)
-        print(form.errors)
         self.assertTrue(form.is_valid())
 
     def test_partida_form_clave_numero_caracteres_mayor(self):
@@ -76,7 +75,7 @@ class TestFormPartida(TestCase):
         form = PartidaForm(self.data)
         self.assertEqual(
             form.errors['clave'],
-            ['Asegúrese de que este valor sea mayor a 1000 y menor a 9000.'])
+            ['Asegúrese de que este valor sea menor o igual a 9000.'])
 
     def test_partida_form_nombre_caracteres_mayor(self):
         self.data['nombre'] = 'MATERIALES Y ÚTILES'*5
@@ -94,5 +93,4 @@ class TestFormPartida(TestCase):
 
     def test_partida_form_clave_caracteres_numero(self):
         self.data['clave'] = 2200
-        form = PartidaForm(self.data)
         self.assertIsInstance(self.data['clave'], int)

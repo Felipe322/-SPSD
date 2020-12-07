@@ -181,7 +181,7 @@ class TestViewsGasto(TestCase):
         self.assertInHTML(boton, str(respuesta.content))
 
     def admin_login(self):
-        user1 = User.objects.create_user(
+        User.objects.create_user(
             username='admin',
             password='Adri4na203#',
             is_superuser=True

@@ -6,5 +6,5 @@ Característica: Eliminar un presupuesto
     Escenario: Datos correctos
         Dado que estoy dentro del sistema como administrador
         Y entro a la sección de Modificar Presupuesto
-        Cuando presiono el botón Eliminar del presupuesto "2021"
-        Entonces puedo ver que el presupuesto "2021" ya no está en la lista de presupuestos.
+        Cuando presiono el botón Eliminar del presupuesto "2020"
+        Entonces puedo ver que el presupuesto "2020" ya no está en la lista de presupuestos.

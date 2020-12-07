@@ -1,9 +1,7 @@
 from django.test import TestCase
-from presupuestos.models import Presupuesto
 from django.core.exceptions import ValidationError
 from presupuestos.models import (Actividad, Presupuesto)
 from partidas.models import (Partida, Capitulo)
-from django.contrib.auth.models import User
 
 
 class TestModels(TestCase):
@@ -65,9 +63,4 @@ class TestModels(TestCase):
             self.actividad.full_clean()
 
     def admin_login(self):
-        user1 = User.objects.create_user(
-            username='admin',
-            password='Adri4na203#',
-            is_superuser=True
-        )
         self.client.login(username='admin', password='Adri4na203#')

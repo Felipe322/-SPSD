@@ -5,7 +5,6 @@ from presupuestos.forms import Presupuesto
 from presupuestos.forms import Actividad
 from gastos.forms import GastoForm
 from gastos.forms import Gasto
-from django.contrib.auth.models import User
 
 
 class TestFormsGasto(TestCase):

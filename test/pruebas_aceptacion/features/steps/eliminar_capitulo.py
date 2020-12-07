@@ -5,8 +5,10 @@ import time
 
 @when(u'presiono el botón Eliminar del capítulo "{capitulo}"')
 def step_impl(context, capitulo):
-    context.driver.find_element_by_xpath("//a[@href='/capitulos/eliminar/"+capitulo+"']").click()
+    context.driver.find_element_by_xpath(
+        "//a[@href='/capitulos/eliminar/"+capitulo+"']").click()
     time.sleep(0.5)
+
 
 @then(u'puedo ver que el capítulo "{capitulo}" ya no está en la lista de capítulos.')
 def step_impl(context, capitulo):

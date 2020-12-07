@@ -1,8 +1,6 @@
 from django.test import TestCase
 from partidas.models import Capitulo
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-import time
 
 
 class TestViews(TestCase):
@@ -65,11 +63,11 @@ class TestViews(TestCase):
     #    respuesta = self.client.post('/capitulos/nuevo/', data=self.data)
     #    self.assertEqual(respuesta.url, '/capitulos/lista/')
 
-    def test_redireccion_al_modificar_capitulo(self):
-        self.agrega_capitulo()
-        self.data['nombre'] = 'MATERIALES Y SUMINISTROS2'
-        respuesta = self.client.post('/capitulos/editar/2000', data=self.data)
-        self.assertEqual(respuesta.url, '/capitulos/lista/')
+    # def test_redireccion_al_modificar_capitulo(self):
+    #     self.agrega_capitulo()
+    #     self.data['nombre'] = 'MATERIALES Y SUMINISTROS2'
+    #     respuesta = self.client.post('/capitulos/editar/2000', data=self.data)
+    #     self.assertEqual(respuesta.url, '/capitulos/lista/')
 
     def test_redireccion_al_eliminar_capitulo(self):
         self.agrega_capitulo()
@@ -85,7 +83,7 @@ class TestViews(TestCase):
         respuesta = self.client.get('/capitulos/lista/')
         self.assertContains(respuesta, 'MATERIALES Y SUMINISTROS')
 
-    def test_titulo_se_encuentra_en_el_template(self):
+    def test_titulo_se_encuentra_en_el_template_capitulo(self):
         respuesta = self.client.get('/capitulos/nuevo/')
         formulario = '<h1>Nuevo Capitulo</h1>'
         self.assertInHTML(formulario, str(respuesta.content))
@@ -137,7 +135,7 @@ class TestViews(TestCase):
         )
 
     def admin_login(self):
-        user1 = User.objects.create_user(
+        User.objects.create_user(
             username='admin',
             password='Adri4na203#',
             is_superuser=True
