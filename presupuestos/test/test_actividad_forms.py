@@ -6,6 +6,7 @@ from presupuestos.forms import Actividad
 from presupuestos.forms import ActividadForm
 from django.contrib.auth.models import User
 
+
 class TestFormActividad(TestCase):
 
     def setUp(self,
@@ -164,7 +165,7 @@ class TestFormActividad(TestCase):
     #     form = ActividadForm(self.data)
     #     self.assertEqual(
     #         form.errors['mes'],
-    #         ['El mes debe ser del 1 a 12']
+    #         ['Ingrese un mes válido entre 1 a 12']
     #     )
 
     def test_actividad_form_descripcion_mayor(self):

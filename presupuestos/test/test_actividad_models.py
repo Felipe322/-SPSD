@@ -9,13 +9,13 @@ from django.contrib.auth.models import User
 class TestModels(TestCase):
 
     def setUp(self,
-            programa='27',
-            componente='2',
-            actividad='3',
-            monto=2982.23,
-            descripcion='Presupuesto para Febrero',
-            mes='02',
-            ):
+              programa='27',
+              componente='2',
+              actividad='3',
+              monto=2982.23,
+              descripcion='Presupuesto para Febrero',
+              mes='02',
+              ):
 
         self.admin_login()
 

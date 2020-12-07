@@ -11,8 +11,8 @@ class TestFormPartida(TestCase):
             clave=2110,
             nombre='MATERIALES, ÚTILES Y EQUIPOS MENORES DE OFICINA',
             descripcion='Plumas, borradores, entre otras cosas.'
-            ):
-    
+    ):
+
         self.capitulo = Capitulo.objects.create(
             clave=2000,
             nombre='MATERIALES'
@@ -76,7 +76,7 @@ class TestFormPartida(TestCase):
         form = PartidaForm(self.data)
         self.assertEqual(
             form.errors['clave'],
-            ['Asegúrese de que este valor sea menor o igual a 9000.'])
+            ['Asegúrese de que este valor sea mayor a 1000 y menor a 9000.'])
 
     def test_partida_form_nombre_caracteres_mayor(self):
         self.data['nombre'] = 'MATERIALES Y ÚTILES'*5
