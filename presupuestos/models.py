@@ -4,7 +4,7 @@ from django.core.validators import  MaxValueValidator, MinValueValidator, MaxLen
 
 
 class Presupuesto(models.Model):
-    anio = models.CharField('Año', max_length=4, primary_key=True,validators=[RegexValidator( regex='[1-9]{4,4}',message='Ingrese un año válido')])
+    anio = models.CharField('Año', max_length=4, primary_key=True,validators=[RegexValidator( regex='[0-9]{4,4}',message='Ingrese un año válido')])
     fecha = models.DateField('Fecha', default=timezone.now)
 
     def __str__(self):

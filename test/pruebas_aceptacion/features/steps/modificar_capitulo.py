@@ -35,4 +35,3 @@ def step_impl(context, nombre):
     except NoSuchElementException:
         bandera = False
     context.test.assertTrue(bandera)
-

@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from behave import given, then
 import time
 
@@ -5,16 +6,15 @@ import time
 @given(u'entro a la sección de Modificar Actividad')
 def step_impl(context):
     context.driver.find_element_by_xpath(
-        '//*[@id="content-main"]/div[4]/table/tbody/tr[1]/th/a').click()
+        '/html/body/nav/div/ul/li[5]/a').click()
+    context.driver.find_element_by_xpath(
+        '//*[@id="navbarSupportedContent"]/ul/li[5]/div/a[2]').click()
     time.sleep(0.5)
-
 
 @given(u'selecciono la actividad "{activida}"')
 def step_impl(context, activida):
-    context.driver.find_element_by_xpath(
-        '//*[text() = "'+activida+'"]').click()
+    context.driver.find_element_by_xpath("//a[@href='/actividades/editar/"+activida+"']").click()
     time.sleep(0.5)
-
 
 @given(u'remplazo el Programa por "{programa}"')
 def step_impl(context, programa):
@@ -22,22 +22,15 @@ def step_impl(context, programa):
     context.driver.find_element_by_xpath(
         '//*[@id="id_programa"]').send_keys(programa)
 
+@when(u'presiono el botón Guardar de la actividad')
+def step_impl(context):
+    context.driver.find_element_by_xpath('/html/body/div/div/form/button[1]').click()
 
-@given(u'la actividad por "{actividad}"')
+@then(u'puedo ver la actividad "{actividad}" modificada en la lista de actividades.')
 def step_impl(context, actividad):
-    context.driver.find_element_by_xpath('//*[@id="id_actividad"]').clear()
-    context.driver.find_element_by_xpath(
-        '//*[@id="id_actividad"]').send_keys(actividad)
-
-
-@then(u'puedo ver la actividad "{actividad}" modificada en la lista \
-    de actividades.')
-def step_impl(context, actividad):
-    tbody = context.driver.find_element_by_tag_name('tbody')
-    trs = tbody.find_elements_by_tag_name('tr')
-    lista_actividad = []
-    for tr in trs:
-        ths = tr.find_elements_by_tag_name('th')
-        actividad = ths[0].text
-        lista_actividad.append(actividad)
-    context.test.assertIn(actividad, lista_actividad)
+    bandera = True
+    try:
+        context.driver.find_elements_by_xpath('//td[contains(text(), "' + actividad + '")]')
+    except NoSuchElementException:
+        bandera = False
+    context.test.assertTrue(bandera)

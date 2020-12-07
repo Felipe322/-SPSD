@@ -15,6 +15,5 @@ def browser_chrome(context):
     yield context.driver
     context.driver.quit()
 
-
 def before_all(context):
     use_fixture(browser_chrome, context)

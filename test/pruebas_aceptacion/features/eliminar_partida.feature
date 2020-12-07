@@ -6,7 +6,5 @@ Característica: Eliminar una partida
     Escenario: Datos correctos
         Dado que estoy dentro del sistema como administrador
         Y entro a la sección de Modificar Partida
-        Y selecciono la partida "2114 - MATERIALES"
-        Cuando presiono el botón Eliminar de la partida
-        Y confirmo la acción con el botón de Si, estoy seguro
-        Entonces puedo ver que la partida "2114 - MATERIALES" ya no está en la lista de partidas.
+        Cuando presiono el botón Eliminar de la partida "2114"
+        Entonces puedo ver que la partida "2114" ya no está en la lista de partidas.
