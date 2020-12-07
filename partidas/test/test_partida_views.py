@@ -69,7 +69,8 @@ class TestViews(TestCase):
         self.assertInHTML(titulo, str(respuesta.content))
 
     def test_titulo_se_encuentra_en_el_template_editar(self):
-        respuesta = self.client.get('/partidas/editar/'+str(self.partida.clave))
+        respuesta = self.client.get(
+            '/partidas/editar/'+str(self.partida.clave))
         titulo = '<title>Actualizar Partida</title>'
         self.assertInHTML(titulo, str(respuesta.content))
 
@@ -83,7 +84,8 @@ class TestViews(TestCase):
     #     self.assertEqual(respuesta.url, '/partidas/lista/')
 
     def test_redireccion_al_eliminar_partida(self):
-        respuesta = self.client.get('/partidas/eliminar/'+str(self.partida.clave))
+        respuesta = self.client.get(
+            '/partidas/eliminar/'+str(self.partida.clave))
         self.assertEqual(respuesta.url, '/partidas/lista/')
 
     def test_materiales_se_encuentre_en_el_template(self):
