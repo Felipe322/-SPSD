@@ -1,98 +1,374 @@
+{% load static%}
+
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-treegrid/0.2.0/css/jquery.treegrid.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css" rel="stylesheet">
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-treegrid/0.2.0/js/jquery.treegrid.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
-    {# Cargamos la librería #}
-	  {% load bootstrap4 %}
-    {# CSS Bootstrap #}
-    {% bootstrap_css %}
-    
-    {% block extrahead %}
-    {% endblock %}  
+  <head>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-treegrid/0.2.0/css/jquery.treegrid.min.css"
+      rel="stylesheet">
+    <link
+      href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css"
+      rel="stylesheet">
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-treegrid/0.2.0/js/jquery.treegrid.min.js"></script>
+    <script
+      src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+    <script
+      src="https://unpkg.com/bootstrap-table@1.18.0/dist/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>
+      Now UI Dashboard by Creative Tim
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0,
+      user-scalable=0, shrink-to-fit=no'
+      name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+      rel="stylesheet" />
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous">
+    <!-- CSS Files -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/now-ui-dashboard.css' %}"rel="stylesheet" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Document{% endblock %}</title>
   </head>
+
+
   <body>
-    {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'principal:principal'%}"> Finanzas SPSD <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Capitulos
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'capitulos:nuevo'%}">Nuevo</a>
-              <a class="dropdown-item" href="{% url 'capitulos:lista'%}">Lista</a>
+    <div class="wrapper">
+      <div class="sidebar" data-color="black">
+        <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+        <div class="logo">
+          <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+          </a>
+          <a href="{% url 'principal:principal'%}"class="simple-text
+            logo-normal">
+            Finanzas
+          </a>
+        </div>
+        <div class="sidebar-wrapper" id="sidebar-wrapper">
+          <ul class="nav">
+        
+            <li>
+              <a href="{% url 'capitulos:lista'%}">
+                <i class="now-ui-icons education_atom"></i>
+                <p>Capitulos</p>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'partidas:lista'%}">
+                <i class="now-ui-icons location_map-big"></i>
+                <p>Partidas</p>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'actividades:lista'%}">
+                <i class="now-ui-icons ui-1_bell-53"></i>
+                <p>Actividades</p>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'presupuestos:lista'%}">
+                <i class="now-ui-icons users_single-02"></i>
+                <p>Presupuesto</p>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="{% url 'actividades:lista'%}">
+                <i class="now-ui-icons design_bullet-list-67"></i>
+                <p>Actividades</p>
+              </a>
+            </li>
+
+            <div id="submenu-1" class="collapse submenu submenu-1"
+              data-parent="#menu-accordion">
+              <ul class="submenu-list list-unstyled">
+                <li class="submenu-item"><a class="submenu-link" href="{% url
+                    'capitulos:lista'%}">Lista</a>
+                  
+                  </li>
+              </ul>
             </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Partidas
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'partidas:nuevo'%}">Nueva</a>
-              <a class="dropdown-item" href="{% url 'partidas:lista'%}">Lista</a>
+            <!------------------------------------------------------------------>
+            <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+              <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi
+                  bi-house-door" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1
+                    .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5
+                    0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1
+                    .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0
+                    1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
+                    <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1
+                      .5-.5h1a.5.5 0 0 1 .5.5z" />
+                    </svg>
+
+
+
+                    <li class="nav-item has-submenu">
+                      <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                      <a class="nav-link submenu-toggle" href="#"
+                        data-toggle="collapse" data-target="#submenu-2"
+                        aria-expanded="false" aria-controls="submenu-2">
+                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                        <svg width="1em" height="1em" viewBox="0 0 16 16"
+                          class="bi bi-columns-gap" fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1
+                            1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14
+                            12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1
+                            1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1
+                            1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0
+                            0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0
+                            0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
+                          </svg>
+                        </span>
+                        <span class="nav-link-text">Categorias</span>
+                        <span class="submenu-arrow">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16"
+                            class="bi bi-chevron-down" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8
+                              10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0
+                              0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                          </span>
+                          <!--//submenu-arrow-->
+                        </a>
+                        <!--//nav-link-->
+                        <div id="submenu-2" class="collapse submenu submenu-2"
+                          data-parent="#menu-accordion">
+                          <ul class="submenu-list list-unstyled">
+                            <li class="submenu-item"><a class="submenu-link"
+                                href="">Lista</a></li>
+                            <li class="submenu-item"><a class="submenu-link"
+                                href="">Agregar</a></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <!--//nav-item-->
+
+
+                    </li>
+                    <!--//nav-item-->
+                    <li class="nav-item has-submenu">
+                      <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                      <a class="nav-link submenu-toggle" href="#"
+                        data-toggle="collapse" data-target="#submenu-3"
+                        aria-expanded="false" aria-controls="submenu-3">
+                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                        <svg width="1em" height="1em" viewBox="0 0 16 16"
+                          class="bi bi-columns-gap" fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1
+                            1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14
+                            12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1
+                            1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1
+                            1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0
+                            0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0
+                            0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
+                          </svg>
+                        </span>
+                        <span class="nav-link-text">Usuarios</span>
+                        <span class="submenu-arrow">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16"
+                            class="bi bi-chevron-down" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8
+                              10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0
+                              0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                          </span>
+                          <!--//submenu-arrow-->
+                        </a>
+                        <!--//nav-link-->
+                        <div id="submenu-3" class="collapse submenu submenu-3"
+                          data-parent="#menu-accordion">
+                          <ul class="submenu-list list-unstyled">
+                            <li class="submenu-item"><a class="submenu-link"
+                                href="">Lista</a></li>
+                            <li class="submenu-item"><a class="submenu-link"
+                                href="">Agregar</a></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <!--//nav-item-->
+                      <!--//nav-item-->
+                    <li class="nav-item has-submenu">
+                      <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                      <a class="nav-link submenu-toggle" href="#"
+                        data-toggle="collapse" data-target="#submenu-4"
+                        aria-expanded="false" aria-controls="submenu-4">
+                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                        <svg width="1em" height="1em" viewBox="0 0 16 16"
+                          class="bi bi-columns-gap" fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1
+                            1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14
+                            12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1
+                            1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1
+                            1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0
+                            0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0
+                            0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
+                          </svg>
+                        </span>
+                        <span class="nav-link-text">Presupuestos</span>
+                        <span class="submenu-arrow">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16"
+                            class="bi bi-chevron-down" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8
+                              10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0
+                              0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                          </span>
+                          <!--//submenu-arrow-->
+                        </a>
+                        <!--//nav-link-->
+                        <div id="submenu-4" class="collapse submenu submenu-4"
+                          data-parent="#menu-accordion">
+                          <ul class="submenu-list list-unstyled">
+                            <li class="submenu-item"><a class="submenu-link"
+                                href="">Lista</a></li>
+                            <li class="submenu-item"><a class="submenu-link"
+                                href="">Agregar</a></li>
+                          </ul>
+                        </div>
+                      </li>
+
+
+                    </li>
+                    <!--//nav-item-->
+                  </ul>
+                  <!--//app-menu-->
+                </nav>
+
+
+
+
+              </ul>
             </div>
-          </li>
+          </div>
+          <div class="main-panel" id="main-panel">
+            <nav class="navbar navbar-expand-lg navbar-transparent bg-primary
+              navbar-absolute">
+              <div class="container-fluid">
+                <div class="navbar-wrapper">
+                  <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler">
+                      <span class="navbar-toggler-bar bar1"></span>
+                      <span class="navbar-toggler-bar bar2"></span>
+                      <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                  </div>
+                  <a class="navbar-brand" href=""></a>
+                </div>
+                <button class="navbar-toggler" type="button"
+                  data-toggle="collapse" data-target="#navigation"
+                  aria-controls="navigation-index" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-bar navbar-kebab"></span>
+                  <span class="navbar-toggler-bar navbar-kebab"></span>
+                  <span class="navbar-toggler-bar navbar-kebab"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end"
+                  id="navigation">
+                  <form>
+                    <div class="input-group no-border">
+                      <input type="text" value="" class="form-control"
+                        placeholder="Search...">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <i class="now-ui-icons ui-1_zoom-bold"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="">
+                        <i class="now-ui-icons media-2_sound-wave"></i>
+                        <p>
+                          <span class="d-lg-none d-md-block">Stats</span>
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="now-ui-icons location_world"></i>
+                        <p>
+                          <span class="d-lg-none d-md-block">Some Actions</span>
+                        </p>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="">
+                        <i class="now-ui-icons users_single-02"></i>
+                        <p>
+                          <span class="d-lg-none d-md-block">Account</span>
+                        </p>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <!-- End Navbar -->
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Presupuestos
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'presupuestos:nuevo'%}">Nuevo</a>
-              <a class="dropdown-item" href="{% url 'presupuestos:lista'%}">Lista</a>
+            <div class="panel-header panel-header-sm">
             </div>
-          </li>
-
-             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Actividades
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'actividades:nuevo'%}">Nuevo</a>
-              <a class="dropdown-item" href="{% url 'actividades:lista'%}">Lista</a>
-              <a class="dropdown-item" href="{% url 'actividades:traspaso'%}">Compartir Saldo</a>
-            </div>
-          </li>
 
 
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Gastos
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'gastos:nuevo'%}">Nuevo</a>
-              <a class="dropdown-item" href="{% url 'gastos:lista'%}">Lista</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
 
-    
-    
-    {% endblock %}
 
-    <div>
-      {% block content %}
-      <h5>Este es el contenido del archivo base</h5>
-      {% endblock %}
-    </div>
-    {% bootstrap_javascript jquery='full' %}
-  </body>
-</html>
+            <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+            <script src="{% static 'js/popper.min.js' %}"></script>
+
+            <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+            <!-- Charts JS -->
+            <script src="{% static 'js/chart.min.js' %}"></script>
+
+            <!-- Page Specific JS -->
+            <script src="{% static 'js/app.js' %}"></script>
+          </body>
+
+        </html>
+
+        {% block contenido %}
+
+        {% endblock contenido %}
+
+        {% block js %}
+
+        {% endblock js %}

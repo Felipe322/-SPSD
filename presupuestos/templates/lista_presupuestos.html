@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
+{% load static%}
 
 {% block title %}Lista Presupuestos{% endblock %}
 
-{% block content %}
-    <h1>Listado de Presupuestos</h1>
-    <div class="container-fluid"class="shadow-lg p-3 mb-5 bg-white rounded" >
-    <table class="table" >
+{% block contenido %}
+ 
+
+
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Lista de presupuestos</h4>
+        </div>
+
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table" >
         <tr>
             <th>Año</th>
             <th>Fecha</th>
@@ -24,6 +38,27 @@
         </tr>
         {% endfor %}
     </table>
+          </div>
+        </div>
+      </div>
     </div>
-{% endblock %}
+
+
+    <div class="col-md-12">
+      <div class="card card-plain">
+       
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+
+{% endblock contenido %}
+
 

@@ -1,30 +1,59 @@
 {% extends 'base.html' %}
+{% load static%}
+{% block contenido %}
+  
 
-{% block title %}Lista Partidas{% endblock %}
+<div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Lista de partidas</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>Clave</th>
+                            <th>Nombre</th>
+                            <th>Capítulo</th>
+                            <th>Descripción</th>
+                            <th>Opciones</th>
+                        </tr>
+                        {% for partida in partidas %}
+                        <tr>
+                            <td>{{partida.clave}}</td>
+                            <td>{{partida.nombre}}</td>
+                            <td>{{partida.capitulo}}</td>
+                            <td>{{partida.descripcion}}</td>
+                            <td>
+                                <a class="btn btn-danger" href="{% url 'partidas:eliminar' partida.clave %}">Eliminar</a>
+                            </td>
+                                <td>
+                                <a class="btn btn-primary" href="{% url 'partidas:editar' partida.clave %}">Modificar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div class="col-md-12">
+        <div class="card card-plain">
+         
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock contenido %}
 
-{% block content %}
-<div class="container-fluid">
-<h1>Listado de Partidas</h1>
-<table class="table">
-    <tr>
-        <th>Clave</th>
-        <th>Nombre</th>
-        <th>Capítulo</th>
-        <th>Descripción</th>
-        <th>Opciones</th>
-    </tr>
-    {% for partida in partidas %}
-    <tr>
-        <td>{{partida.clave}}</td>
-        <td>{{partida.nombre}}</td>
-        <td>{{partida.capitulo}}</td>
-        <td>{{partida.descripcion}}</td>
-        <td>
-            <a class="btn btn-danger" href="{% url 'partidas:eliminar' partida.clave %}">Eliminar</a>
-            <a class="btn btn-primary" href="{% url 'partidas:editar' partida.clave %}">Modificar</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-</div>
-{% endblock %}

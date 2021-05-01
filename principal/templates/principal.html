@@ -1,110 +1,67 @@
-<!doctype html>
-<html>
-  <head>
-    
-    {% load static %}
-    {% load bootstrap4 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
+{% extends 'base.html' %}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Principal</title>
+{% load static %}
 
-    <link rel="stylesheet" href="{% static 'css/jquery.treegrid.css' %}">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.treegrid.js' %}"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('.tree').treegrid();
-      });
-    </script>
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'principal:principal'%}  ">Finanzas SPSD <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Capítulos
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'capitulos:nuevo'%}">Nuevo</a>
-                <a class="dropdown-item" href="{% url 'capitulos:lista'%}">Lista</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Partidas
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'partidas:nuevo'%}">Nueva</a>
-                <a class="dropdown-item" href="{% url 'partidas:lista'%}">Lista</a>
-              </div>
-            </li>
+
+
+
+
+{% block contenido %}
   
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Presupuestos
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'presupuestos:nuevo'%}">Nuevo</a>
-                <a class="dropdown-item" href="{% url 'presupuestos:lista'%}">Lista</a>
-              </div>
-            </li>
-  
-               <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Actividades
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'actividades:nuevo'%}">Nuevo</a>
-                <a class="dropdown-item" href="{% url 'actividades:lista'%}">Lista</a>
-                <a class="dropdown-item" href="{% url 'actividades:traspaso'%}">Compartir Saldo</a>
-              </div>
-            </li>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Principal</title>
+
+  <link rel="stylesheet" href="{% static 'css/jquery.treegrid.css' %}">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.treegrid.js' %}"></script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('.tree').treegrid();
+    });
+  </script>
   
   
-  
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Gastos
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'gastos:nuevo'%}">Nuevo</a>
-                <a class="dropdown-item" href="{% url 'gastos:lista'%}">Lista</a>
-              </div>
-            </li>
-          </ul>
+</head>
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Simple Table</h4>
         </div>
-      </nav>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="tree table table-hover">
+              <tr>
+                <th>Elemento</th>
+                <th>Enero</th>
+                <th>Febrero</th>
+                <th>Marzo</th>
+                <th>Abril</th>
+                <th>Mayo</th>
+                <th>Junio</th>
+                <th>Julio</th>
+                <th>Agosto</th>
+                <th>Septiembre</th>
+                <th>Octubre</th>
+                <th>Noviembre</th>
+                <th>Diciembre</th>
+                <th>Total</th>
 
-      
-      <table class="tree table table-hover">
-        <tr>
-          <th>Elemento</th>
-          <th>Enero</th>
-          <th>Febrero</th>
-          <th>Marzo</th>
-          <th>Abril</th>
-          <th>Mayo</th>
-          <th>Junio</th>
-          <th>Julio</th>
-          <th>Agosto</th>
-          <th>Septiembre</th>
-          <th>Octubre</th>
-          <th>Noviembre</th>
-          <th>Diciembre</th>
-          <th>Total</th>
-
-        </tr>
-        {% for capitulo in capitulos %}
-            <tr class="treegrid-{{capitulo.id}} bg-dark text-white ">
+              </tr>
+              {% for capitulo in capitulos %}
+              <tr class="treegrid-{{capitulo.id}} bg-dark text-white ">
                 <td>Capítulo {{capitulo.clave}}</td>
                 <td>${{capitulo.total_meses.1}}</td>
                 <td>${{capitulo.total_meses.2}}</td>
@@ -119,45 +76,64 @@
                 <td>${{capitulo.total_meses.11}}</td>
                 <td>${{capitulo.total_meses.12}}</td>
                 <td>${{capitulo.total}}</td>
-            </tr>
-            {% for partida in capitulo.partidas %}
-                <tr class="treegrid-{{partida.id}} treegrid-parent-{{capitulo.id}} table-secondary">
-                    <td>Partida {{partida.clave}}</td>
-                    <td>${{partida.total_meses.1}}</td>
-                    <td>${{partida.total_meses.2}}</td>
-                    <td>${{partida.total_meses.3}}</td>
-                    <td>${{partida.total_meses.4}}</td>
-                    <td>${{partida.total_meses.5}}</td>
-                    <td>${{partida.total_meses.6}}</td>
-                    <td>${{partida.total_meses.7}}</td>
-                    <td>${{partida.total_meses.8}}</td>
-                    <td>${{partida.total_meses.9}}</td>
-                    <td>${{partida.total_meses.10}}</td>
-                    <td>${{partida.total_meses.11}}</td>
-                    <td>${{partida.total_meses.12}}</td>
-                    <td>${{partida.total}}</td>
-                </tr>
-                {% for actividad in partida.actividades %}
-                    <tr class="treegrid-{{actividad.id}} treegrid-parent-{{partida.id}} ">
-                        <td>{{actividad.id}}</td>
-                        <td>${{actividad.meses.1}}</td>
-                        <td>${{actividad.meses.2}}</td>
-                        <td>${{actividad.meses.3}}</td>
-                        <td>${{actividad.meses.4}}</td>
-                        <td>${{actividad.meses.5}}</td>
-                        <td>${{actividad.meses.6}}</td>
-                        <td>${{actividad.meses.7}}</td>
-                        <td>${{actividad.meses.8}}</td>
-                        <td>${{actividad.meses.9}}</td>
-                        <td>${{actividad.meses.10}}</td>
-                        <td>${{actividad.meses.11}}</td>
-                        <td>${{actividad.meses.12}}</td>
-                        <td>${{actividad.total}}</td>
-                    </tr>
-                {% endfor %}
-            {% endfor %}
-        {% endfor %}
-        
-      </table>
-  </body>
-</html>
+              </tr>
+              {% for partida in capitulo.partidas %}
+              <tr class="treegrid-{{partida.id}} treegrid-parent-{{capitulo.id}} table-secondary">
+                <td>Partida {{partida.clave}}</td>
+                <td>${{partida.total_meses.1}}</td>
+                <td>${{partida.total_meses.2}}</td>
+                <td>${{partida.total_meses.3}}</td>
+                <td>${{partida.total_meses.4}}</td>
+                <td>${{partida.total_meses.5}}</td>
+                <td>${{partida.total_meses.6}}</td>
+                <td>${{partida.total_meses.7}}</td>
+                <td>${{partida.total_meses.8}}</td>
+                <td>${{partida.total_meses.9}}</td>
+                <td>${{partida.total_meses.10}}</td>
+                <td>${{partida.total_meses.11}}</td>
+                <td>${{partida.total_meses.12}}</td>
+                <td>${{partida.total}}</td>
+              </tr>
+              {% for actividad in partida.actividades %}
+              <tr class="treegrid-{{actividad.id}} treegrid-parent-{{partida.id}} ">
+                <td>{{actividad.id}}</td>
+                <td>${{actividad.meses.1}}</td>
+                <td>${{actividad.meses.2}}</td>
+                <td>${{actividad.meses.3}}</td>
+                <td>${{actividad.meses.4}}</td>
+                <td>${{actividad.meses.5}}</td>
+                <td>${{actividad.meses.6}}</td>
+                <td>${{actividad.meses.7}}</td>
+                <td>${{actividad.meses.8}}</td>
+                <td>${{actividad.meses.9}}</td>
+                <td>${{actividad.meses.10}}</td>
+                <td>${{actividad.meses.11}}</td>
+                <td>${{actividad.meses.12}}</td>
+                <td>${{actividad.total}}</td>
+              </tr>
+              {% endfor %}
+              {% endfor %}
+              {% endfor %}
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-12">
+      <div class="card card-plain">
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}

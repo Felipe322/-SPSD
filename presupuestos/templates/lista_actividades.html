@@ -1,41 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Lista Actividades{% endblock %}
 
-{% block content %}
-    
-    <div class="container-lg">
-    <h1>Listado de Actividades</h1>
-    <table  class="table">
-        <tr>
-            <th>Programa</th>
-            <th>Componente</th>
-            <th>Actividad</th>
-            <th>Monto</th>
-            <th>Descripción</th>
-            <th>Mes</th>
-            <th>Partida</th>
-            <th>Año</th>
-            <th>Opciones</th>
+{% block contenido %}
+  
 
-        </tr>
-        {% for actividad in actividades %}
-        <tr>
-            <td>{{actividad.programa}}</td>
-            <td>{{actividad.componente}}</td>
-            <td>  {{actividad.actividad}}  </td>
-            <td>   {{actividad.monto}} </td>
-            <td>  {{actividad.descripcion}}  </td>
-            <td>  {{actividad.mes}}  </td>
-            <td>  {{actividad.partida}}  </td>
-            <td>  {{actividad.anio}}  </td>
-        
-            <td>
-                <a class="btn btn-danger" href="{% url 'actividades:eliminar' actividad.id %}">Eliminar</a> 
-                <a class="btn btn-primary" href="{% url 'actividades:editar' actividad.id %}">Modificar</a>
-            </td>
-        </tr>
+<div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"> Lista de actividades</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+                <table  class="table">
+                    <tr>
+                        <th>Programa</th>
+                        <th>Componente</th>
+                        <th>Actividad</th>
+                        <th>Monto</th>
+                        <th>Descripción</th>
+                        <th>Mes</th>
+                        <th>Partida</th>
+                        <th>Año</th>
+                        <th>Opciones</th>
+            
+                    </tr>
+                    {% for actividad in actividades %}
+                    <tr>
+                        <td>{{actividad.programa}}</td>
+                        <td>{{actividad.componente}}</td>
+                        <td>  {{actividad.actividad}}  </td>
+                        <td>   {{actividad.monto}} </td>
+                        <td>  {{actividad.descripcion}}  </td>
+                        <td>  {{actividad.mes}}  </td>
+                        <td>  {{actividad.partida}}  </td>
+                        <td>  {{actividad.anio}}  </td>
+                    
+                        <td>
+                            <a class="btn btn-danger" href="{% url 'actividades:eliminar' actividad.id %}">Eliminar</a> 
+                            <a class="btn btn-primary" href="{% url 'actividades:editar' actividad.id %}">Modificar</a>
+                        </td>
+                    </tr>
+                    </div>
+                    {% endfor %}
+                </table>
+            </div>
+          </div>
         </div>
-        {% endfor %}
-    </table>
-{% endblock %}
+      </div>
+  
+  
+      <div class="col-md-12">
+        <div class="card card-plain">
+         
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock contenido %}
+

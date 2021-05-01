@@ -2,26 +2,55 @@
 
 {% block title %}Lista Capitulos{% endblock %}
 
-{% block content %}
-  <div class="container-fluid">
-    <h1>Listado de Capitulos</h1>
-    <table class="table">
-        <tr>
-            <th>Clave</th>
-            <th>Nombre</th>
-            <th>Opciones</th>
+{% block contenido %}
+  
 
-        </tr>
-        {% for capitulo in capitulos %}
-        <tr>
-            <td>{{capitulo.clave}}</td>
-            <td>{{capitulo.nombre}}</td>
-            <td>
-                <a class="btn btn-danger" class="btn btn-danger" href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
-                <a class="btn btn-primary" href="{% url 'capitulos:editar' capitulo.clave %}">Modificar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+<div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"> Lista de capitulos</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>Clave</th>
+                        <th>Nombre</th>
+                        <th>Opciones</th>
+            
+                    </tr>
+                    {% for capitulo in capitulos %}
+                    <tr>
+                        <td>{{capitulo.clave}}</td>
+                        <td>{{capitulo.nombre}}</td>
+                        <td>
+                            <a class="btn btn-danger" class="btn btn-danger" href="{% url 'capitulos:eliminar' capitulo.clave %}">Eliminar</a>
+                            <a class="btn btn-primary" href="{% url 'capitulos:editar' capitulo.clave %}">Modificar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div class="col-md-12">
+        <div class="card card-plain">
+         
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-{% endblock %}
+  </div>
+{% endblock contenido %}
+

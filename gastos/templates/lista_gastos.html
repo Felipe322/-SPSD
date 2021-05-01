@@ -1,8 +1,9 @@
 
 {% extends 'base.html' %}
+
 {% block title %}Lista Gastos{% endblock %}
 {% load crispy_forms_tags %} 
-{% block content %}
+{% block contenido %}
     <div class="containter-lg">
     <h1>Listado de Gastos</h1>
     <table class="table" >
@@ -30,4 +31,4 @@
         {% endfor %}
     </table>
     </div>
-{% endblock %}
+{% endblock contenido %}
