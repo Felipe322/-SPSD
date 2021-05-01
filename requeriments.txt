@@ -1,0 +1,7 @@
+django 
+Pillow
+six
+mysqlclient
+django-weasyprint
+django-bootstrap4
+django-crispy-forms

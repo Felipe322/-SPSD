@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -135,3 +135,4 @@ STATICFILES_DIRS = (
 LOGIN_URL = reverse_lazy('usuarios:login')
 LOGIN_REDIRECT_URL = reverse_lazy('principal:principal')
 LOGOUT_REDIRECT_URL = reverse_lazy('usuarios:login')
+
