@@ -47,7 +47,7 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
         <div class="logo">
-          <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+          <a href="http://www.creative-tim.com" class="simple-text ">
           </a>
           <a href="{% url 'principal:principal'%}"class="simple-text
             logo-normal">
@@ -56,68 +56,10 @@
         </div>
         <div class="sidebar-wrapper" id="sidebar-wrapper">
           <ul class="nav">
-        
-            <li>
-              <a href="{% url 'capitulos:lista'%}">
-                <i class="now-ui-icons education_atom"></i>
-                <p>Capitulos</p>
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'partidas:lista'%}">
-                <i class="now-ui-icons location_map-big"></i>
-                <p>Partidas</p>
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'actividades:lista'%}">
-                <i class="now-ui-icons ui-1_bell-53"></i>
-                <p>Actividades</p>
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'presupuestos:lista'%}">
-                <i class="now-ui-icons users_single-02"></i>
-                <p>Presupuesto</p>
-              </a>
-            </li>
-
-
-            <li>
-              <a href="{% url 'actividades:lista'%}">
-                <i class="now-ui-icons design_bullet-list-67"></i>
-                <p>Actividades</p>
-              </a>
-            </li>
-
-            <div id="submenu-1" class="collapse submenu submenu-1"
-              data-parent="#menu-accordion">
-              <ul class="submenu-list list-unstyled">
-                <li class="submenu-item"><a class="submenu-link" href="{% url
-                    'capitulos:lista'%}">Lista</a>
-                  
-                  </li>
-              </ul>
-            </div>
             <!------------------------------------------------------------------>
             <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
               <ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi
-                  bi-house-door" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1
-                    .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5
-                    0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1
-                    .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0
-                    1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
-                    <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1
-                      .5-.5h1a.5.5 0 0 1 .5.5z" />
-                    </svg>
-
-
-
                     <li class="nav-item has-submenu">
                       <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                       <a class="nav-link submenu-toggle" href="#"
@@ -137,7 +79,7 @@
                             0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
                           </svg>
                         </span>
-                        <span class="nav-link-text">Categorias</span>
+                        <span class="nav-link-text">Capitulos</span>
                         <span class="submenu-arrow">
                           <svg width="1em" height="1em" viewBox="0 0 16 16"
                             class="bi bi-chevron-down" fill="currentColor"
@@ -155,9 +97,9 @@
                           data-parent="#menu-accordion">
                           <ul class="submenu-list list-unstyled">
                             <li class="submenu-item"><a class="submenu-link"
-                                href="">Lista</a></li>
+                              href="{% url 'capitulos:lista'%}">Lista</a></li>
                             <li class="submenu-item"><a class="submenu-link"
-                                href="">Agregar</a></li>
+                                href="{% url 'capitulos:nuevo'%}">Agregar</a></li>
                           </ul>
                         </div>
                       </li>
@@ -185,7 +127,7 @@
                             0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
                           </svg>
                         </span>
-                        <span class="nav-link-text">Usuarios</span>
+                        <span class="nav-link-text">Partidas</span>
                         <span class="submenu-arrow">
                           <svg width="1em" height="1em" viewBox="0 0 16 16"
                             class="bi bi-chevron-down" fill="currentColor"
@@ -203,14 +145,15 @@
                           data-parent="#menu-accordion">
                           <ul class="submenu-list list-unstyled">
                             <li class="submenu-item"><a class="submenu-link"
-                                href="">Lista</a></li>
+                              href="{% url 'partidas:lista'%}">Lista</a></li>
                             <li class="submenu-item"><a class="submenu-link"
-                                href="">Agregar</a></li>
+                                href="{% url 'partidas:nuevo'%}">Agregar</a></li>
                           </ul>
                         </div>
                       </li>
                       <!--//nav-item-->
-                      <!--//nav-item-->
+
+                      <!--    Inicio Item  1  -->
                     <li class="nav-item has-submenu">
                       <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                       <a class="nav-link submenu-toggle" href="#"
@@ -248,15 +191,113 @@
                           data-parent="#menu-accordion">
                           <ul class="submenu-list list-unstyled">
                             <li class="submenu-item"><a class="submenu-link"
-                                href="">Lista</a></li>
+                              href="{% url 'presupuestos:lista'%}">Lista</a></li>
                             <li class="submenu-item"><a class="submenu-link"
-                                href="">Agregar</a></li>
+                                href="{% url 'presupuestos:nuevo'%}">Agregar</a></li>
                           </ul>
                         </div>
                       </li>
-
-
                     </li>
+                    <!-- Fin Item  1-->
+
+                      <!--    Inicio Item  2 -->
+                      <li class="nav-item has-submenu">
+                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                        <a class="nav-link submenu-toggle" href="#"
+                          data-toggle="collapse" data-target="#submenu-5"
+                          aria-expanded="false" aria-controls="submenu-5">
+                          <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                          <svg width="1em" height="1em" viewBox="0 0 16 16"
+                            class="bi bi-columns-gap" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1
+                              1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14
+                              12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1
+                              1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1
+                              1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0
+                              0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0
+                              0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
+                            </svg>
+                          </span>
+                          <span class="nav-link-text">Actividades</span>
+                          <span class="submenu-arrow">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                              class="bi bi-chevron-down" fill="currentColor"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd"
+                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8
+                                10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0
+                                0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                              </svg>
+                            </span>
+                            <!--//submenu-arrow-->
+                          </a>
+                          <!--//nav-link-->
+                          <div id="submenu-5" class="collapse submenu submenu-5"
+                            data-parent="#menu-accordion">
+                            <ul class="submenu-list list-unstyled">
+                              <li class="submenu-item"><a class="submenu-link"
+                                href="{% url 'actividades:lista'%}">Lista</a></li>
+                              <li class="submenu-item"><a class="submenu-link"
+                                href="{% url 'actividades:nuevo'%}">Agregar</a></li>
+                            </ul>
+                          </div>
+                        </li>
+                      </li>
+                      <!-- Fin Item 2-->
+
+
+                        <!--    Inicio Item  3  -->
+                    <li class="nav-item has-submenu">
+                      <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                      <a class="nav-link submenu-toggle" href="#"
+                        data-toggle="collapse" data-target="#submenu-6"
+                        aria-expanded="false" aria-controls="submenu-6">
+                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                        <svg width="1em" height="1em" viewBox="0 0 16 16"
+                          class="bi bi-columns-gap" fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1
+                            1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14
+                            12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1
+                            1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1
+                            1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0
+                            0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0
+                            0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z" />
+                          </svg>
+                        </span>
+                        <span class="nav-link-text">Gastos</span>
+                        <span class="submenu-arrow">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16"
+                            class="bi bi-chevron-down" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8
+                              10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0
+                              0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                          </span>
+                          <!--//submenu-arrow-->
+                        </a>
+                        <!--//nav-link-->
+                        <div id="submenu-6" class="collapse submenu submenu-6"
+                          data-parent="#menu-accordion">
+                          <ul class="submenu-list list-unstyled">
+                            <li class="submenu-item"><a class="submenu-link"
+                              href="{% url 'gastos:lista'%}">Lista</a></li>
+                            <li class="submenu-item"><a class="submenu-link"
+                              href="{% url 'gastos:nuevo'%}">Agregar</a></li>
+                          </ul>
+                        </div>
+                      </li>
+                    </li>
+                    <!-- Fin Item  3 -->
+
+
+
+
                     <!--//nav-item-->
                   </ul>
                   <!--//app-menu-->
@@ -268,6 +309,11 @@
               </ul>
             </div>
           </div>
+
+
+
+          <!--      Barra superior-->
+
           <div class="main-panel" id="main-panel">
             <nav class="navbar navbar-expand-lg navbar-transparent bg-primary
               navbar-absolute">
@@ -316,34 +362,26 @@
                       <a class="nav-link dropdown-toggle"
                         id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class="now-ui-icons location_world"></i>
+                        <i class="now-ui-icons users_single-02"></i>
                         <p>
                           <span class="d-lg-none d-md-block">Some Actions</span>
                         </p>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right"
                         aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Cerrar Session</a>
                       </div>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="">
-                        <i class="now-ui-icons users_single-02"></i>
-                        <p>
-                          <span class="d-lg-none d-md-block">Account</span>
-                        </p>
-                      </a>
                     </li>
                   </ul>
                 </div>
               </div>
             </nav>
             <!-- End Navbar -->
-
             <div class="panel-header panel-header-sm">
             </div>
+
+
+
 
 
 
