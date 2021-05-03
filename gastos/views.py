@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from gastos.forms import GastoForm
 from gastos.models import Gasto
+from presupuestos.models import Actividad
 from django.contrib.auth.decorators import login_required
 
 
@@ -20,8 +21,9 @@ def nuevo_gasto(request):
     if request.method == 'POST':
         form = GastoForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('gastos:lista')
+            if gasto_valido(form):
+                form.save()
+                return redirect('gastos:lista')
     else:
         form = GastoForm()
     return render(request, 'nuevo_gasto.html', {'form': form})
@@ -49,3 +51,15 @@ def editar_gasto(request, id):
     else:
         form = GastoForm(instance=gasto)
     return render(request, 'editar_gasto.html', {'form': form})
+
+
+def gasto_valido(form):
+    actividad = Actividad.objects.get(id=form.id_actividad)
+    disponible = actividad.monto
+    if (form.cantidad * form.precio_unitario) < disponible:
+        return True
+    else:
+        return False
+
+
+

@@ -2,16 +2,37 @@
 {% load static %}
 
 
-{% block title %}Nuevo Gasto{% endblock %}
 {% load crispy_forms_tags %} 
 {% block contenido %}
-<div class="container-lg">
-    <h1>Nuevo Gasto</h1>
-    <form method="POST" enctype="multipart/form-data" >
-    {{ form|crispy }}
-        {% csrf_token %}
-        <button class="btn btn-success" type="submit">Agregar</button>
-        <button class="btn btn-danger" type="reset">Cancelar</button>
-    </form>
-</div>
+
+
+<div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Nuevo gasto</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+                    <table class="table">
+                            <form method="POST" enctype="multipart/form-data" >
+                            {{ form|crispy }}
+                                {% csrf_token %}
+                                <button class="btn btn-success" type="submit">Agregar</button>
+                                <button class="btn btn-danger" type="reset">Cancelar</button>
+                            </form>
+                        
+                        
+                    </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+
+
 {% endblock contenido %}

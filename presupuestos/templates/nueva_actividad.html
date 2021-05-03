@@ -1,20 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %}Nueva Actividad{% endblock %}
 {% load crispy_forms_tags %} 
 
 {% block contenido %}
- <div class="container-lg" >
-    <h1>Nueva Actividad</h1>
-    <form method="POST">
-    {{ form|crispy }}
-
-        {% csrf_token %}
-    <div align="right">
-        <button class="btn btn-success" type="submit">Agregar</button>
-        <button class="btn btn-danger" type="reset">Cancelar</button>
-    </div>
-    </form>
-    </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Nueva Actividad</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <div>
+                        <form method="POST">
+                            {{ form|crispy }}
+                        
+                                {% csrf_token %}
+                                <button class="btn btn-success" type="submit">Agregar</button>
+                                <button class="btn btn-danger" type="reset">Cancelar</button>
+                            </form>
+                            </div>
+                    </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 {% endblock contenido %}

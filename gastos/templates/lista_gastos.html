@@ -1,34 +1,52 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Lista Gastos{% endblock %}
 {% load crispy_forms_tags %} 
 {% block contenido %}
-    <div class="containter-lg">
-    <h1>Listado de Gastos</h1>
-    <table class="table" >
-        <tr>
-            <th>Descripción</th>
-            <th>Proveedor</th>
-            <th>Precio Unitario</th>
-            <th>Cantidad</th>
-            <th>Precio Total</th>
-            <th>Fecha</th>
-        </tr>
-        {% for gasto in gastos %}
-        <tr>
-            <td>{{gasto.descripcion}}</td>
-            <td>{{gasto.proveedor}}</td>
-            <td>{{gasto.precio_unitario}}</td>
-            <td>{{gasto.cantidad}} </td>
-            <td>{{gasto.precio_total}}</td>
-            <td>{{gasto.fecha}}</td>
-            <td>
-                <a class="btn btn-danger" href="{% url 'gastos:eliminar' gasto.id %}">Eliminar</a> 
-                <a class="btn btn-primary" href="{% url 'gastos:editar' gasto.id %}">Modificar</a> 
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    </div>
+ 
+
+
+
+    <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Lista de gastos</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Descripción</th>
+                                <th>Proveedor</th>
+                                <th>Precio Unitario</th>
+                                <th>Cantidad</th>
+                                <th>Precio Total</th>
+                                <th>Fecha</th>
+                            </tr>
+                            {% for gasto in gastos %}
+                            <tr>
+                                <td>{{gasto.descripcion}}</td>
+                                <td>{{gasto.proveedor}}</td>
+                                <td>{{gasto.precio_unitario}}</td>
+                                <td>{{gasto.cantidad}} </td>
+                                <td>{{gasto.precio_total}}</td>
+                                <td>{{gasto.fecha}}</td>
+                                <td>
+                                    <a class="btn btn-danger" href="{% url 'gastos:eliminar' gasto.id %}">Eliminar</a> 
+                                    <a class="btn btn-primary" href="{% url 'gastos:editar' gasto.id %}">Modificar</a> 
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
 {% endblock contenido %}
