@@ -2,6 +2,7 @@ from presupuestos.forms import ActividadForm, PresupuestoForm, \
     TransferenciaForm
 from django.shortcuts import redirect, render
 from presupuestos.models import Presupuesto, Actividad
+from partidas.models import Partida
 from django.db.models import F
 from django.contrib.auth.decorators import permission_required, login_required
 
@@ -75,6 +76,26 @@ def nueva_actividad(request):
         form = ActividadForm()
     return render(request, 'nueva_actividad.html', {'form': form})
 
+@login_required
+@permission_required('actividades.add_actividad', raise_exception=True)
+def nueva_actividad_especifica(request, id):
+    partida = Partida.objects.get(clave=id)
+    context = {}
+    initial_dict = {
+        "partida" : partida.clave,
+    }
+
+    form = ActividadForm(initial = initial_dict)
+    context['form']= form
+
+    if request.method == 'POST':
+        form = ActividadForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('principal:principal')
+    else:
+        form = ActividadForm()
+    return render(request, 'nueva_actividad.html', context)
 
 @login_required
 @permission_required('actividades.delete_actividad', raise_exception=True)
