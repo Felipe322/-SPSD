@@ -58,6 +58,7 @@
                 <th>Noviembre</th>
                 <th>Diciembre</th>
                 <th>Total</th>
+                <th>Acciones</th>
 
               </tr>
               {% for capitulo in capitulos %}
@@ -76,6 +77,7 @@
                 <td>${{capitulo.total_meses.11}}</td>
                 <td>${{capitulo.total_meses.12}}</td>
                 <td>${{capitulo.total}}</td>
+                <td><a href="{% url 'partidas:nueva_especifica' capitulo.clave %}" class="btn btn-primary">Agregar</a></td>
               </tr>
               {% for partida in capitulo.partidas %}
               <tr class="treegrid-{{partida.id}} treegrid-parent-{{capitulo.id}} table-secondary">
@@ -93,6 +95,7 @@
                 <td>${{partida.total_meses.11}}</td>
                 <td>${{partida.total_meses.12}}</td>
                 <td>${{partida.total}}</td>
+                <td><a href="{% url 'actividades:nueva_especifica' partida.clave %}" class="btn btn-primary">Agregar</a></td>
               </tr>
               {% for actividad in partida.actividades %}
               <tr class="treegrid-{{actividad.id}} treegrid-parent-{{partida.id}} ">
@@ -114,7 +117,6 @@
               {% endfor %}
               {% endfor %}
               {% endfor %}
-
             </table>
           </div>
         </div>

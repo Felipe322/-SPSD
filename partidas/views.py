@@ -69,6 +69,26 @@ def nueva_partida(request):
         form = PartidaForm()
     return render(request, 'nueva_partida.html', {'form': form})
 
+@login_required
+@permission_required('partidas.add_partida', raise_exception=True)
+def nueva_partida_especifica(request, id):
+    capitulo = Capitulo.objects.get(clave=id)
+    context = {}
+    initial_dict = {
+        "capitulo" : capitulo.clave,
+    }
+
+    form = PartidaForm(initial = initial_dict)
+    context['form']= form
+
+    if request.method == 'POST':
+        form = PartidaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('principal:principal')
+    else:
+        form = PartidaForm()
+    return render(request, 'nueva_partida.html', context)
 
 @login_required
 @permission_required('partidas.change_partida', raise_exception=True)
