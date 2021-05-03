@@ -2,14 +2,18 @@
 
 {% load crispy_forms_tags %} 
 
-{% block title %}Traspaso presupuesto{% endblock %}
 {% block contenido %}
-{% load crispy_forms_tags %} 
-
-
- <div class="container-lg">
-<h1>Traspasar saldo</h1>
- 
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Traspasar presupuesto</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+                
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
@@ -17,5 +21,13 @@
         <button class="btn btn-success" type="submit">Traspasar</button>
         <button class="btn btn-danger" type="reset">Cancelar</button>
     </form>
- </div>
-{% endblock  contenido%}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
+
+{% endblock contenido %}

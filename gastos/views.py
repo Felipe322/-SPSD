@@ -54,9 +54,11 @@ def editar_gasto(request, id):
 
 
 def gasto_valido(form):
-    actividad = Actividad.objects.get(id=form.id_actividad)
+    actividad = Actividad.objects.get(id=form.cleaned_data['id_actividad'].id)
     disponible = actividad.monto
-    if (form.cantidad * form.precio_unitario) < disponible:
+    cantidad = form.cleaned_data['cantidad']
+    precio = form.cleaned_data['precio_unitario']
+    if (cantidad * precio) < disponible:
         return True
     else:
         return False

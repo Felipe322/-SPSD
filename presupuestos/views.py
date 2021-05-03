@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import permission_required, login_required
 # Create your views here.
 
 # Vista presupuestos
-
-
 @login_required
 def lista_presupuestos(request):
     presupuestos = Presupuesto.objects.all()
