@@ -24,6 +24,9 @@ def nuevo_gasto(request):
             if gasto_valido(form):
                 form.save()
                 return redirect('gastos:lista')
+            else:
+                error = 'ERROR DESCONOCIDO FAVOR DE REINICIAR SU EQUIPO'
+                return redirect(error)
     else:
         form = GastoForm()
     return render(request, 'nuevo_gasto.html', {'form': form})

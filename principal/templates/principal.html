@@ -38,7 +38,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title"> Simple Table</h4>
+          <h4 class="card-title"> Tabla de presupuestos</h4>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -77,8 +77,9 @@
                 <td>${{capitulo.total_meses.11}}</td>
                 <td>${{capitulo.total_meses.12}}</td>
                 <td>${{capitulo.total}}</td>
-                <td><a href="{% url 'partidas:nueva_especifica' capitulo.clave %}" class="btn btn-primary">Agregar</a></td>
+                <td><a href="{% url 'partidas:nueva_especifica' capitulo.clave %}" class="btn btn-success">Agregar</a></td>
               </tr>
+              
               {% for partida in capitulo.partidas %}
               <tr class="treegrid-{{partida.id}} treegrid-parent-{{capitulo.id}} table-secondary">
                 <td>Partida {{partida.clave}}</td>
@@ -95,7 +96,7 @@
                 <td>${{partida.total_meses.11}}</td>
                 <td>${{partida.total_meses.12}}</td>
                 <td>${{partida.total}}</td>
-                <td><a href="{% url 'actividades:nueva_especifica' partida.clave %}" class="btn btn-primary">Agregar</a></td>
+                <td><a href="{% url 'actividades:nueva_especifica' partida.clave %}" class="btn btn-success">Agregar</a></td>
               </tr>
               {% for actividad in partida.actividades %}
               <tr class="treegrid-{{actividad.id}} treegrid-parent-{{partida.id}} ">
