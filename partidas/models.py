@@ -14,7 +14,6 @@ class Capitulo(models.Model):
     def __str__(self):
         return str(self.clave)+" - "+str(self.nombre)
 
-
 class Partida(models.Model):
     clave = models.IntegerField('Clave', validators=[MaxValueValidator(
         9000), MinValueValidator(1000), RegexValidator(regex='[0-9]{4,4}',

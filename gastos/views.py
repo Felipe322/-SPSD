@@ -24,6 +24,9 @@ def nuevo_gasto(request):
             if gasto_valido(form):
                 form.save()
                 return redirect('gastos:lista')
+            else:
+                error = 'ERROR DESCONOCIDO FAVOR DE REINICIAR SU EQUIPO'
+                return redirect(error)
     else:
         form = GastoForm()
     return render(request, 'nuevo_gasto.html', {'form': form})
@@ -54,9 +57,11 @@ def editar_gasto(request, id):
 
 
 def gasto_valido(form):
-    actividad = Actividad.objects.get(id=form.id_actividad)
+    actividad = Actividad.objects.get(id=form.cleaned_data['id_actividad'].id)
     disponible = actividad.monto
-    if (form.cantidad * form.precio_unitario) < disponible:
+    cantidad = form.cleaned_data['cantidad']
+    precio = form.cleaned_data['precio_unitario']
+    if (cantidad * precio) < disponible:
         return True
     else:
         return False

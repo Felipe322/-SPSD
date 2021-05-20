@@ -1,5 +1,7 @@
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 
 class Login(LoginView):
@@ -11,3 +13,7 @@ class Login(LoginView):
         self.request.session['total'] = 0.0
         self.request.session['articulos'] = {}
         return super().get_success_url()
+
+def logout_view(request):
+    logout(request)
+    return redirect('usuarios:login')
