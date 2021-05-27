@@ -25,6 +25,7 @@ urlpatterns = [
     path('gastos/', include('gastos.urls_gastos')),
     path('principal/', include('principal.urls')),
     path('usuarios/', include('usuarios.urls')),
+    path('fondo-revolvente/',include('fondo_revolvente.urls'))
 ]
 
 

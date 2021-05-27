@@ -3,6 +3,7 @@ from gastos.forms import GastoForm
 from gastos.models import Gasto
 from presupuestos.models import Actividad
 from django.contrib.auth.decorators import login_required
+from django.db.models import F
 
 
 # Vista gastos
@@ -20,12 +21,19 @@ def nuevo_gasto(request):
     form = GastoForm
     if request.method == 'POST':
         form = GastoForm(request.POST)
+        id_actividad = request.POST['id_actividad']
+        precio_unitario = request.POST['precio_unitario']
+        cantidad = request.POST['cantidad']
+        total_gasto = float(precio_unitario) * float(cantidad)
         if form.is_valid():
             if gasto_valido(form):
                 form.save()
+                ##Código restar a actividad
+                actividad = Actividad.objects.filter(id=id_actividad).update(
+                    monto=F('monto')-total_gasto)
                 return redirect('gastos:lista')
             else:
-                error = 'ERROR DESCONOCIDO FAVOR DE REINICIAR SU EQUIPO'
+                error = 'Error, favor de proporcionar un gasto válido.'
                 return redirect(error)
     else:
         form = GastoForm()

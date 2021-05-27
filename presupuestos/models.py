@@ -51,3 +51,4 @@ class Transferencia(models.Model):
                                    on_delete=models.CASCADE)
     monto = models.DecimalField(
         'Monto', decimal_places=2, max_digits=10, blank=False, null=False)
+    creado = models.DateTimeField(auto_now_add=True, null=True)

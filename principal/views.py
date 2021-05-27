@@ -30,7 +30,7 @@ def principal(request):
                         1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, +
                         8: 0, 9: 0, 10: 0, 11: 0, 12: 0}
                     lista_actividades[str(llave)][int(
-                        actividad.mes)] += float(actividad.monto)
+                        actividad.mes)] += float(actividad.monto) #float
                     total_meses_partida[int(
                         actividad.mes)] += float(actividad.monto)
                     total_meses_capitulo[int(

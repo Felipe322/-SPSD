@@ -14,7 +14,7 @@
                 <div class="table-responsive">
                     <table class="table">
                         <div>
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             {{ form|crispy }}
                         
                                 {% csrf_token %}

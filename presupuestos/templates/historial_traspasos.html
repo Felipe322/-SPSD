@@ -4,8 +4,6 @@
 {% block title %}Historial Traspasos{% endblock %}
 
 {% block contenido %}
-  
-
 <div class="content">
     <div class="row">
       <div class="col-md-12">
@@ -17,16 +15,17 @@
             <div class="table-responsive">
                 <table  class="table">
                     <tr>
+                        <th>Fecha</th>
                         <th>Actividad Remitente</th>
                         <th>Actividad Destino</th>
                         <th>Monto</th>
-            
                     </tr>
-                    {% for actividad in actividades %}
+                    {% for traspaso in traspasos %}
                     <tr>
-                        <td>{{traspasos.actividad1}}</td>
-                        <td>{{traspasos.actividad2}}</td>
-                        <td>{{traspasos.monto}}</td>
+                        <td>{{traspaso.creado}}</td>
+                        <td>{{traspaso.actividad1}}</td>
+                        <td>{{traspaso.actividad2}}</td>
+                        <td>${{traspaso.monto}}</td>
                     </tr>
                     </div>
                     {% endfor %}
@@ -36,7 +35,7 @@
         </div>
       </div>
       <td>
-        <a class="btn btn-primary" href="Redirigir a principal">Regresar</a> 
+        <a class="btn btn-primary" href="{% url 'principal:principal' %}">Regresar</a>
     </td>  
   </div>
 {% endblock contenido %}

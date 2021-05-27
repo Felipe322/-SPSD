@@ -11,22 +11,20 @@
           <h4 class="card-title">Traspasar presupuesto</h4>
         </div>
         <div class="card-body">
-          <div class="table-responsive">
+          <div class="table-respnonsive">
             <table class="table">
-                
-    <form method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-
-        <button class="btn btn-success" type="submit">Traspasar</button>
-        <button class="btn btn-danger" type="reset">Cancelar</button>
-    </form>
+              <form method="POST">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <button class="btn btn-success" type="submit">Traspasar</button>
+                  <button class="btn btn-danger" type="reset">Cancelar</button>
+              </form>
             </table>
           </div>
         </div>
       </div>
+      <a class="btn btn-primary" href="{% url 'actividades:historial_traspasos' %}" >Historial de Traspasos</a>
     </div>
-   
   </div>
 </div>
 
