@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Historial Traspasos{% endblock %}
+
+{% block contenido %}
+  
+
+<div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"> Historial de Traspasos</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+                <table  class="table">
+                    <tr>
+                        <th>Actividad Remitente</th>
+                        <th>Actividad Destino</th>
+                        <th>Monto</th>
+            
+                    </tr>
+                    {% for actividad in actividades %}
+                    <tr>
+                        <td>{{traspasos.actividad1}}</td>
+                        <td>{{traspasos.actividad2}}</td>
+                        <td>{{traspasos.monto}}</td>
+                    </tr>
+                    </div>
+                    {% endfor %}
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <td>
+        <a class="btn btn-primary" href="Redirigir a principal">Regresar</a> 
+    </td>  
+  </div>
+{% endblock contenido %}
+

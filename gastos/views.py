@@ -65,6 +65,3 @@ def gasto_valido(form):
         return True
     else:
         return False
-
-
-
