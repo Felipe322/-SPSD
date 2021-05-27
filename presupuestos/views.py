@@ -1,10 +1,10 @@
 from presupuestos.forms import ActividadForm, PresupuestoForm, \
-    TransferenciaForm
+    TransferenciaForm 
 from django.shortcuts import redirect, render
-from presupuestos.models import Presupuesto, Actividad
+from presupuestos.models import Presupuesto, Actividad, Transferencia
 from partidas.models import Partida
-from django.db.models import F
 from django.contrib.auth.decorators import permission_required, login_required
+
 
 # Create your views here.
 
@@ -133,8 +133,16 @@ def traspaso_saldo(request):
         else:
             if form.is_valid():
                 Actividad.objects.filter(id=id_actividad1).update(
-                    monto=F('monto')-monto_traspaso)
+                    monto=('monto')-monto_traspaso)
                 Actividad.objects.filter(id=id_actividad2).update(
-                    monto=F('monto')+monto_traspaso)
+                    monto=('monto')+monto_traspaso)
                 form.save()
     return render(request, 'traspaso_saldo.html', {'form': form})
+
+
+# Vista presupuestos
+@login_required
+def historial_traspasos(request):
+    traspasos = Transferencia.objects.all()
+    return render(request, 'historial_traspasos.html', {'traspasos':
+                                                       traspasos})

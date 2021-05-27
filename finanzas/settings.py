@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'crispy_forms',
     'principal',
-    'usuarios'
+    'usuarios',
+    'fondo_revolvente', 
 ]
 
 MIDDLEWARE = [
