@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from partidas.models import Capitulo, Partida
 from gastos.models import Gasto
 from presupuestos.models import Actividad
 from django.contrib.auth.decorators import login_required
+from .forms import PresupuestoForm
 
 # Vista presupuestos
 
@@ -18,12 +19,18 @@ def principal(request):
         total_capitulo = 0
         total_meses_capitulo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for partida in partidas:
-            actividades = Actividad.objects.filter(partida=partida.clave)
+            if request.session['anio']:
+                actividades = Actividad.objects.filter(partida=partida.clave).filter(anio=request.session['anio'])
+            else:
+                actividades = Actividad.objects.filter(partida=partida.clave)
             lista_actividades = {}
             total_partida = 0
             total_meses_partida = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             for actividad in actividades:
-                gastos = Gasto.objects.filter(id_actividad = actividad.id)
+                if request.session['anio']:
+                    gastos = Gasto.objects.filter(id_actividad = actividad.id)
+                else:
+                    gastos = Gasto.objects.filter(id_actividad = actividad.id).filter(actividad_id__anio = request.session['anio'])
                 gasto_actividad = 0
                 for gasto in gastos:
                     gasto_actividad+=gasto.precio_total    
@@ -84,3 +91,14 @@ def principal(request):
     data = {'capitulos': lista_capitulos}
 
     return render(request, 'principal.html', data)
+
+def seleccionar_anio(request):
+    form = PresupuestoForm()
+    if request.method == 'POST':
+        form = PresupuestoForm(request.POST)
+        if form.is_valid():
+            request.session['anio'] = request.POST.get('anio')
+            return redirect('principal:principal')
+    else:
+        form = PresupuestoForm()
+    return render(request,'select_anio.html', {'form': form})

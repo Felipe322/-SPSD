@@ -9,10 +9,10 @@ from django.db.models import F
 # Vista gastos
 @login_required
 def lista_gastos(request):
-    if not request.user.is_authenticated:
-        return redirect('usuarios:login')
-
-    gastos = Gasto.objects.all()
+    if request.session.get('anio'):
+        gastos = Gasto.objects.filter(id_actividad__anio =request.session['anio'])
+    else:
+        gastos = Gasto.objects.all()
     return render(request, 'lista_gastos.html', {'gastos': gastos})
 
 

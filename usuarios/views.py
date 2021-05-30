@@ -9,7 +9,7 @@ class Login(LoginView):
     form_class = AuthenticationForm
 
     def get_success_url(self):
-        self.request.session['anio'] = 2021
+        self.request.session['anio'] = None
         return super().get_success_url()
 
 def logout_view(request):
