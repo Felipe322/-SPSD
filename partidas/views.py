@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from partidas.models import Capitulo, Partida
 from partidas.forms import CapituloForm, PartidaForm
 from django.contrib.auth.decorators import permission_required, login_required
+from django.shortcuts import get_object_or_404, redirect
+from presupuestos.models import Presupuesto
+from datetime import datetime, timedelta
+import django.utils.timezone as timezone
 
 # vistas de capitulos
 
@@ -110,3 +114,15 @@ def eliminar_partida(request, clave):
     partida = Partida.objects.get(clave=clave)
     partida.delete()
     return redirect('partidas:lista')
+
+def aniosesion(request):
+    presupuesto = get_object_or_404(Presupuesto)
+    anio = timezone.now().year
+    anio
+    request.session['anio'] = presupuesto.anio
+    print(request.session['anio'])
+    print("hola")
+    print(anio)
+    
+    context = {'anio': anio}
+    return redirect(request, 'partidas:sesion', context)

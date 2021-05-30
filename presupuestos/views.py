@@ -5,7 +5,7 @@ from presupuestos.models import Presupuesto, Actividad, Transferencia
 from partidas.models import Partida
 from django.contrib.auth.decorators import permission_required, login_required
 from django.db.models import F
-
+from django import template
 
 # Create your views here.
 
@@ -58,8 +58,46 @@ def editar_presupuesto(request, anio):
 @login_required
 def lista_actividades(request):
     actividades = Actividad.objects.all()
+    MES_CHOICES= [
+    (1,'Enero' ),
+    (2,'Febrero'),
+    (3,'Marzo'),
+    (4,'Abril'),
+    (5,'Mayo' ),
+    (6,'Junio'),
+    (7,'Julio'),
+    (8,'Agosto'),
+    (9,'Septiembre'),
+    (10,'Octubre'),
+    (11,'Noviembre'),
+    (12,'Diciembre')
+    ]
+    mes = MES_CHOICES  
+
+    
+    
     return render(request, 'lista_actividades.html',
-                  {'actividades': actividades})
+                  {'actividades': actividades ,'mes':mes})
+
+
+MES_NOMBRE_CHOICES= [
+('Enero',1 ),
+('Febrero',2),
+('Marzo', 3),
+('Abril', 4),
+('Mayo',5 ),
+('Junio',6),
+('Julio',7),
+('Agosto',8),
+('Septiembre',9),
+('Octubre',10),
+('Noviembre',11),
+('Diciembre',12)
+]
+nombremes = MES_NOMBRE_CHOICES 
+
+
+
 
 
 @login_required

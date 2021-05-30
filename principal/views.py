@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from partidas.models import Capitulo, Partida
+from gastos.models import Gasto
 from presupuestos.models import Actividad
 from django.contrib.auth.decorators import login_required
 
@@ -22,6 +23,11 @@ def principal(request):
             total_partida = 0
             total_meses_partida = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             for actividad in actividades:
+                gastos = Gasto.objects.filter(id_actividad = actividad.id)
+                gasto_actividad = 0
+                for gasto in gastos:
+                    gasto_actividad+=gasto.precio_total    
+
                 llave = str(actividad.programa)+"-" + \
                     str(actividad.componente) +\
                     "-"+str(actividad.actividad)+"("+str(actividad.anio)+")"
@@ -30,22 +36,21 @@ def principal(request):
                         1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, +
                         8: 0, 9: 0, 10: 0, 11: 0, 12: 0}
                     lista_actividades[str(llave)][int(
-                        actividad.mes)] += float(actividad.monto) #float
+                        actividad.mes)] += float(actividad.monto)-float(gasto_actividad) #float
                     total_meses_partida[int(
-                        actividad.mes)] += float(actividad.monto)
+                        actividad.mes)] += float(actividad.monto)-float(gasto_actividad)
                     total_meses_capitulo[int(
-                        actividad.mes)] += float(actividad.monto)
+                        actividad.mes)] += float(actividad.monto)-float(gasto_actividad)
                     objetos += 1
                 else:
                     lista_actividades[str(llave)][int(
-                        actividad.mes)] += float(actividad.monto)
+                        actividad.mes)] += float(actividad.monto)-float(gasto_actividad)
                     total_meses_partida[int(
-                        actividad.mes)] += float(actividad.monto)
+                        actividad.mes)] += float(actividad.monto)-float(gasto_actividad)
                     total_meses_capitulo[int(
-                        actividad.mes)] += float(actividad.monto)
+                        actividad.mes)] += float(actividad.monto)-float(gasto_actividad)
             lista_actividades2 = []
             for actividad in lista_actividades:
-                print(actividad+"\n"+str(lista_actividades[actividad]))
                 total_actividad = sum(
                     list(lista_actividades[actividad].values()))
                 actividad_estructura = {

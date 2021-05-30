@@ -29,8 +29,8 @@ def nuevo_gasto(request):
             if gasto_valido(form):
                 form.save()
                 ##Código restar a actividad
-                actividad = Actividad.objects.filter(id=id_actividad).update(
-                    monto=F('monto')-total_gasto)
+                #actividad = Actividad.objects.filter(id=id_actividad).update(
+                #    monto=F('monto')-total_gasto)
                 return redirect('gastos:lista')
             else:
                 error = 'Error, favor de proporcionar un gasto válido.'

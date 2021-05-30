@@ -9,6 +9,7 @@ class FondoRevolventeList(ListView):
     model = FondoRevolvente
 
 class FondoRevolventeCreate(CreateView):
+    
     model = FondoRevolvente
     form_class = FondoRevolventeForm
     success_url = reverse_lazy('principal:principal')

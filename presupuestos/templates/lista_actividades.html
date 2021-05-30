@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load poll_extras %}
 {% block title %}Lista actividades{% endblock %}
 
 {% block contenido %}
@@ -35,7 +35,8 @@
                         <td>  {{actividad.actividad}}  </td>
                         <td>   {{actividad.monto}} </td>
                         <td>  {{actividad.descripcion}}  </td>
-                        <td>  {{actividad.mes}}  </td>
+                        <td>{{ actividad.mes|month_name }}
+                        </td>
                         <td>  {{actividad.partida}}  </td>
                         <td>  {{actividad.anio}}  </td>
                     
@@ -49,6 +50,7 @@
                     </div>
                     {% endfor %}
                 </table>
+                
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+from partidas.models import Partida
 from presupuestos.models import Presupuesto, Actividad, Transferencia
 from django.forms import ModelForm
 from enum import Enum , IntEnum
@@ -51,9 +52,29 @@ MES_CHOICES= [
 (12,'Diciembre')
 ]
 mes = MES_CHOICES   
+
+
+MES_NOMBRE_CHOICES= [
+('Enero',1 ),
+('Febrero',2),
+('Marzo', 3),
+('Abril', 4),
+('Mayo',5 ),
+('Junio',6),
+('Julio',7),
+('Agosto',8),
+('Septiembre',9),
+('Octubre',10),
+('Noviembre',11),
+('Diciembre',12)
+]
+nombremes = MES_NOMBRE_CHOICES 
+
+
 class ActividadForm(ModelForm):   
     mes = forms.ChoiceField(choices=MES_CHOICES, widget=forms.Select(attrs={
         'class': 'form-control'}))
+   
     class Meta:
         
         model = Actividad
@@ -70,5 +91,11 @@ class ActividadForm(ModelForm):
                  
 
         }
+        
     def __str__(self):
-        return self.get_mes_display() 
+        return self.get_mes_nombre_display() 
+    
+    def __str__(self):
+        return self.mes_nombre_choices_display() 
+    
+    

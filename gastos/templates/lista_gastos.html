@@ -24,6 +24,10 @@
                                 <th>Cantidad</th>
                                 <th>Precio Total</th>
                                 <th>Fecha</th>
+                                <th>Actividad-Partida</th>
+                                <th>Opciones</th>
+
+
                             </tr>
                             {% for gasto in gastos %}
                             <tr>
@@ -33,9 +37,12 @@
                                 <td>{{gasto.cantidad}} </td>
                                 <td>{{gasto.precio_total}}</td>
                                 <td>{{gasto.fecha}}</td>
+                                <td>{{gasto.id_actividad.programa}}-{{gasto.id_actividad.componente}}-{{gasto.id_actividad.actividad}}-{{gasto.id_actividad.partida.getClave}}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{% url 'gastos:editar' gasto.id %}">Modificar</a> 
+                                      </td>
                                 <td>
                                     <a class="btn btn-danger" href="{% url 'gastos:eliminar' gasto.id %}">Eliminar</a> 
-                                    <a class="btn btn-primary" href="{% url 'gastos:editar' gasto.id %}">Modificar</a> 
                                 </td>
                             </tr>
                             {% endfor %}

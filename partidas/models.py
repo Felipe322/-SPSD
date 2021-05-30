@@ -26,4 +26,13 @@ class Partida(models.Model):
         'partidas.Capitulo', verbose_name='Capitulo', on_delete=models.CASCADE)
 
     def __str__(self):
+        return str(self.clave)#+" - "+str(self.nombre)
+
+    def __str__(self):
         return str(self.clave)+" - "+str(self.nombre)
+    
+    def getNombre(self):
+        return  str(self.nombre)
+    
+    def getClave(self):
+        return str(self.clave)

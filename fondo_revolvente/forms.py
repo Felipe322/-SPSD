@@ -7,3 +7,15 @@ class FondoRevolventeForm(ModelForm):
     class Meta:
         model = FondoRevolvente
         fields = '__all__'
+        
+        
+#
+#class FondoRevolventeForm(ModelForm):   
+#    class Meta:
+#        model = FondoRevolvente
+#        fields = ( 'anio', 'monto')
+#        widgets = {
+#                 'anio':forms.Select(attrs={'class': 'form-control'}),
+#                'monto': forms.NumberInput(attrs={'class': 'form-control'}),
+#
+#        }
