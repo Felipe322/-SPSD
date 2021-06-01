@@ -70,11 +70,6 @@ def lista_actividades(request):
 @permission_required('actividades.add_actividad', raise_exception=True)
 def nueva_actividad(request):
     form = ActividadForm
-    #if request.session.get('anio'):
-    #        actividades = Actividad.objects.filter(anio =request.session['anio'])
-    #else:
-    #        actividades = Actividad.objects.all()
-    dic_session= [(request.session.get('anio'),str(request.session.get('anio')))]   
     if request.method == 'POST':
         form = ActividadForm(request.POST)
         if form.is_valid():
@@ -82,7 +77,7 @@ def nueva_actividad(request):
             return redirect('actividades:lista')
     else:
         form = ActividadForm()
-    return render(request, 'nueva_actividad.html', {'form': form, 'dic_session':dic_session})
+    return render(request, 'nueva_actividad.html', {'form': form }) #
 
 @login_required
 @permission_required('actividades.add_actividad', raise_exception=True)

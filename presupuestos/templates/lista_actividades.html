@@ -32,13 +32,13 @@
                     <tr>
                         <td>{{actividad.programa}}</td>
                         <td>{{actividad.componente}}</td>
-                        <td>  {{actividad.actividad}}  </td>
-                        <td>   {{actividad.monto}} </td>
-                        <td>  {{actividad.descripcion}}  </td>
+                        <td>{{actividad.actividad}}  </td>
+                        <td>${{actividad.monto}} </td>
+                        <td>{{actividad.descripcion}}  </td>
                         <td>{{ actividad.mes|month_name }}
                         </td>
-                        <td>  {{actividad.partida}}  </td>
-                        <td>  {{actividad.anio}}  </td>
+                        <td>{{actividad.partida}}  </td>
+                        <td>{{actividad.anio}}  </td>
                     
                         <td>
                             <a class="btn btn-danger" href="{% url 'actividades:eliminar' actividad.id %}">Eliminar</a> 
