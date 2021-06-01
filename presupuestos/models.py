@@ -33,9 +33,9 @@ class Actividad(models.Model):
                              )
 
     def __str__(self):
-        return str(self.programa)+" "+str(self.componente)+" " \
-            + str(self.actividad)+"-"+str(self.descripcion) + \
-            "Saldo: "+str(self.monto)+"$ partida "+str(self.partida)
+        return str(self.programa)+"-"+str(self.componente)+"-" \
+            + str(self.actividad)+" | "+str(self.descripcion) + \
+            " | Saldo:$"+str(self.monto)+" | Partida "+str(self.partida)
     # str(self.monto)+" "+str(self.descripcion)+" "+str(self.mes)+"
     # "+str(self.partida)+" "+str(self.anio)
 

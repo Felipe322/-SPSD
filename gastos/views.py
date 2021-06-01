@@ -11,6 +11,7 @@ from django.db.models import F
 def lista_gastos(request):
     if request.session.get('anio'):
         gastos = Gasto.objects.filter(id_actividad__anio =request.session['anio'])
+        
     else:
         gastos = Gasto.objects.all()
     return render(request, 'lista_gastos.html', {'gastos': gastos})
@@ -25,6 +26,11 @@ def nuevo_gasto(request):
         precio_unitario = request.POST['precio_unitario']
         cantidad = request.POST['cantidad']
         total_gasto = float(precio_unitario) * float(cantidad)
+        
+        
+        #return render(request, 'nueva_actividad.html', {'dic_session': dic_session})
+        ###
+        ##
         if form.is_valid():
             if gasto_valido(form):
                 form.save()
