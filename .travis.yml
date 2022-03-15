@@ -10,4 +10,5 @@ script:
   # - pycodestyle *.py
   # - coverage run --branch *
   # - coverage report --fail-under=95
-  - python3 gastos/test/test_forms.py
+  - cd gastos/test
+  - python3 test_forms.py
