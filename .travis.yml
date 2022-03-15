@@ -37,10 +37,10 @@ script:
   - cd ../../
   - cd presupuestos/test
   - python3 *.py
-  - cd ../../
+  - cd ../../..
 
   - echo 'ejecución de selenium..'
 
-  - python3 manage.py behave **/
+  - python3 manage.py behave /
 
 
