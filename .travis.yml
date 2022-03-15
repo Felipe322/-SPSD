@@ -38,9 +38,9 @@ script:
   - cd presupuestos/test
   - python3 *.py
   - cd ../../..
+  - pwd
+  - echo 'ejecucion de selenium..'
 
-  - echo 'ejecución de selenium..'
-
-  - python3 manage.py behave /
+  - python3 manage.py behave 
 
 
