@@ -37,7 +37,7 @@ script:
   - cd ../../
   - cd presupuestos/test
   - python3 *.py
-  - cd ../../..
+  - cd ../..
   - pwd
   - echo 'ejecucion de selenium..'
 
