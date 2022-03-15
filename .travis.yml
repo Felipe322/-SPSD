@@ -41,6 +41,6 @@ script:
 
   - echo 'ejecución de selenium..'
 
-  - python3 manage.py behave
+  - python3 manage.py behave **/
 
 
