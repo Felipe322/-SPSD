@@ -6,6 +6,11 @@ python:
 install:
   - pip install -r requirements.txt
 # command to run tests
+before_script:
+  - python3 manage.py makemigrations
+  - python3 manage.py migrate --run-syncdb
+  # - python3 manage.py createsuperuser
+  - python3 manage.py runserver 0:8000
 script:
   # - pycodestyle *.py
   # - coverage run --branch *
