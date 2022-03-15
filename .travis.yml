@@ -16,5 +16,4 @@ script:
   # - pycodestyle *.py
   # - coverage run --branch *
   # - coverage report --fail-under=95
-  - cd gastos/test
-  - python3 *.py
+  - python3 test_*.py
