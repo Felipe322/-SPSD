@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'principal',
     'usuarios',
-    'fondo_revolvente', 
+    'fondo_revolvente',
+    'behave_django',
 ]
 
 MIDDLEWARE = [
