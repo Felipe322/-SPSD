@@ -11,10 +11,10 @@ before_script:
   - python3 manage.py makemigrations
   - python3 manage.py migrate
   # - python3 manage.py createsuperuser
-  - python3 manage.py runserver 0:8000
+  - python3 manage.py runserver 0:8000 &
 script:
   # - pycodestyle *.py
   # - coverage run --branch *
   # - coverage report --fail-under=95
   - cd gastos/test
-  - python3 test_forms.py
+  - python3 *.py
