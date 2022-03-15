@@ -36,7 +36,7 @@ script:
   - cd ../../
 
   - echo 'ejecución de selenium..'
-  - isort --recursive --check-only --diff *.py /home/felipe/Documents/djangoSPSD/SPSD/test/pruebas_aceptacion/features/steps tests
+  - isort --recursive --check-only --diff *.py /test/pruebas_aceptacion/features/steps tests
 
 
 env:
