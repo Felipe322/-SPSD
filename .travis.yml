@@ -41,6 +41,6 @@ script:
 
   - echo 'ejecución de selenium..'
 
-  - python3 test/pruebas_aceptacion/features/environment.py
-  - isort --recursive --check-only --diff *.py /test/pruebas_aceptacion/features/steps tests
+  - python3 manage.py behave
+
 
