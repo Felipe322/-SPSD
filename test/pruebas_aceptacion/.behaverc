@@ -1,2 +1,4 @@
 [behave]
+paths = tests/pruebas_aceptacion
+junit = yes
 lang:es
