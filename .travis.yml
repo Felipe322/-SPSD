@@ -3,8 +3,15 @@ python:
   - "3.8"
   - "3.9"
 # command to install dependencies
+
+addons:
+  chrome: stable
+
 install:
   - pip install -r requirements.txt
+  - wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+  - wget https://chromedriver.storage.googleapis.com/`cat LATEST_RELEASE`/chromedriver_linux64.zip
+  - sudo unzip chromedriver_linux64.zip -d /usr/local/bin
 
 
 before_script:
@@ -12,6 +19,8 @@ before_script:
   - python3 manage.py migrate
   # - python3 manage.py createsuperuser
   - python3 manage.py runserver 0:8000 &
+
+
 script:
   # - pycodestyle *.py
   # - coverage run --branch *
@@ -25,3 +34,14 @@ script:
   - cd presupuestos/test
   - python3 *.py
   - cd ../../
+
+  - echo 'ejecución de selenium..'
+  - isort --recursive --check-only --diff *.py /home/felipe/Documents/djangoSPSD/SPSD/test/pruebas_aceptacion/features/steps tests
+
+
+env:
+ global:
+   - SELENIUM_WEBDRIVER=headless
+ matrix:
+   - DJANGO_VERSION=">=2.2,<3"
+   - DJANGO_VERSION=">=3.2,<4"

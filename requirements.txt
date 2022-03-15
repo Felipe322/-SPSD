@@ -4,3 +4,6 @@ six
 django-weasyprint
 django-bootstrap4
 django-crispy-forms
+isort
+flake8
+codecov
